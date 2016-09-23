@@ -1,6 +1,4 @@
-# LCS using DP
-
-def lcs(X,Y):
+def lps(X,Y):
     m = len(X)
     n = len(Y)
 
@@ -17,23 +15,22 @@ def lcs(X,Y):
 
     print L[m][n]
     index = L[m][n]
+
     l = [""]*index
     i = m
     j = n
-
-    while i>0 and j >0:
+    while i>0 and j>0:
         if X[i-1] == Y[j-1]:
             l[index-1] = X[i-1]
             i -= 1
             j -= 1
             index -= 1
         elif L[i-1][j] > L[i][j-1]:
-            i -= 1
+            i-=1
         else:
-            j -= 1
+            j -=1
     return ''.join(l)
 
-
-X = "raman"
-Y = "aman"
-print lcs(Y,X)
+X = "geeksskeeg"
+Y = X[::-1]
+print lps(X,Y)

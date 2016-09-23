@@ -18,5 +18,5 @@ def permutation(str,step = 0):
         # recurse on the portion of the string that has not been swapped yet
         permutation(str_copy,step+1)
 
-permutation('ram')
+permutation('abcdefghi')
 print len(l)
