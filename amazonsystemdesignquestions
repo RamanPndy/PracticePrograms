@@ -1,0 +1,5 @@
+Design an IP Blocking system. Asked for multiple approaches along with their pros and cons
+Design a Logger.
+Design a Job Scheduler. Drawbacks of the system I designed. How to implement a recurring job? Further optimizations.
+Design a scalable meeting room booking system.
+design a load balancer’s algorithm so that it redirects the traffic between three services s1, s2, s3 by 50%, 30% and 20%. further clause added to handle various clients calling to specific services.

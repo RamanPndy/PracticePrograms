@@ -1,0 +1,102 @@
+square root of a number
+Top view of BT
+Bottom view of a BT
+Left View of BT
+Right View of BT
+Boundary Traversal of BT
+vertical order Traversal of BT
+Level order Traversal of BT
+Level Maximum sum of BT
+Diagonal sum of BT
+Diameter of BT
+Topological Sorting (dependency of one thing to another)
+Design a Data Structure that supports Insertion, Deletion, search and getRandom in constant time.
+Print nodes at k distance from root
+print all the elements in the path from the key to root in BT
+Trapping Rain Water
+Longest Possible Chunked Palindrome
+Sort Linked List (merge sort)
+word ladder(Length of shortest chain to reach a target word)
+Rotten Oranges (Minimum time to rot all oranges)
+Rat Maze
+Knight's Tour
+Next Greater Permutation/Number from same sequence of digits
+first non repeating characters from stream
+LRU Implementation
+check given graph is a Tree
+sorted array to BST
+minimum distribution of candies
+Kth smallest element in a row wise and column wise sorted 2D array or matrix
+Kth largest element in a stream
+Binary Matrix with max 1's in a row
+minimum number of additions to make string balanced
+find possible words from phone digits
+find minimum time to finish all jobs within given contraints
+find minimum cost to connect n ropes/pipes
+Rearrange linked list in even and odd fashion
+K closest points from origin
+two nodes pf BST swapped. correct BST
+find loop in Linked List, remove loop and find loop length and return loop node
+count decodings of a given digit sequence
+find number of islands (BFS/DFS)
+Longest common subsequence
+Longest increasing subsequence
+Longest repeated subsequence
+Check triplet with given sum exists in BST
+Search in row wise and column wise sorted matrix
+count occurences of substring
+Generate Palindromic number less than N
+maximum sum contiguos subarray
+merge K sorted array
+Subset Sum
+find pair with given sum in BST
+Remove all nodes which don't lie in any path with sum >= k
+Rotation count sorted array
+Linked List sum
+reverse Linked List sum
+Merge strings by making cost as low as possible
+build BT from inorder and preorder
+build BT from inorder and postorder
+Serialize and Deserialize BT
+minimum steps needed to cover a sequence of points in an infinite grid
+maximum sum triplet in an array such that i<j<k and a[i]<a[j]<a[k]
+count inversions
+largest subtree having equal number of 1's and 0's
+clone Linked List using random pointer
+reverse Linked List
+reverse Linked List of size k
+BT to DLL
+convert tree to sum tree
+Longest Palindromic Substring
+check BT holds children sum property
+pre order traversal of BT using right pointer
+find triplet array whose sum equal to 0
+pythagorean triplet in an array
+minimum time require for arrival/departure of train/bus
+word break
+maximum sum such that no 2 elements are adjacent in an array
+merge two sorted Linked List in reverse order
+Rotate matrix by 90 degree
+spiral order of matrix
+spiral order of BT
+minimum number of deletions require to make string palindrome
+Stock Buy and Sell
+shortest path between nodes in BST
+shortest path between nodes in BT
+find LCA in BST
+find LCA in BT
+maximum difference between 2 elements in an array
+connect nodes at same level in BT
+Edit Distance
+Given a sequence of words print all anagrams together
+check if given tree is subtree of BT
+permutations of a string
+BT replace node with sum
+partition a set into 2 subsets such that difference of subset sum is minimum
+find all distinct palindromic sub strings of a given string
+maximum path sum between 2 leaves of BT
+convert BT to sum tree
+check if tree is balanced or not
+find K closest elements in an array
+find triplets from an array which can form triangles
+remove alternate duplicates from the string
