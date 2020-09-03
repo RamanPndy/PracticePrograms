@@ -48,13 +48,13 @@ count occurences of substring
 Generate Palindromic number less than N
 maximum sum contiguos subarray
 merge K sorted array
+merge K sorted linked lists
 Subset Sum
 find pair with given sum in BST
 Remove all nodes which don't lie in any path with sum >= k
 Rotation count sorted array
 Linked List sum
 reverse Linked List sum
-Merge strings by making cost as low as possible
 build BT from inorder and preorder
 build BT from inorder and postorder
 Serialize and Deserialize BT
@@ -66,6 +66,7 @@ clone Linked List using random pointer
 reverse Linked List
 reverse Linked List of size k
 BT to DLL
+sorted DLL to BST
 convert tree to sum tree
 Longest Palindromic Substring
 check BT holds children sum property
@@ -95,8 +96,12 @@ BT replace node with sum
 partition a set into 2 subsets such that difference of subset sum is minimum
 find all distinct palindromic sub strings of a given string
 maximum path sum between 2 leaves of BT
-convert BT to sum tree
 check if tree is balanced or not
 find K closest elements in an array
 find triplets from an array which can form triangles
 remove alternate duplicates from the string
+Given a sorted dictionary of an alien language, find order of characters
+find longest palindromic substring
+max path sum between two leaves of BT
+Longest ZigZag path in BT
+rearrange string such that there are no adjacent duplicates
