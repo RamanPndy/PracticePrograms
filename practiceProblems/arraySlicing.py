@@ -7,8 +7,8 @@ for i in range(len(l)):
     else:
         d[l[i]].append(i)
 
-print d
+print (d)
 for i in d.keys():
     t.append(d[i].pop(0))
 
-print t
+print (t)
