@@ -21,4 +21,4 @@ wt = [10,20,30]
 W =50
 n = len(val)
 
-print knapsack(W,wt,val,n)
+print (knapsack(W,wt,val,n))
