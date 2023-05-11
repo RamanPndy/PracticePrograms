@@ -39,6 +39,14 @@ class BlockingQueue:
         print("\ncurrent size of queue {0}".format(self.curr_size), flush=True)
         self.cond.release()
 
+    def peek(self):
+        self.cond.acquire()
+        top = None
+        if self.curr_size <= self.max_size:
+            top = self.q[0]
+        self.cond.release()
+        return top
+
 
 def consumer_thread(q):
     while 1:
