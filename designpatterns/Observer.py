@@ -25,3 +25,10 @@ class YoutubeUser(YoutubeSubscriber):
     def sendNotification(self, channel, event):
         super().sendNotification(event)
         print ("User {self.name} reciveed notification from {channel}: {event}")
+    
+channel = YoutubeChannel("neetcode")
+channel.subscribe("raman")
+channel.subscribe("siddharth")
+channel.subscribe("pankaj")
+
+channel.notify("new video released")
