@@ -3,6 +3,8 @@ class Solution(object):
         """
         :type s: str
         :rtype: List[int]
+        Input: s = "IDID"
+        Output: [0,4,1,3,2]
         """
         start=0
         end=len(s)
