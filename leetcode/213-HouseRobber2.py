@@ -12,7 +12,7 @@ class Solution(object):
         ##     b) Rob last and donot rob first. 
         ## We take maximum of both cases.
         """
-        def rob(nums):
+        def robHouse(nums):
             dp = [0 for i in range(len(nums))]
             dp[0] = nums[0]
             dp[1] = max(nums[0], nums[1])
@@ -21,4 +21,4 @@ class Solution(object):
             return max(dp[-1], dp[-2])
         if len(nums) <= 2:
             return max(nums)
-        return max(rob(nums[1:]), rob(nums[:-1]))
+        return max(robHouse(nums[1:]), robHouse(nums[:-1]))

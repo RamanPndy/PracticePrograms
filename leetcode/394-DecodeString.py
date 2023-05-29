@@ -3,6 +3,8 @@ class Solution(object):
         """
         :type s: str
         :rtype: str
+        Input: s = "3[a]2[bc]"
+        Output: "aaabcbc"
         """
         st = []
         cs = ''

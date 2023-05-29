@@ -5,6 +5,9 @@ class Solution(object):
         :type s1: str
         :type s2: str
         :rtype: bool
+        Input: s1 = "ab", s2 = "eidbaooo"
+        Output: true
+        Explanation: s2 contains one permutation of s1 ("ba").
         Get the character count, say c1, of the string s1.
         Get the character count, say c2, of the first n1 chars of s2, where n1, and n2 are lengths of s1 and s2 respectively.
         Use the sliding-window approach to slide c2 one character at a time to the right of s2

@@ -3,6 +3,9 @@ class Solution(object):
         """
         :type nums: List[int]
         :rtype: int
+        Input: nums = [100,4,200,1,3,2]
+        Output: 4
+        Explanation: The longest consecutive elements sequence is [1, 2, 3, 4]. Therefore its length is 4.
         a. If the element is the start of the sequence (i.e., the element-1 is not present in the hash set), do the following:
         i. Initialize a variable to store the length of the current sequence to 1.
         ii. Keep incrementing the element by 1 and checking if the next element is present in the hash set.

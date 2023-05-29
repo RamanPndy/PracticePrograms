@@ -5,6 +5,9 @@ class Solution(object):
         :type s: str
         :type k: int
         :rtype: int
+        Input: s = "aaabb", k = 3
+        Output: 3
+        Explanation: The longest substring is "aaa", as 'a' is repeated 3 times.
         """
         if len(s) < k:
             return 0
