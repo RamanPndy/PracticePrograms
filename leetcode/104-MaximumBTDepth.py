@@ -5,15 +5,15 @@ class Solution(object):
         :rtype: int
         """
         depth = 0
-        level = [root] if root else []
-        while level:
+        q = [root] if root else []
+        while q:
             depth += 1
-            queue = []
-            for node in level:
+            level = []
+            for node in q:
                 if node.left:
-                    queue.append(node.left)
+                    level.append(node.left)
                 if node.right:
-                    queue.append(node.right)
-            level = queue
+                    level.append(node.right)
+            q = level
             
         return depth
