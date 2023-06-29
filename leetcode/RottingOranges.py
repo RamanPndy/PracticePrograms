@@ -1,5 +1,5 @@
 class Solution:
-    def orangesRotting(self, grid: List[List[int]]) -> int:
+    def orangesRotting(self, grid):
         ROWS, COLS = len(grid), len(grid[0])
         time, fresh = 0 , 0
         q = []
@@ -10,7 +10,6 @@ class Solution:
                     fresh += 1
                 if grid[i][j] == 2:
                     q.append((i,j))
-        print(fresh)
         while q and fresh > 0:
             for i in range(len(q)):
                 r,c = q.pop(0)

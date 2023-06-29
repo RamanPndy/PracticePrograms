@@ -6,6 +6,9 @@ class Solution(object):
         :type s: str
         :type t: str
         :rtype: str
+        Input: s = "ADOBECODEBANC", t = "ABC"
+        Output: "BANC"
+        Explanation: The minimum window substring "BANC" includes 'A', 'B', and 'C' from string t.
         """
         if not t: return ""
 

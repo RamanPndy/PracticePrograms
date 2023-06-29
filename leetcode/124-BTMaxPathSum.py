@@ -9,6 +9,9 @@ class Solution(object):
         """
         :type root: TreeNode
         :rtype: int
+        Input: root = [-10,9,20,null,null,15,7]
+        Output: 42
+        Explanation: The optimal path is 15 -> 20 -> 7 with a path sum of 15 + 20 + 7 = 42.
         The idea is to update node values with the biggest, positive cumulative sum gathered by its children:
         If both contributions are negative, no value is added.
         If both are positive, only the biggest one is added, so that we don't include both children during the rest of the tree exploration.
