@@ -11,9 +11,9 @@ class RandomizedSet(object):
         :type val: int
         :rtype: bool
         """
-        if val not in self.arr:
-            self.arr.append(val)
+        if val not in self.m:
             self.m[val] = len(self.arr)
+            self.arr.append(val)
             return True
         return False
 
@@ -22,13 +22,13 @@ class RandomizedSet(object):
         :type val: int
         :rtype: bool
         """
-        if val in self.m:        
+        if val in self.m:
             last_elem_in_list = self.arr[-1]
             index_of_elem_to_remove = self.m[val]
-
-            self.m[last_elem_in_list] = index_of_elem_to_remove
             self.arr[index_of_elem_to_remove] = last_elem_in_list
+            self.m[last_elem_in_list] = index_of_elem_to_remove
             
+            # delete the last element
             self.arr.pop()
             del self.m[val]
             return True
