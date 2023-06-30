@@ -1,3 +1,4 @@
+package practiceProblems;
 class Solution {
     public String reorganizeString(String s) {
         Map<Character, Integer> m = new HashMap<Character, Integer>();

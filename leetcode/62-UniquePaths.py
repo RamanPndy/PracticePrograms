@@ -11,6 +11,10 @@ class Solution(object):
         reach the bottom-right corner.
         Input: m = 3, n = 7
         Output: 28
+        total combinations for reaching
+        dp[i][j] = dp[i-1][j] (*from the left*) + dp[i][j-1] (*from the top*) for i != 0 and j != 0
+        For initializing the dp matrix, we need to set 1 to the first row and first column because there is only 
+        one way to reach dp[0][j] and dp[i][0]
         """
         dp = [[1 for i in range(n)] for j in range(m)]
         for r in range(1,m):
