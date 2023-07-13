@@ -1,131 +1,121 @@
-class SplitType:
+'''
+In this example, we have classes for User, Expense, and ExpenseSplit. The Splitwise class manages the 
+users and expenses. Users are represented by the User class, and expenses are represented by the 
+Expense class, which includes information about the description, amount, expense type 
+(equal, exact, percentage), users involved, and the user who paid the expense. The ExpenseSplit class 
+represents the amount split by each user for a particular expense.
+The Splitwise class provides methods to add users and expenses. The calculate_balances method 
+calculates the balances for each user based on the expenses. The balances are stored in a dictionary, 
+where the key is the user ID, and the value is the balance amount.
+'''
+from enum import Enum
+
+class ExpenseType(Enum):
     EQUAL = 1
-    UNEQUAL = 2
+    EXACT = 2
     PERCENTAGE = 3
 
-class Split:
-    def __init__(self, user, amount, percentage) -> None:
-        self.user = user
-        self.amount = amount
-        self.percentage = percentage
-        
+class User:
+    def __init__(self, user_id, name):
+        self.user_id = user_id
+        self.name = name
+
 class Expense:
-    def __init__(self, id, description, amount, paidByUser, splitType, splitDetaills) -> None:
-        self.id = id
+    def __init__(self, expense_id, description, amount, expense_type, users):
+        self.expense_id = expense_id
         self.description = description
         self.amount = amount
-        self.paidByUser = paidByUser
-        self.splitType = splitType
-        self.splitDetaills = list()
-        self.splitDetaills.extend(splitDetaills)
-
-# Expense has Split
-# Expense has User
-
-class BalanceSheetController:
-    def updateUserExpenseBalanceSheet(self, expensePaidBy, splits, totalExpenseAmount):
-        expensePaidBy.userExpenseBalanceSheet.totalPayment += totalExpenseAmount
-        for split in splits:
-            oweUserExpenseBalanceSheet = split.user.userExpenseBalanceSheet
-            oweAmount = split.amount
-            if expensePaidBy.id == split.user.id:
-                 expensePaidBy.userExpenseBalanceSheet.totalYourExpense += oweAmount
-            else:
-                # update the balance of paid user
-                expensePaidBy.userExpenseBalanceSheet.totalYouGetBack += oweAmount
-                userOweBalance = Balance()
-                if split.user.id not in expensePaidBy.userExpenseBalanceSheet.userVsBalance:
-                    expensePaidBy.userExpenseBalanceSheet.userVsBalance[split.user.id] = userOweBalance
-                else:
-                    userOweBalance = expensePaidBy.userExpenseBalanceSheet.userVsBalance[split.user.id]
-                userOweBalance.amountGetBack += oweAmount
-
-                # update the balance sheet of owe user
-                oweUserExpenseBalanceSheet.totalYouOwe += oweAmount
-                oweUserExpenseBalanceSheet.totalYourExpense += oweAmount
-
-                userPaidBalance = Balance()
-                if expensePaidBy.id not in expensePaidBy.userExpenseBalanceSheet.userVsBalance:
-                    expensePaidBy.userExpenseBalanceSheet.userVsBalance[expensePaidBy.id] = userPaidBalance
-                else:
-                    userPaidBalance = expensePaidBy.userExpenseBalanceSheet.userVsBalance[expensePaidBy.id]
-                userPaidBalance.amountOwe += oweAmount
-
-class ExpenseController:
-    def __init__(self) -> None:
-        self.balanceSheetController = BalanceSheetController()
-
-    def createExpense(self, expenseId, description, expenseAmount, spiltDetails, splitType, paidByUser):
-        expenseSplit = SplitFactory.getSplitObject(splitType)
-        expenseSplit.validateSplitRequest(spiltDetails, expenseAmount)
-        expense = Expense(expenseId, description, expenseAmount, paidByUser, splitType, spiltDetails)
-        self.balanceSheetController.updateUserExpenseBalanceSheet(paidByUser, spiltDetails, expenseAmount)
-        return expense
-
-class ExpenseSplitInterface:
-    def validateSplitRequest(splitList, totalAmount):
-        pass
-
-class EqualExpenseSplit(ExpenseSplitInterface):
-    pass
-
-class UnEqualExpenseSplit(ExpenseSplitInterface):
-    pass
-
-class PercentageExpenseSplit(ExpenseSplitInterface):
-    pass
-
-class SplitFactory():
-    def getSplitObject(splitType):
-        if splitType == SplitType.EQUAL:
-            return EqualExpenseSplit()
-        elif splitType == SplitType.UNEQUAL:
-            return UnEqualExpenseSplit()
-        elif splitType == SplitType.PERCENTAGE:
-            return PercentageExpenseSplit()
-
-# Each User has peer expense balance sheet
-class User:
-    def __init__(self, id, name) -> None:
-        self.id = id
-        self.name = name
-        self.userExpenseBalanceSheet = UserExpenseBalanceSheet()
-
-class Balance:
-    def __init__(self) -> None:
-        self.amountOwe = 0
-        self.amountGetBack = 0
-
-class UserExpenseBalanceSheet:
-    def __init__(self) -> None:
-        self.userVsBalance = dict()
-        self.totalPayment = 0
-        self.totalYouOwe = 0
-        self.totalYouGetBack = 0
-        self.totalYourExpense = 0
-
-#UserController has list of Users
-class UserController:
-    def __init__(self, users) -> None:
+        self.expense_type = expense_type
         self.users = users
+        self.paid_by = None
+        self.split_by = None
 
-    # user CRUD operations
+class ExpenseSplit:
+    def __init__(self, user, amount):
+        self.user = user
+        self.amount = amount
 
-class Group:
-    def __init__(self, id, name, users) -> None:
-        self.id = id
-        self.name = name
-        self.groupMembers = users
-        self.expenseList = list()
-        self.expenseController = ExpenseController()
+class Splitwise:
+    def __init__(self):
+        self.users = {}
+        self.expenses = []
 
-#GroupController has list of Groups
-class GroupController:
-    def __init__(self, groups) -> None:
-        self.groups = groups
+    def add_user(self, user_id, name):
+        if user_id in self.users:
+            raise Exception("User already exists!")
+        user = User(user_id, name)
+        self.users[user_id] = user
 
-#Splitwise has UserController
-class SplitWise:
-    def __init__(self) -> None:
-        self.userController = UserController()
-        self.groupController = GroupController()
+    def add_expense(self, expense_id, description, amount, expense_type, user_splits, paid_by):
+        if expense_id in [expense.expense_id for expense in self.expenses]:
+            raise Exception("Expense ID already exists!")
+
+        users = []
+        total_splits = 0.0
+
+        for user_id, amount in user_splits.items():
+            if user_id not in self.users:
+                raise Exception("User does not exist!")
+            user = self.users[user_id]
+            split = ExpenseSplit(user, amount)
+            users.append(split)
+            total_splits += amount
+
+        if total_splits != amount:
+            raise Exception("Invalid split amounts!")
+
+        expense = Expense(expense_id, description, amount, expense_type, users)
+        expense.paid_by = self.users[paid_by]
+        expense.split_by = expense_type
+
+        self.expenses.append(expense)
+
+    def calculate_balances(self):
+        balances = {}
+
+        for expense in self.expenses:
+            amount_per_user = expense.amount / len(expense.users)
+
+            for split in expense.users:
+                if split.user.user_id not in balances:
+                    balances[split.user.user_id] = 0.0
+
+                if expense.split_by == ExpenseType.EQUAL:
+                    balances[split.user.user_id] += amount_per_user
+                elif expense.split_by == ExpenseType.EXACT:
+                    balances[split.user.user_id] += split.amount
+                elif expense.split_by == ExpenseType.PERCENTAGE:
+                    percentage_share = split.amount / 100
+                    balances[split.user.user_id] += expense.amount * percentage_share
+
+            if expense.paid_by.user_id not in balances:
+                balances[expense.paid_by.user_id] = 0.0
+            balances[expense.paid_by.user_id] -= expense.amount
+
+        return balances
+
+# Usage example
+if __name__ == "__main__":
+    splitwise = Splitwise()
+
+    # Add users
+    splitwise.add_user(1, "Alice")
+    splitwise.add_user(2, "Bob")
+    splitwise.add_user(3, "Charlie")
+
+    # Add expenses
+    user_splits = {1: 100, 2: 100, 3: 100}
+    splitwise.add_expense(1, "Dinner", 300, ExpenseType.EQUAL, user_splits, 1)
+
+    user_splits = {1: 200, 3: 100}
+    splitwise.add_expense(2, "Movie", 300, ExpenseType.EXACT, user_splits, 2)
+
+    user_splits = {2: 50, 3: 50}
+    splitwise.add_expense(3, "Groceries", 100, ExpenseType.PERCENTAGE, user_splits, 3)
+
+    # Calculate balances
+    balances = splitwise.calculate_balances()
+
+    # Print balances
+    for user_id, balance in balances.items():
+        print(f"User {user_id}: {balance}")

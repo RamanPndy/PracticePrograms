@@ -7,10 +7,11 @@ class Solution(object):
         Output: 6
         Explanation: [2,3] has the largest product 6.
         The intuition behind this approach is that a subarray with maximum product can be obtained by multiplying 
-        the maximum product of its previous subarray with the current element (if the current element is positive) or 
-        the minimum product of its previous subarray with the current element (if the current element is negative). 
-        We keep track of both the maximum and minimum products because a negative number can also result in a 
-        maximum product if multiplied by another negative number.
+        the maximum product of its previous subarray with the current element 
+        (if the current element is positive) or the minimum product of its previous subarray with the 
+        current element (if the current element is negative). 
+        We keep track of both the maximum and minimum products because a negative number can also 
+        result in a maximum product if multiplied by another negative number.
         """
         maxProd = [0 for i in range(len(nums))]
         minProd = [0 for i in range(len(nums))]
