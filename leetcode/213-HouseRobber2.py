@@ -5,6 +5,8 @@ class Solution(object):
         :rtype: int
         Input: nums = [2,3,2]
         Output: 3
+        All houses at this place are arranged in a circle
+        it will automatically contact the police if two adjacent houses were broken into on the same night.
         Explanation: You cannot rob house 1 (money = 2) and then rob house 3 (money = 2), because they are adjacent houses.
         ## LOGIC ##
         ## 1. Only 2 scenarios possible 

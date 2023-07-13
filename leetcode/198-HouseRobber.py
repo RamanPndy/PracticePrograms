@@ -3,6 +3,8 @@ class Solution(object):
         """
         :type nums: List[int]
         :rtype: int
+        adjacent houses have security systems connected and it will automatically contact the police 
+        if two adjacent houses were broken into on the same night.
         Input: nums = [1,2,3,1]
         Output: 4
         Explanation: Rob house 1 (money = 1) and then rob house 3 (money = 3).

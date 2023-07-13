@@ -6,6 +6,7 @@ class Solution(object):
         Input: nums = [2,3,1,1,4]
         Output: true
         Explanation: Jump 1 step from index 0 to 1, then 3 steps to the last index.
+        Return true if you can reach the last index, or false otherwise.
         """
         reach = 0
         for i, n in enumerate(nums):
