@@ -16,3 +16,11 @@ SELECT * FROM `employee_table` ORDER BY `sal` DESC LIMIT 1 OFFSET 2;
 SELECT * FROM employee WHERE salary= (SELECT DISTINCT(salary) FROM employee ORDER BY salary DESC LIMIT n-1,1);
 -- find 4th highest salary
 SELECT * FROM employee WHERE salary= (SELECT DISTINCT(salary) FROM employee ORDER BY salary DESC LIMIT 3,1);
+
+-- COALESCE Example
+INSERT INTO items (product, price, discount) VALUES ('A', 1000 ,10), ('B', 1500 ,20), ('C', 800 ,5), ('D', 500, NULL);
+SELECT
+	product,
+	(price - COALESCE(discount,0)) AS net_price
+FROM
+	items;
