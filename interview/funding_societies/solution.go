@@ -1,5 +1,3 @@
-// You can edit this code!
-// Click here and start typing.
 package main
 
 import (
@@ -23,7 +21,7 @@ type operation interface {
 	Find(string) *SubCategory
 }
 
-func (s Subcategory) Add(string categoryName, Category *root) *Subcategory {
+func (s SubCategory) Add(categoryName string, root *Category) *SubCategory {
 	cat := SubCategory{Parent: root, Name: categoryName}
 	if s.Parent != nil {
 		cat.Parent = s.Parent
@@ -31,15 +29,15 @@ func (s Subcategory) Add(string categoryName, Category *root) *Subcategory {
 	return &cat
 }
 
-func (Subcategory s) Move(Category *root, Category *parent) *Subcategory {
+func (s SubCategory) Move(root *Category, parent *Category) *SubCategory {
 	cat := SubCategory{Parent: root}
 	if parent != nil {
-		cat.Parent = Parent
+		cat.Parent = parent
 	}
 	return &cat
 }
 
-func (Subcategory s) Find(string name) *SubCategory {
+func (s SubCategory) Find(name string) *Category {
 	if s.Name == name {
 		return s.Parent
 	}
@@ -47,56 +45,61 @@ func (Subcategory s) Find(string name) *SubCategory {
 	return parent
 }
 
-func (Subcategory s) Get(categoryMap map[string]*Subcategory) string {
+func (s SubCategory) Get(categoryMap map[string]*SubCategory) string {
 	categoryList := make([]string, 0)
 	catName := s.Name
-	while(catName != "")
-	{
-		cat, exists := categoryMap[catName]
-		if exists && cat.Parent != nil {
-			catName := cat.Parent.Name
-			categoryList = append(categoryList, catName)
-		}
+
+	cat, exists := categoryMap[catName]
+	if exists && cat.Parent != nil {
+		catName := cat.Parent.Name
+		categoryList = append(categoryList, catName)
 	}
-	categoryList = append(categoryList, s.Name)
+	categoryList = append(categoryList, catName)
 	return strings.Join(categoryList, " -> ")
 }
 
 func main() {
-	commands = []string{"ADD_PRODUCT_CATEGORY MOBILES", "GET_PRODUCT_CATEGORY MOBILES", "ADD_PRODUCT_CATEGORY ANDROID MOBILES", "ADD_PRODUCT_CATEGORY IOS MOBILES", "GET_PRODUCT_CATEGORY IOS"}
-	operation := SubCategory{Parent: nil, Name: "ALL_PRODUCTS"}
-	categoryMap := make(map[string]*Subcategory, 0)
+	commands := []string{"ADD_PRODUCT_CATEGORY MOBILES", "GET_PRODUCT_CATEGORY MOBILES", "ADD_PRODUCT_CATEGORY ANDROID MOBILES", "ADD_PRODUCT_CATEGORY IOS MOBILES", "GET_PRODUCT_CATEGORY IOS"}
+	root := &Category{Name: "ALL_PRODUCTS"}
+	operation := SubCategory{Parent: root}
+	categoryMap := make(map[string]*SubCategory, 0)
 
-	for c := range commands {
+	for _, c := range commands {
+		for subcatName, catObj := range categoryMap {
+			fmt.Println(subcatName)
+			if catObj.Parent != nil {
+				fmt.Println(catObj.Parent.Name)
+			}
+		}
 		command := strings.Split(c, " ")
-		operation := command[0]
-		subcateogries := command[1:]
+		op := command[0]
+		subcategories := command[1:]
 
-		switch operation {
+		switch op {
 		case "ADD_PRODUCT_CATEGORY":
-			if len(subcateogries) == 1 {
-				cat := operation.Add(subcateogries[0], root)
+			if len(subcategories) == 1 {
+				cat := operation.Add(subcategories[0], root)
 				categoryMap[cat.Name] = cat
 			}
-			if len(subcateogries) == 2 {
-				categoryName, parentCategoryName := subcateogries[0], subcateogries[1]
+			if len(subcategories) == 2 {
+				categoryName, parentCategoryName := subcategories[0], subcategories[1]
 				parentCat, exists := categoryMap[parentCategoryName]
 				if exists {
-					cat := parentCat.Add(categoryName, parentCat)
+					cat := parentCat.Add(categoryName, parentCat.Parent)
 					categoryMap[categoryName] = cat
 				} else {
-					cat := root.Add(categoryName, root)
+					cat := operation.Add(categoryName, root)
 					categoryMap[categoryName] = cat
 				}
 			}
 
 		case "MOVE_PRODUCT_CATEGORY":
-			categoryName, parentCategoryName := subcateogries[0], subcateogries[1]
+			categoryName, parentCategoryName := subcategories[0], subcategories[1]
 			cat := categoryMap[categoryName]
 			parentCategory := categoryMap[parentCategoryName]
-			cat.Move(root, parentCategory)
+			cat.Move(root, parentCategory.Parent)
 		case "GET_PRODUCT_CATEGORY":
-			categoryName := subcateogries[0]
+			categoryName := subcategories[0]
 			cat := categoryMap[categoryName]
 			fmt.Println(cat.Get(categoryMap))
 		}
