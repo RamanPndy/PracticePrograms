@@ -26,13 +26,16 @@ class Customer:
         self.__phone = phone
         self.__status = status
         self.__card = Card()
-        self.__account = Account
+        self.__account = Account()
     
     def make_transaction(self, transaction):
         None
     
     def get_billing_address(self):
         None
+
+    def add_account(self, account_number):
+       self.__account = Account(account_number)
 
 class Card:
     def __init__(self, number, customer_name, expiry, pin):
