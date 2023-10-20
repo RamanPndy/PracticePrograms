@@ -8,6 +8,10 @@ The "init" function can be defined anywhere in the package, and multiple "init" 
 The "init" function is a useful tool for performing initialization tasks that need to be done before the main function is called, and it is often used in conjunction with the "main" package to set up the environment for the main function to run. 
 
 Difference between array and slice
+array is value type and slice is reference type
+
+You can see clearly that the array is over 10 times faster than the slice.
+
 var a [5]int 
 an array of integers with a length of 5
 
@@ -109,15 +113,11 @@ new(T) allocates zeroed storage for a new item of type T and returns its address
 make(T) returns an initialized value of type T; it applies only to the 3 built-in reference types: slices, maps and channels.
 In other words, new allocates; make initializes;
 
-enter image description here
-
 var p *[]int = new([]int)
 or
 // *p == nil; with len and cap 0
 p := new([]int)
 which is only rarely useful.
-
-enter image description here
 
 p := make([]int, 0)
 our slice is initialized, but here points to an empty array.
@@ -160,3 +160,27 @@ func main() {
                    // assignment to entry in nil map
          (*u)["y"] = "world"
 }
+
+Rune literals are just 32-bit integer values (however they're untyped constants, so their type can change). They represent unicode codepoints. For example, the rune literal 'a' is actually the number 97.
+
+Therefore your program is pretty much equivalent to:
+
+package main
+
+import "fmt"
+
+func SwapRune(r rune) rune {
+    switch {
+    case 97 <= r && r <= 122:
+        return r - 32
+    case 65 <= r && r <= 90:
+        return r + 32
+    default:
+        return r
+    }
+}
+
+func main() {
+    fmt.Println(SwapRune('a'))
+}
+It should be obvious, if you were to look at the Unicode mapping, which is identical to ASCII in that range. Furthermore, 32 is in fact the offset between the uppercase and lowercase codepoint of the character. So by adding 32 to 'A', you get 'a' and vice versa.

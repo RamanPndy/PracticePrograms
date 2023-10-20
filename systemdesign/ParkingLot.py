@@ -1,7 +1,7 @@
 import time
 
 class Address:
-    def __init__(self, street, block, city, state, country) -> None:
+    def __init__(self, street, block, city, state, country):
         self.street = street
         self.block = block
         self.city = city
@@ -18,7 +18,7 @@ class ParkingSlotType:
         return parkingType * duration
 
 class ParkingSlot:
-    def __init__(self, name, parkingSlotType) -> None:
+    def __init__(self, name, parkingSlotType):
         self.name = name
         self.parkingSlotType = parkingSlotType
         self.vehicle = None
@@ -40,12 +40,12 @@ class VehicleCategory:
     BUS = 5
 
 class Vehicle:
-    def __init__(self, vehicleNumber, category) -> None:
+    def __init__(self, vehicleNumber, category):
         self.vehicleNumber = vehicleNumber
         self.vehicleCategory = category
         
 class ParkingFloor:
-    def __init__(self, name) -> None:
+    def __init__(self, name):
         self.name = name
         self.parkingSlots = dict() # Map of Map Map{ParkingSlotType : Map{String, ParkingSlot}}
 
