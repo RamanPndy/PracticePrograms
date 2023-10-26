@@ -9,6 +9,8 @@ class Solution(object):
         :type head: ListNode
         :type n: int
         :rtype: ListNode
+        Input: head = [1,2,3,4,5], n = 2
+        Output: [1,2,3,5]
         """
         slow, fast = head, head
         # advance fast to nth position

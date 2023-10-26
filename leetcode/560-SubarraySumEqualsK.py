@@ -6,10 +6,15 @@ class Solution(object):
         :type nums: List[int]
         :type k: int
         :rtype: int
+        Given an array of integers nums and an integer k, return the total number of subarrays whose sum equals to k.
+        Input: nums = [1,1,1], k = 2
+        Output: 2
         Kadane algorithm
         the basic idea behind this is whenever sums has increased by a value of k, we've found a subarray of sums=k. (prefix sum)
-        if you notice the running sums array, from 1->4, there is increase of k and from 4->7, there is an increase of k. So, we've found 2 subarrays of sums=k.
-        However, if sums==k, it should've been 3-0=k. But 0 is not present in the array. To account for this case, we include the 0.
+        if you notice the running sums array, from 1->4, there is increase of k and from 4->7, 
+        there is an increase of k. So, we've found 2 subarrays of sums=k.
+        However, if sums==k, it should've been 3-0=k. But 0 is not present in the array. 
+        To account for this case, we include the 0.
         """
         sums = 0
         count = 0

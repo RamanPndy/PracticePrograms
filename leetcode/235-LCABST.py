@@ -15,6 +15,10 @@ class Solution(object):
         Input: root = [6,2,8,0,4,7,9,null,null,3,5], p = 2, q = 8
         Output: 6
         Explanation: The LCA of nodes 2 and 8 is 6.
+        traverse tree.
+        if node val is greater than max value of both nodes then keep traversing in the left
+        if node val is less than min value of both nodes then keep traversing in the right
+        otherwise return root
         """
         maxval = max(p.val, q.val)
         minval = min(p.val, q.val)
