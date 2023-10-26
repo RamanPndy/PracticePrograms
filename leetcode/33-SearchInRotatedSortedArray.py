@@ -4,11 +4,9 @@ class Solution(object):
         :type nums: List[int]
         :type target: int
         :rtype: int
+        Input: nums = [4,5,6,7,0,1,2], target = 0
+        Output: 4   
         """
-        # for i, n in enumerate(nums):
-        #     if n == target:
-        #         return i
-        # return -1
         l , r = 0, len(nums) -1
         while l <= r:
             m = (l+r) // 2

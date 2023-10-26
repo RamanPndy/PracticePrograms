@@ -6,6 +6,8 @@ class Solution(object):
         """
         :type s: str
         :rtype: str
+        Input: s = "aab"
+        Output: "aba"
         """
         m = defaultdict(int)
         for c in s:

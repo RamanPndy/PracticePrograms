@@ -8,14 +8,6 @@ class Solution(object):
         Output: 6
         Explanation: The subarray [4,-1,2,1] has the largest sum 6.
         """
-        # currSum = 0
-        # maxSum = 0
-        # for n in nums:
-        #     currSum += n
-        #     maxSum = max(maxSum, currSum)
-        #     if currSum < 0:
-        #         currSum = 0
-        # return maxSum
         answer = float('-inf')
         maximum=0
 
