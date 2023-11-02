@@ -12,6 +12,8 @@ class Solution(object):
         s4 = "aaaa"
         s5 = "abcd"
         s6 = "abcdaxyz"
+        # Time: O(n)
+        # Space: O(1)  
         """
         res = ''
         maxLen = 1
