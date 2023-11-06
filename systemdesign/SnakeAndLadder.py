@@ -32,7 +32,7 @@ class GameBoard:
     def play(self):
         while len(self.nextTurn) > 1:
             player = self.nextTurn.pop(0)
-            currentPosition = self.playersCurrentPosition(player.name)
+            currentPosition = self.playersCurrentPosition[player.name]
             diceValue = self.dice.rollDice()
             nextCell = currentPosition + diceValue
             if nextCell > self.boardSize:
@@ -56,7 +56,7 @@ class GameBoard:
                 if nextPosition == self.boardSize:
                     print (player.name + "has won the game")
                 else:
-                    self.playersCurrentPosition[player.name, nextPosition]
+                    self.playersCurrentPosition[player.name] = nextPosition
                     print (player.name + "is at position : " + nextPosition)
                     self.nextTurn.append(player)
                 

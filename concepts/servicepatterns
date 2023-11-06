@@ -27,3 +27,16 @@ Sharding
 
 Strangular Fig Pattern
  - migrate legacy to new version
+
+Saga Pattern
+ - solves the problem of distributed transaction failures 
+ - SAGA is responsible for committing multiple commentary transactions by giving rollback opportunities.
+ - There are two ways to achieve the saga's
+    1. Choreography : Each service in the Saga carries out its transaction and publishes events. The other services respond to those occurrences and carry out their tasks. In addition, depending on the scenario, they may or may not publish additional events.
+    2. Orchestration : each service participating in the saga performs their transactions and publish events. The other services respond to those events and complete their tasks.
+
+API Gateway
+ - it is responsible for giving a single entry point for a certain group of microservices. 
+ - API gateway sits between the client apps and the microservices and it serves as a reverse proxy, forwarding client requests to services. Authentication, SSL termination, and caching are some of the other cross-cutting services it can provide.
+ - Authorization and SSL must be handled by each publicly published microservice. Those problems might be addressed in a single tier in many cases, reducing the number of internal microservices.
+ - API gateway must be capable of handling partial failures. The failure of a single unresponsive microservice should not result in the failure of the entire request.
