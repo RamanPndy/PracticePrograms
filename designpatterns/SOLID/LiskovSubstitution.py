@@ -5,6 +5,9 @@ isolated and unaware of changes in the class hierarchy.
 In simpler terms means that a subclass, child or specialization of an object or class must be suitable by its Parent or SuperClass.
 Subtypes must be substitutable for their base types
 Use inheritance only when superclass is replacable by subclass in all the instances
+
+Increases code reusability: By following LSP, we can create a set of related classes that can be used interchangeably without 
+modifying the code. This makes it easier to reuse code and can save us time when we're developing new features.
 '''
 
 class SuperClass:
