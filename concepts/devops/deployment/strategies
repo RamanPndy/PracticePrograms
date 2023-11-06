@@ -1,0 +1,17 @@
+Blue/Green deployment := In blue-green deployment you serve the current app on one half of your environment (Blue) and deploy your new application to the other (Green) without affecting the blue environment.
+canary deployment := canary deployment is the practice of making staged releases. We roll out a software update to a small part of the users first, so they may test it and provide feedback. Once the change is accepted, the update is rolled out to the rest of the users.
+ - running two versions of app simultaneously (the stable and the canary)
+ - deploying updates (rolling and side by side)
+    - side by side deployment : create a whole new environment and install canary version there
+we can use canary deployment for A/B testing
+capacity tests
+valueable feedback from users
+no downtime
+in canary can deploy by region ie. to specific geographical area
+cons
+    - cost
+    - complexity
+    - time
+
+BigBang deployment
+    - 

@@ -1,0 +1,18 @@
+with SSO, use can acess many apps without having login each time
+SSO is built on concept of federated identity
+it enables sharing of identity information across trusted but independent systems
+protocols for authentication process (SAML (Security assertion markup language) and OpenID connect)
+SAML uses XML whereas OpenId connect usess JWT (Header, Payload and Signature)
+
+SAML steps:
+    - Gmail is a service provider
+    - Gmail server detects that user from work domain and returns SAML authentication request to browser
+    - browser redirect users to identity provider (Okta, Auth0, Onelogin) for the company specified in the SAML authentication request
+    - identity provider shows login page where user enters credentials
+    - once user is authenticated then identity provider generates a SAML response (SAML assertion) and return that to browser
+    - SAML assertion is a cryptographically signed XML documents which contains information about the user and what the user can acess with service provider
+    - browser forwards signed SAML assertion to the service provider
+    - service provider validates that the assertion was signed by the identity provider 
+    - this validation is usually done with public key cryptography
+    - service provider returns protected resource to the browser based on what the user is allowed to access as specified in SAML assertion
+    - if user is already logged in with the identity provider, it skips the login process, and instead generates a SAML assertion for service provider detailing what the user can access there
