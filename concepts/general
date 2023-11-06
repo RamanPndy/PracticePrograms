@@ -1,0 +1,91 @@
+forward proxy
+ - it is a server that sits between a group of client machines and the internet
+ - when clients make requests to websites on the internet, the forward proxy acts as a middleman and intercepts those requests and talk to web servers on behalf of client machines
+ - it protects client's online identity such as IP address of a client is hidden from the server only IP adress of proxy is visible
+ - bypass browsing restrictions
+ - block access to certain content
+
+reverse proxy
+ - it sits between internet and web server
+ - it intercepts requests from the client and talk to web servers on behalf of clients
+ - it could be used to protect websites
+ - websites IP addresses are hidden behind reverse proxy and not revelead to the clients
+ - prevents DDOs attacks
+ - load balancing
+ - caches static content
+ - can handle SSL encryption
+
+
+The Twelve Factors : Twelve-factor app is a methodology for building distributed applications that run in the cloud and are delivered as a service. 
+I. Codebase 
+ - One codebase tracked in revision control, many deploys
+ - every application should have its own codebase (repos). For all the deployment environments there should be only one repo but not multiple.
+ - Having an independent codebase helps you to easy CI/CD process for your applications.
+ - If you need to share you need to build a library and make it as a dependency and manage through package repository like maven.
+
+II. Dependencies : 
+ - Explicitly declare and isolate dependencies
+ - managing the dependencies externally using dependency management tools instead of adding them to your codebase.
+ - In non-containerized environments, you can go for configuration management tools like chef, ansible, etc. to install system-level dependencies.
+ - For a containerized environment, you can go for dockerfile.
+
+III. Config : 
+- Store config in the environment
+- Anything that varies between the deployment environments is considered as configuration.
+- Database connections and credentials, system integration endpoints
+- Credentials to external services such as Amazon S3 or Twitter or any other external apps
+- Application-specific information like IP Addresses, ports, and hostnames, etc.
+- You should not hardcode any configuration values as constants in the codebase. 
+- strict separation between the code and configurations.
+
+IV. Backing services : 
+- Treat backing services as attached resources
+- a backing service is an application/service the app consumes over the network as part of its normal operation.
+- Database, Message Brokers, any other external systems that the app communicates is treated as Backing service.
+- app can automatically swap the application from one provider to another without making any further modifications to the code base. Only configuration change should be able to take care of it.
+- By following the interfaced based programming allow to swap the provider dynamically without impact on the system. Plug-in based implementation also helps you to support multiple providers.
+
+V. Build, release, run : 
+- Strictly separate build and run stages
+- The application must have a strict separation between the build, release, and run stages. 
+- Build stage: transform the code into an executable bundle/ build package.
+- Release stage: get the build package from the build stage and combines with the configurations of the deployment environment and make your application ready to run.
+- Run stage: It is like running your app in the execution environment.
+
+VI. Processes :
+- Execute the app as one or more stateless processes
+- The app is executed inside the execution environment as a process. An app can have one or more instances/processes to meet the user/customer demands.
+- the application should not store the data in in-memory and it must be saved to a store and use from there. As far as the state concern, your application should store the state in the database instead of in memory of the process.
+- Avoid using sticky sessions. If you would store the session information, you can choose redis or memcached or any other cache provider based on your requirements.
+- By adopting the stateless nature of REST, your services can be horizontally scaled as per the needs with zero impact. If your system still requires to maintain the state use the attached resources (redis, Memcached, or datastore) to store the state instead of in-memory.
+
+VII. Port binding : 
+- Export services via port binding
+- The web app exports HTTP as a service by binding to a port, and listening to requests coming in on that port.
+- In short, this is all about having your application as a standalone instead of deploying them into any of the external web servers.
+VIII. Concurrency : 
+- Scale out via the process model
+- consider running your application as multiple processes/instances instead of running in one large system. You can still opt-in for threads to improve the concurrent handling of the requests.
+- opt-in for horizontal scaling instead of vertical scaling.
+
+IX. Disposability : 
+- Maximize robustness with fast startup and graceful shutdown
+- When the application is shutting down or starting, an instance should not impact the application state.
+- Graceful shutdowns are very important. The system must ensure the correct state.
+- The system should not get impacted when new instances are added or takedown the existing instances as per need. This is also known as system disposability.
+
+X. Dev/prod parity : 
+- Keep development, staging, and production as similar as possible
+- keeping the gap between development and production environment as minimal as possible. This reduces the risks of showing up bugs in a specific environment.
+
+XI. Logs : 
+- Treat logs as event streams
+- separating the log generation and processing the log's information. From the application logs will be written as a standard output and the execution environment takes care of capture, storage, curation, and archival of such stream should be handled by the execution environment.
+- Observability can be achieved through using APM tools (ELK, Newrelic, and other tools) or log aggregations tools like Splunk, logs, etc.
+
+XII. Admin processes : 
+- Run admin/management tasks as one-off processes
+- There is a number of one-off processes as part of the application deployment like data migration, executing one-off scripts in a specific environment.
+- keeping such administrative tasks as part of the application codebase in the repository. By doing so, one-off scripts follow the same process defined for your codebase.
+- Ensure one-off scripts are automated so that you don’t need to worry about executing them manually before releasing the build.
+- using the built-in tool of the execution environment to run those scripts on production servers.

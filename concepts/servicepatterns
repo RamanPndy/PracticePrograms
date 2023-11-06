@@ -1,0 +1,29 @@
+Ambassdor
+ - it acts as a "go-between" for your app and the services it communicates with offloading tasks such as logging/monitoing/handling retries
+ - K8s uses envoy as ambassdor to simplify communication between services
+ - this pattern can help reduce latency, enhanced security and improve overall architecture of distributed system
+
+Circuit Breaker
+ - 
+
+Command Query responsibility seggregation
+ - by separating the write or command and read or query operations
+ - command -> write DB query -> read DB
+
+Event Sourcing 
+ - instead of updating a record directly, we store events representing changes
+ - this approach provides complete history of a system and enables better auditing and debugging
+
+Leader Election
+ - one node is responsible for specific task or resource
+ - when leader node fails then remaining nodes elects new leader
+
+Pub Sub
+
+Sharding
+ - technique to distribute data across multiple nodes in a system
+ - each shard contains subset of a data, reducing the load on any single node
+ - it can help achieve better data locality, reducing network latency and speed up query execution
+
+Strangular Fig Pattern
+ - migrate legacy to new version
