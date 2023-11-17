@@ -8,8 +8,8 @@ class Solution(object):
         Output: "PAHNAPLSIIGYIR"
         steps:
         1. first create 2D array of numRows
-        2. create variables index and step
-        3. for each character in string
+        2. create variables index = 0 and step = 1
+        3. traverse through each character in string
             - append each character in each row by index
             - if index == 0 means first row then set step = 1
             - if index == numRows -1 means last row then set step = -1

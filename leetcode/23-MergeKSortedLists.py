@@ -10,6 +10,27 @@ class Solution(object):
         """
         :type lists: List[ListNode]
         :rtype: ListNode
+        Input: lists = [[1,4,5],[1,3,4],[2,6]]
+        Output: [1,1,2,3,4,4,5,6]
+        Explanation: The linked-lists are:
+        [
+        1->4->5,
+        1->3->4,
+        2->6
+        ]
+        merging them into one sorted list:
+        1->1->2->3->4->4->5->6
+        Steps:
+        1. create head node and put it to current node
+        2. create min heap array
+        3. traverse through each lists array
+            - put list value and index in heap and proceed with next node
+        4. traverse heap
+            - get value and index from heap
+            - add node with value in current node
+            - proceed with next current node
+            - if there is any list in lists array then append it to heap and proceed with next node
+        5. retun next of head
         """
         head = ListNode()
         curr = head

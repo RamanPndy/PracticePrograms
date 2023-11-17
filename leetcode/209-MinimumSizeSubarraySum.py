@@ -8,9 +8,12 @@ class Solution(object):
         Output: 2
         Explanation: The subarray [4,3] has the minimal length under the problem constraint.
         2 pointer approach.
-        start from right pointer and add value in solution.
-        if solution becomes greater than target then subtract left point value and increment left pointer also 
-        update res which will be legth of left and right pointer window.
+        Steps:
+        1. create left,right pointer and set solutions as 0 initially.
+        2. start from right pointer and add value in solution.
+        3. if solution becomes greater than target then subtract left point value from solution and increment left pointer also 
+            update res which will be legth of left and right pointer window.
+        4. if res > len(nums) return 0 otherwise return res
         """
         res = len(nums) + 1
         l = s = 0
