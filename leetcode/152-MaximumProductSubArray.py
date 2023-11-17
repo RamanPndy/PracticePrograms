@@ -12,6 +12,17 @@ class Solution(object):
         current element (if the current element is negative). 
         We keep track of both the maximum and minimum products because a negative number can also 
         result in a maximum product if multiplied by another negative number.
+        Steps:
+        1. create 2 arrays maxProd and minProd of the same length as nums and fill 0 in it
+        2. put num[0] in both maxProd and minProd at first index and assign same to result
+        3. traverse remaining nums from index 1 by index
+            - if current num is positive
+                maxProd[i] = max(current num, previous value from maxProd * current num)
+                minProd[i] = max(current num, previous value from minProd * current num)
+            else
+                maxProd[i] = max(current num, previous value from minProd * current num)
+                minProd[i] = max(current num, previous value from maxProd * current num)
+        4. update result with maxProd with current index
         """
         maxProd = [0 for i in range(len(nums))]
         minProd = [0 for i in range(len(nums))]
