@@ -1,0 +1,175 @@
+Facts are numerical data, and dimensions are metadata.
+Metadata explains the additional information associated with the factual variable. 
+Both facts and dimensions are equally important for generating actionable insights from a given data set. 
+For example, in a data set about the height of students in a class, the height of the students would be a fact variable, 
+whereas the gender of the students would be a dimensional variable. You can use dimensions to slice data for easier analysis. 
+In this case, the distribution of height based on the gender of a student can be studied.
+
+A bar graph is helpful when you need to visualise a numeric feature (fact) across multiple categories. 
+plt.bar() -> to make the desired changes to the bars of a graph
+plt.yticks(tick_values, tick_labels) ->   to change the values and ticks on the x and y axes of a graph
+Colours can be provided as a list to the matplotlib.pyplot.bar function under the attribute 
+‘color’.: matplotlib.pyplot.bar(x, y, color = [‘red’, ‘blue’, ‘green’]) 
+[Note: if there are more than three bars, the colours will start repeating themselves.]
+
+plt.scatter(x_axis, y_axis) -> to create scatter plot
+plt.scatter(x_axis, y_axis, c = color, label = labels) -> to specify the colours and labels of the categories in a data set
+(x_axis, y_axis, colour, labels) need to be provided in the form of a list or an array. You can use this command to assign colours to categories and distinguish them accordingly. 
+
+A scatterplot shows the relationship between two sets of data.
+Since a scatterplot helps to visualise the relationship between two sets of data, it also reveals whether they are related positively or negatively.
+
+A line graph is used to present continuous time-dependent data. It accurately depicts the trend of a variable over a specified time period.
+
+plt.plot(x_axis, y_axis) -> to plot a line graph
+A line graph can be helpful when you want to identify the trend of a particular variable.
+Some key industries and services that rely on line graphs include financial markets and weather forecast. 
+plt.yticks(rotation = number)  #could do for xticks as well ->  rotate the tick labels on the axes 
+
+annotate method can be used to add data labels to graphs as well.
+
+ The syntax for plotting a line graph is plt.plot(x_component, y-component, 'graph_features'). You have to specify the marker as a separate attribute to plot a line graph.
+
+A histogram is a frequency chart that records the number of occurrences of an entry or an element in a data set.
+it is used to understand the distribution of a given series. ie. it shows frequency of a value.
+value would be on x-axis and frequency on y-axis
+plt.hist(profit, bins = 100,edgecolor='Orange',color='cyan')
+bins are buckets in which data is distributed
+
+to find which bucket has maximum entries when divided into the following four groups:
+[40-50)
+[50-60)
+[60-70)
+[70-80)
+plt.hist(list_1, bins = 4, range =[40, 80], edgecolor = 'white')
+
+histogram mostly will be used to understand distribution of data
+histogram helps in analysing numeric variables to visualise the frequency of records divides the range of numerical values to 
+specific buckets or bins.
+for each bucket it tells us how many records are available in that bucket histograms generally work by bucketing the entire range 
+of values that a particular variable takes to specific bins. 
+After that, it uses vertical bars to denote the total number of records in a specific bin, which is also known as its frequency.
+
+Box plots are quite effective in summarising the spread of a large data set into a visual representation. They use percentiles to divide the data range. 
+The percentile value gives the proportion of the data range that falls below a chosen data point when all the data points are arranged in the descending order. 
+For example, if a data point with a value of 700 has a percentile value of 99% in a data set, then it means that 99% of the values in the data set are less than 700.
+plt.boxplot([ list_1, list_2])
+
+The line in the middle of a box plot represents the median value. (5oth percentile)
+Q1 or lower hinge (25th percentile)
+Q3 or upper hinge (75th percentile)
+Inter Quartile Rane (Q3 - Q1)
+Lower extreme (Q1 - 1.5*IQR)
+Upper extreme (Q3 + 1.5*IQR)
+outside values of lower and upper exteme are called outliers ie. values outside of range (LE, UE)
+
+Outliers in data can arise due to genuine reasons or because of dubious entries.
+In the latter case, you should go ahead and remove such entries immediately. Use a boxplot to observe, analyse and remove them.
+In the former case, you should determine whether or not removing them would add value to your analysis procedure.
+
+Box plots divide the data range into three important categories, which are as follows:
+
+Median value: This is the value that divides the data range into two equal halves, i.e., the 50th percentile.
+Interquartile range (IQR): These data points range between the 25th and 75th percentile values.
+Outliers: These are data points that differ significantly from other observations and lie beyond the whiskers.
+
+To find the interquartile range (IQR) for the given list and create a box plot, we first need to find the first quartile (Q1) and 
+the third quartile (Q3). The interquartile range is then calculated as the difference between Q3 and Q1.
+
+Let's start by sorting the list in ascending order
+we find the median (Q2), which is the middle value of the sorted list:
+Now, we can find Q1 and Q3. Since there are an even number of data points, we use the median of the lower half for Q1 and the median of the upper half for Q3:
+Finally, we calculate the interquartile range:
+IQR=Q3−Q1=
+
+To find the interquartile range (IQR) for the given list using NumPy's percentile function, we can follow these steps:
+
+Import the NumPy library.
+Calculate the first quartile (Q1) and third quartile (Q3) using the 25th and 75th percentiles, respectively.
+Compute the interquartile range as the difference between Q3 and Q1.
+
+A line plot and a scatterplot essentially plot the x-y relationship between two quantitative variables. They show how one variable changes with respect to another quantitative variable. To find a relationship using a line plot, one additional step that you have to complete is to first sort the elements of x-axis.
+
+You have some data of credit card transactions. In this data, you're trying to find transaction values that are way outside the usual data range, in order to investigate some fraud.
+A box plot will be helpful here as it easily segregates the values as outliers.
+
+Different plots presented in a single plot object are commonly referred to as subplots.
+to create subplots 
+fig, ax = plt.subplots(): It initiates a figure that will be used to comprise multiple graphs in a single chart.
+Subplots offer the ability to create an array of plots, and you can create multiple charts next to each other to make it look like the elements of an array. 
+
+to create an array of plots.
+plt.subplot(nrow, ncol, x, sharex=True/False, sharey=True/False): It creates a subplot. 
+'nrow' and 'ncol' are the dimensions of the array inside the figure, and 'x' is the position in the array.
+
+In plt.subplot() method, the numbering of subplots starts from the top-left element of the grid and moves rightward along each row. The numbering then continues to the next row from left to right.
+Suppose you need to access the subplot present in the second row and the second column (i.e., 'Subplot 5' in the table above). You can do so by using the following command:
+plt.subplot(3, 3, 5)
+
+set_size_inches()  -> to modify the size of the plot
+
+Comparison -> These charts can be used when you want to compare one set of values with other sets of values. The objective is to differentiate one particular set of values from the other sets
+Column chart & Bar chart
+
+Composition -> to display how the various elements make up the complete data. 
+Composition charts can be static, which shows the composition at a particular instance of time, or dynamic, which shows the changes in the composition over a period of time.
+pie chart is by far the most common way to represent static composition
+the stacked column chart can be used to show the variation of composition over a period of time. 
+
+Relationship -> A relationship chart helps in visualising the correlation between variables.
+Scatter plot & Bubble Plot
+A scatter plot can help correlate two variables, whereas a bubble chart adds one more dimension, i.e., the size of the bubble (usually indicative of the frequency of occurrence of that particular data point)
+
+Distribution -> to answer the question ‘How is the data distributed?’ The distribution can be over a variable, or it can also be over a period of time.
+Histogram & Scatter plots 
+Histograms are quite good at displaying the distribution of data over intervals, whereas scatter plots are good at visualising the distribution of data over two different variables. 
+
+Distribution Plot:
+The difference arises due to the fact that instead of calculating the ‘frequency’, the distplot in Seaborn directly computes the 
+probability density for that rating bucket. And the curve (or the KDE as noted in the documentation for Seaborn) that gets drawn 
+over the distribution is the approximate probability density curve.*
+
+The advantage of the distplot view is that it adds a layer of probability distribution without any additional inputs and 
+preserves the same inter-bin relationship as in the Matplotlib version. 
+This statistical view of things is also far more informative and aesthetic than the earlier one.
+sns.distplot(inp1.Rating,kde = False)
+The KDE parameter in the distplot checks whether a Gaussian Density Estimate is required or not. By default, it is set as True. 
+Hence, setting the KDE as False would produce only the distribution plot shown above.
+
+Another chart analogous to the histogram is the countplot. It essentially plots the frequency of values for a categorical variable. Basically, the values are the same as when you take a value_counts() for that variable. 
+we can use several styling options by using the sns.set_style() function
+
+seaborn provides automatic estimation and plotting for regression setups for different kind of variables.
+
+jointplot: analyse 2 numeric column together
+sns.jointplot(inp1, x='Size', y='Rating')
+regression using joint plot
+sns.jointplot(inp1, x='Price', y='Rating', kind="reg")
+
+pair plot: looking at all numeric columns together
+sns.pairplot(inp1[['Reviews', 'Size', 'Price', 'Rating']])
+for every two numeric variables, the pairplot creates a scatter-plot whereas in the case for the diagonal ones, 
+where the same variable is being considered twice, a histogram is shown. 
+
+to increase/adjust figure size
+plt.figure(figsize=[9,7])
+
+box plots can enable you to analyse a numerical variable across several categories.
+box plots can be used to identify and remove outliers from the data
+the bar graph can be used to compare the mean, median, sum and several other metrics.
+
+heat map can be created as long as you have a rectangular grid of values.
+heat maps are preferred for visualising numeric values in a grid or matrix.
+heat map helps in vis 3 things at a time
+Heat maps are predominantly used in machine learning problems to visualise a  Correlation Matrix, a grid that shows the 
+correlation between any two quantitative variables.
+understanding the correlation between variables is crucial for building and evaluating any ML model
+sns.heatmap(res)
+sns.heatmap(res, cmap="Greens", annot=True)
+
+Line graph
+it utilises continuous time-dependent data to accurately depict the trend of a variable.
+inp1.groupby(["updated_month"])['Rating'].mean().plot()
+
+Stacked bar chart
+df.plot(kind="bar", stacked=True, figsize=[10,6])

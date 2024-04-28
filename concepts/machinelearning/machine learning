@@ -1,0 +1,22 @@
+target variable => the variable or column in a dataset whose value is to be predicted or analysed by using the other variables in the same dataset. 
+
+Pearson’s r value => is a metric to measure the correlation between 2 numerical entities.
+
+in the case of categorical variables, you need to use aggregates or measures like sum, average and median to plot the visualisations. And then use plots like a bar chart or pie chart to portray those relationships. 
+
+if only a single numeric column and therefore use either a box-plot or a histogram to portray the insights visually.
+
+If you want to plot the relationship between two numeric variables, you will be using something known as a scatter plot.
+They are pretty crucial in revealing relationships between the data points and you can generally deduce some sort of trends in the data with the help of a scatter plot. 
+
+Observing trends between numeric variables: Because scatter plots can reveal patterns in the data, they’re a necessity in linear regression problems where you want to determine whether making a linear model, i.e. using a straight line to predict something makes sense or not.
+Scatter plots can show the trends for only 2 numeric variables. For understanding the relationships between 3 or more, you need to use other visualisations.
+
+Pairplots instantly give you the relationship between one numeric variable with the rest of the numeric variables. This is pretty useful in identifying relationships between the target variable and the rest of the features.
+
+boxplot will be helpful in catergorical vs numerical association view
+
+binning => convert a numeric variable to a categorical variable by bucketing a specific range of values.
+This is pretty useful during analyses where you can create useful buckets and analyse how some other variable changes across those buckets.
+
+Line charts are more or less utilised only for time-series data. Therefore, you’ll be using them predominantly while working on forecasting and other time series models.
