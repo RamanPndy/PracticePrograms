@@ -42,6 +42,8 @@ df2 = df.corr() => to create a correlation matrix and to understand how columns 
 
 correlation between 2 columns
 correlation = df['COLUMN1'].corr(df['COLUMN2'])
+correlation between multiple columns
+df[COLUMN_LIST].corr()
 
 pd.to_numeric(df["COLUMN"]) will try to convert column to numeric data and if there is any error then that error will be raised.
 https://pandas.pydata.org/docs/reference/api/pandas.to_numeric.html

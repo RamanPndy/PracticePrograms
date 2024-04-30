@@ -195,7 +195,15 @@ when we will be analysing 2 variable at a time
 ex. gender vs age
 Realtionship between 2 variables (Scatter plot, boxplot, barplot etc.)
 
+Numerical vs Numerical
+scatterplot, regplot
+
+Numerical vs Categorical
+boxplot, barplot
+
 Mutlivariate Analysis
 when we will be analysing more than variable at a time
 ex. age distribution gender wise and state wise
 Realtionship between more than 1 variable (HeatMap etc.)
+
+outliers removal is optional in EDA but mandatory before proceeding to ML modelling.

@@ -92,3 +92,35 @@ Kafka: Only keeps order within a partition. Kafka ensures that every message in 
 Message ordering
 RabbitMQ: Unsupported
 Kafka: Message ordering is provided via its partitioning. By message key, messages are sent to topics.
+
+Message priorities
+RabbitMQ: You can set message priorities in RabbitMQ and consume messages in the order of highest priority.
+Kafka: Unavailable
+
+Message lifetime
+RabbitMQ: Because RabbitMQ is a queue, messages are discarded after being read, and an acknowledgment is given.
+Kafka: Since Kafka is a log, messages are kept on file by default. This can be controlled by defining a retention policy.
+
+Features
+RabbitMQ:
+Reliability: Key characteristics of RabbitMQ that have an immediate influence on performance include persistence, delivery feedback, publisher confirmations, and high availability.
+Built-in Clustering: The clustering in RabbitMQ was created with two objectives in mind. It still enables the consumers and producers to continue operating in the event that one node fails, expanding messaging throughput linearly by adding new nodes.
+Security: It is offered by RabbitMQ at different levels. Secure client connections can be achieved by requiring Client Certificate Checking and SSL-only communication. The virtual host may have user access controls to ensure high-level message isolation.
+Flexible Routing: For routing, RabbitMQ comes with a number of built-in exchange kinds. Messages are often routed through exchanges before they reach queues in conventional routing. Users can also tie exchanges together for complicated routing or even develop their exchange type as a plugin.
+
+Kafka:
+Distributed event streaming platform: Kafka enables per-partition ordering semantics while facilitating message partitioning between Kafka servers and dispersing consumption over a cluster of consumer systems.
+High Throughput: Kafka was built to process millions of messages per second and handle massive amounts of data.
+Real-time solutions: Consumer threads should have immediate access to messages produced by producer threads.
+Persistent Messaging: In order to truly benefit from big data, no kind of information loss may be accepted. O(1) Disc Structures, which are used in the construction of Apache Kafka, provide constant-time performance even with extremely large message storage densities (in the TBs). In event-based systems like Complex Event Processing, this quality is crucial (CEP).
+
+Use Cases
+RabbitMQ:
+Complex Routing – if you want to route messages among many consuming apps like in a microservices architecture, RabbitMQ can be your best choice. RabbitMQ consistent hash exchange can balance load processing across a distributed monitoring service.  You can also use alternate exchanges to route specific portion of events to specific services for A/B testing. 
+Legacy Applications – another use case of RabbitMQ is to deploy it using available plugins (or building your own plugin) for connecting consumer apps to legacy apps. For example, communicate with JMS apps using Java Message Service (JMS) plug-in and JMS client library. 
+
+Kafka:
+Tracking High-throughput Activity – you can use Kafka for different high volume, high throughput activity tracking like tracking website activity, ingesting data from IoT sensors, keeping tabs on shipments, monitoring patients in hospitals, etc. 
+Stream Processing – Use Kafka to implement application logic based on streams of events. For example, for an event lasting for several minutes, you can track average value over the duration of the event or keep a running count of the types of events. 
+Event Sourcing – Kafka supports event sourcing, wherein any changes to an app state are stored in the form of sequence of events. For example, while using Kafka for a banking app, if the account balance gets corrupted somehow, you can use the stored history of transactions to recalculate the balance. 
+Log aggregation – Kafka can also be used to collect log files and store them in a centralized location. 

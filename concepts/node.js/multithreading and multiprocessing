@@ -27,3 +27,61 @@ The cluster module can be used to run multiple instances of Node.js that can dis
 worker_thread module allows running multiple application threads within a single Node.js instance.
 
 when process isolation is not needed, ie. no separate instances of V8, event loop and memory are needed, we should use worker_threads.
+
+to create child processes there are 4 methods
+fork()
+spawn()
+exec() -> all the standard output will be taken into buffer. it is useful only for small commands and if command output exceeds buffer then it will throw error.
+execFile() -> all the standard output will be taken into buffer. it is useful only for small commands and if command output exceeds buffer then it will throw error.
+
+both child_process.fork() and cluster.fork() are used for creating child processes, but they serve different purposes and are used in different contexts:
+
+child_process.fork():
+Purpose: Used to create a new Node.js process that runs a module in a separate child process.
+Context: Typically used for parallel execution of tasks, such as running CPU-intensive operations or handling multiple requests concurrently.
+Communication: Communication between the parent process and the forked child process is achieved through inter-process communication (IPC), using events and message passing.
+Use Cases:
+Running multiple instances of a script concurrently.
+Offloading heavy computational tasks to separate processes to avoid blocking the main event loop.
+
+const { fork } = require('child_process');
+
+const child = fork('child.js');
+
+child.on('message', (message) => {
+    console.log('Message from child:', message);
+});
+
+child.send({ hello: 'world' });
+
+cluster.fork():
+Purpose: Used specifically for creating worker processes in a cluster environment to take advantage of multi-core systems and improve application performance.
+Context: Typically used in a clustered Node.js application where multiple instances of the same application are run on different cores.
+Communication: Communication between the master process (parent) and worker processes (children) is managed by the Node.js cluster module, which provides built-in load balancing and shared server ports.
+Use Cases:
+Utilizing multiple CPU cores effectively by distributing workload among worker processes.
+Improving application scalability and performance by handling concurrent requests across multiple processes.
+
+const cluster = require('cluster');
+const http = require('http');
+const numCPUs = require('os').cpus().length;
+
+if (cluster.isMaster) {
+    console.log(`Master ${process.pid} is running`);
+
+    for (let i = 0; i < numCPUs; i++) {
+        cluster.fork();
+    }
+
+    cluster.on('exit', (worker, code, signal) => {
+        console.log(`Worker ${worker.process.pid} died`);
+    });
+} else {
+    console.log(`Worker ${process.pid} started`);
+
+    http.createServer((req, res) => {
+        res.writeHead(200);
+        res.end('Hello, World!');
+    }).listen(8000);
+}
+
