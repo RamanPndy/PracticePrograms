@@ -1,0 +1,97 @@
+Node.js retrieves the incoming requests and adds those to the Event Queue.
+The requests are then passed one-by-one through the Event Loop. 
+The Event Loop processes simple requests (non-blocking operations), such as I/O Polling, and returns the responses to the corresponding clients
+
+A single thread from the Thread Pool is assigned to a single complex request. This thread is responsible for completing a particular blocking request by accessing external resources, such as computation, database, file system, etc.
+Once the task is carried out completely, the response is sent to the Event Loop that sends that response back to the client.
+
+A callback function is called after a given task. It allows other code to be run in the meantime and prevents any blocking.  Being an asynchronous platform, Node.js heavily relies on callback. All APIs of Node are written to support callbacks.
+
+How would you define the term I/O? 
+The term I/O is used to describe any program, operation, or device that transfers data to or from a medium and to or from another medium.
+Every transfer is an output from one medium and an input into another. The medium can be a physical device, network, or files within a system.
+I/O stands for input/output, which helps write and read files and network operations.
+
+What is an EventEmitter in Node.js?
+EventEmitter is a class that holds all the objects that can emit events
+Whenever an object from the EventEmitter class throws an event, all attached functions are called upon synchronously
+
+What is the control flow function?
+A control function manages and manipulates the flow of asynchronous code execution.
+Node.js is designed to handle asynchronous I/O operations, which means that multiple I/O operations can be executed simultaneously without blocking the execution of other code. 
+However, managing the flow of asynchronous code can be challenging, especially when multiple operations need to be executed in a particular order.
+Control functions provide a solution to this problem by allowing developers to define the order in which asynchronous operations should be executed. They can be used to perform tasks such as error handling, callback management, and flow control.
+The control flow function is a piece of code that runs in between several asynchronous function calls.
+
+What is the difference between fork() and spawn() methods in Node.js?
+fork()
+1. fork() is a particular case of spawn() that generates a new instance of a V8 engine.
+2. Multiple workers run on a single node code base for multiple tasks.
+3. creates a new child process that runs a separate Node.js instance and can be useful for running CPU-intensive tasks or creating a cluster of Node.js servers.
+spawn()
+1. Spawn() launches a new process with the available set of commands.
+2. This method doesn’t generate a new V8 instance, and only a single copy of the node module is active on the processor.
+
+What is callback hell?
+Callback hell, also known as the pyramid of doom, is the result of intensively nested, unreadable, and unmanageable callbacks, which in turn makes the code harder to read and debug.
+It is possible to avoid callback hells by using promises; they can help to make the code more readable and easier to debug. You can also avoid callback hells using async/wait, libraries, and modularization.
+
+What is the use of the connect module in Node.js?
+The Connect module can be used to handle different types of middleware, such as error-handling middleware, cookie-parsing middleware, and session middleware. 
+Error-handling middleware is used to handle errors that occur during the request/response cycle. 
+Cookie parsing middleware is used to parse cookies from the request header. 
+Session middleware is used to manage user sessions.
+
+What is a thread pool, and which library handles it in Node.js?
+A thread pool is a collection of threads that are used to execute tasks in parallel. In Node.js, the thread pool is handled by the libuv library, which is a multi-platform support library that provides asynchronous I/O operations.
+
+How are worker threads different from clusters?
+Worker threads and clusters are two different approaches to leveraging the power of multiple CPUs in Node.js. 
+While clusters create multiple instances of a Node.js process, each running on a separate CPU core, 
+worker threads provide a way to create multiple threads within a single process.
+
+What is meant by tracing in Node.js?
+Tracing is a technique used in Node.js to profile the performance of an application. It involves recording the function calls and events that occur during the execution of the application and analyzing the data to identify performance bottlenecks. 
+
+What is the difference between readFile and create Read Stream in Node.js?
+Create Read Stream is a better option for reading large files, while the read file is a better option for small files. It is important to choose the right method based on the size of the file and the requirements of the application.
+
+What is a passport in Node.js?
+Passport is a popular authentication middleware for Node.js. It provides a simple and modular way to implement authentication in Node.js applications. Passport supports many authentication mechanisms, including username/password, social logins like Facebook and Google, and JSON Web Tokens (JWTs).
+
+How to get information about a file in Node.js?
+In Node.js, the fs module provides methods for working with the file system. To get information about a file, you can use the fs. stat() method. The fs. stat() method returns an object that contains information about the file, such as the file size, creation date, and modified date.
+
+Explain REPL in Node.js.
+REPL stands for Read Eval Print Loop. REPL performs tasks related to reading, executing, printing, and looping. The server contains several ad-hoc Java statements that REPL can help execute. With REPL, the JavaScript can enter the shell post directly and reliably perform tasks like debugging, testing, and experimenting.
+
+Name input arguments for asynchronous queue.
+Two input arguments for asynchronous queue are concurrency value and task function.
+
+Is it possible to run external processes with Node.js?
+It is possible to run external processes with Node.js. This can be done with the help of the child_process module.
+
+The Dgram is an in-built module. It is useful in implementing UDP datagram packets.
+
+What two arguments do async.queue take?
+Task function and concurrency value are the two arguments async.queue takes.
+
+When does the child process occur?
+In Node.js, a child process occurs when a new process is created using the child_process module. 
+This module provides functionality to spawn child processes in a similar way to the fork() system call in Unix.
+
+Can variables defined with let keyword be redeclared?
+No, the let keyword can’t be redeclared and should be declared before use.
+
+When are we required to use a cluster module in Node.js?
+It is used when you want to disperse request processing over multiple Node.js processors. Mostly this is done to ramp up the ability to handle more requests per second.
+
+The nmp -Ig-command installs the specific package for your project globally through npm which is the Node.js package manager.
+
+What’s Punycode in Node.js?
+Punycode is a way of encoding internationalized domain names that use characters outside of the ASCII range.
+
+Explain the child process module in Node.js.
+The child process module allows you to spawn child processes in Node.js. The child process module provides a way to create and control child processes. A child process is a separate instance of the Node.js process that runs concurrently with the parent process.
+
+The child process module allows you to spawn new child processes, execute commands in a shell, and communicate with child processes using IPC (Inter-Process Communication) channels.

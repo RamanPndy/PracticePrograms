@@ -1,0 +1,94 @@
+Understanding the Differences Between RabbitMQ vs Kafka
+
+Performance:
+RabbitMQ process 4K-10K messages per second
+Kafka process 1 million messages per second
+
+Message Retention
+RabbitMQ : Acknowledgment based
+Kafka: Policy-based (e.g., 30 days)
+
+Data Type
+RabbitMQ: Transactional
+Kafka: Operational
+
+Consumer Mode
+RabbitMQ: Smart broker/dumb consumer
+Kafka: Dumb broker/smart consumer
+
+Topology
+RabbitMQ: Exchange type: Direct, Fan out, Topic, Header-based. uses the exchange queue topology — sending messages to an exchange where they are in turn routed to various queue bindings for the consumer’s use.
+Kafka: Publish/subscribe based. sending messages across the stream to the correct topics, and then consumed by users in the different authorized groups.
+
+Payload Size
+RabbitMQ: No constraints
+Kafka: Default 1MB limit
+
+Usage Cases
+RabbitMQ: Simple use cases
+Kafka: Massive data/high throughput cases
+
+Data Flow
+RabbitMQ: it uses a distinct, bounded data flow. Messages are created and sent by the producer and received by the consumer.
+Kafka: it uses an unbounded data flow, with the key-value pairs continuously streaming to the assigned topic.
+
+Data Usage
+RabbitMQ: It is best for transactional data, such as order formation and placement, and user requests.
+Kafka: It is best with operational data like process operations, auditing and logging statistics, and system activity.
+
+Messaging
+RabbitMQ: sends messages to users. These messages are removed from the queue once they are processed and acknowledged.
+Kafka: It uses continuous messages, which stay in the queue until the retention time expires.
+
+Design Model
+RabbitMQ: It employs the smart broker/dumb consumer model. The broker consistently delivers messages to consumers and keeps track of their status.
+Kafka: It uses the dumb broker/smart consumer model. Kafka doesn’t monitor the messages each user has read. Rather, it retains unread messages only, preserving all messages for a set amount of time. Consumers must monitor their position in each log.
+
+Architecture Differences
+RabbitMQ:
+The components of RabbitMQ’s Architecture consist of the following:
+
+Queue: It is in charge of keeping track of messages that have been received and may have configuration data that specifies what it can do with a message.
+Exchange: An exchange receives messages sent to RabbitMQ and determines where they should be forwarded. Exchanges define the routing strategies that are used for messages, most frequently by examining the data characteristics that are transmitted with the message or included inside its attributes.
+Producer: Produces messages and sends them to a broker server (publishes). A payload and a label are the two components of a message. The user's desired data to convey is the payload. The label specifies who should receive a copy of the message and describes the payload.
+Consumer: It subscribes to a queue and is connected to a broker server. 
+Broker: Applications can exchange information and communicate with one another through a broker.
+Binding: It tells an exchange which queues to distribute messages. Additionally, the binding will instruct the exchange to filter which messages it is permitted to add to a queue for specific exchange types.
+
+Kafka:
+Mirror Maker: One of the most crucial elements of Kafka is replication, which makes sure that messages are published and consumed even in the event that the broker encounters a problem.
+ZooKeeper: Acts as a liaison between the consumers and the Kafka broker. It maintains coordination data such as configuration, location, and status details.
+Producer: Producers push or publish messages to a Kafka topic created on a Kafka broker. Producers also have the option of sending messages to a broker in a synchronous or asynchronous manner.
+Consumers: Individuals who subscribe to a Kafka topic and pull messages from it. Kafka By default, consumers store messages in ZooKeeper. However, Kafka also allows data to be stored in additional storage platforms used by programs for online transaction processing (OLTP).
+Broker: Acts as a Kafka server, or broker. The number of partitions for each message is defined in accordance with the order in which the messages are stored by the broker.
+
+Scalability and Redundancy
+RabbitMQ: It uses a round-robin queue to repeat messages. To boost throughput and balance the load, the messages are divided among the queues. Additionally, it enables numerous consumers to read messages from various queues at once.
+Kafka: Scalability and redundancy are provided by Kafka partitions. The partition was duplicated across numerous brokers. In the event that one of the brokers fails, the customer can still be served by another broker.
+
+Message Consumption
+RabbitMQ: A message must be delivered to the customer by one of RabbitMQ's brokers, and these messages are transmitted in batches.
+Kafka: Kafka Consumers read a message from the broker and keep the queue counter offset trackable. As soon as the message is read, the offset is increased.
+
+Message Priority
+RabbitMQ: Messages can be given priority with the help of a priority queue in RabbitMQ.
+Kafka: all messages have the same priority, which cannot be altered.
+
+Sequential Ordering
+RabbitMQ: The order of the messages in the broker's queue is maintained by RabbitMQ.
+Kafka: Topics are used by Kafka to distinguish between messages, and Zookeeper keeps track of the offset so that it may be used by any consumer who wishes to read a topic.
+
+Pull vs Push Approach
+The push mechanism of RabbitMQ prevents the consumer from being aware of any message retrieval. The Broker makes sure the customer receives the message.
+
+Additionally, it returns an acknowledgment after processing the data to make sure messages reach the customer. When there is a negative response, the message is sent once more by being added to the queue.
+
+Kafka provides a pull mechanism that enables clients to request data in batches from the broker. Smartly, the consumer keeps a tab on the offset of the most recent message encounter. By employing offset, it arranges the data in the partitions' order.
+
+Delivery Guarantee
+RabbitMQ: Especially in relation to transactions utilizing a single queue, it does not guarantee atomicity.
+Kafka: Only keeps order within a partition. Kafka ensures that every message in a partition either succeeds or fails.
+
+Message ordering
+RabbitMQ: Unsupported
+Kafka: Message ordering is provided via its partitioning. By message key, messages are sent to topics.
