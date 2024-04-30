@@ -1,0 +1,111 @@
+Async code execution
+Javascript is synchronous, blocking, single threaded queue
+To make Async programming possible, we need the help of libuv
+async operations will be offloaded to libuv
+libuv start to execute async function in separate thread
+after then associated callback function of async function will be pushed to main funcation call stack.
+
+Event loop 
+it is a C Program and is part of libuv. 
+it is a design pattern that orchestrates and co-ordinates the execution of synchronous and asynchronous code in Node.js
+it has 6 queues that holds one or more callback functions that need to be eventually executed on the call stack.
+type of callback functions are different for each queue.
+
+1. Timer Queue: it contains callbacks associated with setTimeout/setInterval 
+2. I/O queue: it contains callbacks associated with all the async methods such as methods associated with fs and HTTP modules
+3. Check queue: it contains callbacks associated with a setImmediate function. this function is specific to Node.js.
+4. Close queue: it contains callbacks associated with a close event of a async task.
+Microtask queue
+5. nextTick queue: it contains callbacks associated with a process.nextTick function. this is specific to Node.js.
+6. promise queue: it contains callbacks associated with native promise in javascript.
+
+Microtask queues are not part of libuv but other queues are part of libuv
+
+Execution Order
+if there are no microtasks queues then order of callbacks execution in queues will be based on below priority order
+timer queue -> I/O queue -> check queue -> close queue
+1. User written synchronous code takes priority over async code that the runtime would like to execute which means only after call stack is empty the event loop comes in picture.
+
+Rules:
+1. Any callbacks in the micro task queues are executed. First, tasks in the nextTick queue and only then tasks in the promise queue will be executed.
+2. All callback within the timer queue are executed.
+3. Callbacks in micro tasks queues if present are executed after execution of every callbacks in timer queue. Again First, tasks in the nextTick queue and only then tasks in the promise queue will be executed.
+4. All callback within the I/O queue are executed.
+5. Callbacks in micro tasks queues if present are executed. 
+6. All callback within the check queue are executed.
+7. Callbacks in micro tasks queues if present are executed after execution of every callbacks in check queue.
+8. All callback within the close queue are executed.
+9. Callbacks in micro tasks queues if present are executed. nextTick queue followed by promise queue.
+
+if there are still any callbacks to process, the loop is kept alive for one more run and the same steps are repeated.
+if all calbacks are executed and there is no more code to process, the event loop exits.
+
+Callback functions are executed only after call stack is empty. The normal flow of execution will not be interupted to run a callback function.
+setTimeout/setInterval callbacks are given first priority.
+Timer callbacks are executed befor I/O callbacks even if both are ready at the exact same time.
+
+nextTick queue 
+process.nextTick(()=> {
+    console.log("test 1")
+})
+when process.nextTick will be executed in the call stack the pass in callback function will be on queued in the nextTick queue.
+
+promise queue
+Promise.resolve().then(()=> {
+    console.log("promise resolve 1")
+})
+when the promise resolves the function passed into then block is a function will be queued up in the promise queue.
+resolve or reject a Promise to queue into the promise queue
+
+if during execution of promise queue adds any new task in nextTick queue then execution will not be interrupted because of priority rather promise queue execution will be kept going and in next iteration of event loop nextTick queue tasks will be picked and executed.
+
+use of process.nexTick is discourged as it can cause the starvation in rest of the event loop.
+as per docs, reasons to use process.nextTick
+1. to allow users to handle errors, cleanup any then unneeded resources, or perhaps try the request again before the event loop continues.
+2. to allow a callback to run after the call stack has unwound but before the event loop continues.
+
+timer queue
+setTimeout(()=>{
+    console.log("set timeout 1")
+}, 0)
+
+setTimeout or setInterval queue into the timer queue
+
+callbacks in microtasks queues are executed in between the execution of callbacks in the timer queue.ie. after every callback execution in timer queue event loop checks microtask queues and if there is any task in microtasks queue then that task will be executed first.
+timer queue callbacks are executed in FIFO order.
+timer queue is not exactly a queue rather it is a min heap data structure.
+
+I/O queue
+most of the async methods from built in modules queue the callbacks functions in this queue.
+fs.readFile(__filename, ()=>{
+    console.log("read file 1)
+})
+callbacks in microtasks queues will be executed before callbacks in I/O queue.
+
+when running setTimeout with delay 0ms and an async I/O method, the order of execution can never be guranteed.
+I/O queue callbacks are executed after microtasks queues callbacks and time queue callbacks.
+
+when control goes to I/O queue and if it finds it is empty then control proceeds to the polling part of the event loop where it asks main function that it it has been completed and if main function says yes it has completed then event loop queues up associated callback into I/O queue.
+if by the time callback is not ready for I/O queue then I/O polling happens and proceed with check queue. if there is any callback in check queue then it will be executed and in next iteration of event loop if I/O queue callback is ready then it will be executed.
+I/O events are polled and callback functions are added to the I/O queue only after I/O is completed.
+
+check queue
+to queue a callback function into check queue, setImmediate function will be used.
+setImmediate(()=>{
+    console.lgo("immediate 1")
+})
+check queue callbacks are executed after microtasks queue callbacks, timer queue callbacks and I/O queue callbacks are completed.
+
+microtasks queues callbacks are executed after I/O callbacks and before check queue callbacks.
+microtasks queues callbacks are executed in between check queue callbacks.
+
+when running setTimeout with delay 0ms and setImmediate method, the order of execution can never be guranteed.
+
+close queue
+const readableStream = fs.createReadStream(__filename)
+readableStream.close()
+readableStream.on("close", ()=>{
+    console.log("readableStream log")
+})
+
+nextTick and promise queues are executed in between each queue and also in between each callback execution in the timer and check queues.

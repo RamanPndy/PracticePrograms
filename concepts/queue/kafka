@@ -1,0 +1,58 @@
+every kafka message is event which has following attributes
+key, value, timestamp, headers(optional), Partition and offset id
+
+messages or records stored as serialized bytes. 
+producers serialize the message to byte array before publishing to kafka
+so on topic it's always just serialized data
+and consumers are responsible for deserializing the messages
+
+kafka only guarantees to preserve the order within a single Partition
+if there is no key then default Partitioner will automatically load balances the messages across all available Partitions
+
+First topic is get created and each message in topic is a record
+topics are multi producer and multi consumer ie. many different producers can simulteneously write to the same topic and the same applies to the consumers
+many consumers can read from same topic and different consumers may have different offsets and messages are not deleted after consumption.
+we can define how long kafka should retain messages
+
+we can configure different topics to keep messages for different amounts of time.
+one topic may keep messages for one minute while another may retain messages for a week but after that those messages will automatically deleted by kafka
+
+we can scale kafka topics horizontally well beyond single kafka broker by simply increasing the number of Partition in that topic and increasing parallelism.
+
+a kafka topic is a higher level abstraction that consists of Partitions
+a Partition is a discreet long file written to the local kafka broker
+
+kafka topics can be spread across multiple kafka brokers
+but a partition always belongs to one broker.
+we can scale topic to let's say nine Partitions across 3 kafka brokers
+this way we are not limited one specific broker's IO 
+
+increasing number of partitions and consumers can efficiently scale kafka.
+if we have 9 partititons we can set application replica count to 9 and replicas would read from same partition which could be a bottleneck so in this case first scale partitions then application replicas.
+
+when a new message is written to a topic kafka adds it to one of the topic's partition messages with the same key
+kafka ensures that any reader of a given partition always consumes messages in same order they were published.
+kafka can replicate partitions across different brokers. best practice is to set replicaion is 3.
+a producer that directly writes to a specific broker partition and then kafka cluster automatically replicates the data across 2 different brokers.
+
+Regional Partition is a partition leader. both the producer and consumer write to and consumes from the partition leader.
+if a broker fails then kafka controller reassigns the leader for that partition to a different broker and redirects producers and consumers to use different broker.
+
+producers are client applications that publishes events to kafka topic. Publishers distributes data to topics by selecting the appropriate partition within the topic they allocate message sequentially to the topic partition
+typically producers distributes messages across all partititons of a topic but producer may direct messages to a particular partition in certain instances 
+
+consumers are applications that subscribe to topics and process published messages 
+consumers read the messages in the order in which they are generated
+consumers uses offset to track which messages it has already consumed.
+consumers stores offset of last consumed message for each partition so that it can start of stop without losing it's place.
+consumers interact with topic as a group which is called consumer group.
+group ensures that 1 member only consumes 1 partition. if 1 consumer fails remaining members reorganize consumed partitions to compensate for absent member.
+
+A broker is a single kafka server.
+broker recieves messages from producers, assigns them offset and commit the messages to the disk storage.
+offset is a unique integer volume that kafka increments and adds to each message as it published.
+offeset are unique to each partition.
+kafka writes every single message to the local disk.
+to increase performance make sure to attach fast SSD to each broker.
+
+kafka cluster has kafka controller which is responsible for managing partitions and replicas and performing administrative tasks such as reassiging partitions such that if one kafka broker goes down with a partition leader the active controller will reassign the function to another broker that already has all the replicated data to act as a partition leader and serve data.

@@ -1,0 +1,29 @@
+libuv uses thread pool and event loop for handling non blocking asynchronous functions
+libuv thread pool has 4 threads
+
+to increase thje size of thread pool
+process.env.UV_THREADPOOL_SIZE = <threads count>
+
+if we increase the size of thread pool beyound number of cpu cores of machine then average time taken per method execution is also increases.
+
+cluster module
+it enables the creation of child processes (workers) that run simulteneously
+all created workers shares the same server port
+
+Master is only in charge of workers ie. starting,stopping,restarting workers not for handling incoming request,reading files etc.
+each worker is responsible for execution of it's tasks
+each worker gets it's own event loop, memory and V8 instance.
+fork() method on cluster object is used to create worker(s)
+
+We should only create as many workers as there are CPU cores on the machine the app is running. if we create more workers then there are logical cores on the computer it can cause an overhead as the system will have to schedule all the created workers with fewer number of cores.
+
+//pm2 module help in creating optimal workers for a node application
+
+Worker Threads module
+The worker_threads module enables the use of threads the executes JS in parallel.
+Code executed in a worker thread runs in a separate child process, preventing it from blocking main application.
+
+The cluster module can be used to run multiple instances of Node.js that can distribute workloads.
+worker_thread module allows running multiple application threads within a single Node.js instance.
+
+when process isolation is not needed, ie. no separate instances of V8, event loop and memory are needed, we should use worker_threads.

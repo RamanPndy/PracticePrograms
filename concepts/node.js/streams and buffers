@@ -1,0 +1,21 @@
+const buffer = Buffer.from("raman", "utf-8")
+buffer.write("code")
+
+// What are streams in Node.js?
+// Streams are objects that enable you to read data or write data continuously.
+
+// There are four types of streams:
+
+// Readable – Used for reading operations
+
+// Writable − Used for write operations
+
+// Duplex − Can be used for both reading and write operations
+
+// Transform − A type of duplex stream where the output is computed based on input
+
+// What is the buffer class in Node.js?
+// Buffer class stores raw data similar to an array of integers but corresponds to a raw memory allocation outside the V8 heap. 
+// Buffer class is used because pure JavaScript is not compatible with binary data
+
+
