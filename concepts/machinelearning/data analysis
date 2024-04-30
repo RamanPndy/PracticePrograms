@@ -183,3 +183,19 @@ Data-driven: Insights may be less interpretable but highly automated, requiring 
 Each method has its strengths and weaknesses, and the choice of approach depends on factors such as the nature of the data, the specific goals of the analysis, the level of domain knowledge available, and the analytical tools and techniques at hand. Often, a combination of these methods may be used to derive comprehensive and actionable insights from data.
 
 
+Univariate Analysis
+when we will be analysing single variable
+Mean, Median, Max, Min, Std, Variance, Count
+Distribution (Histogram, CountPlot, BoxPlot etc.)
+Histogram -> for numerical column
+CountPlot -> for categorical column
+
+Bivariate Analysis
+when we will be analysing 2 variable at a time
+ex. gender vs age
+Realtionship between 2 variables (Scatter plot, boxplot, barplot etc.)
+
+Mutlivariate Analysis
+when we will be analysing more than variable at a time
+ex. age distribution gender wise and state wise
+Realtionship between more than 1 variable (HeatMap etc.)
