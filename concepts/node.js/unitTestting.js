@@ -21,3 +21,5 @@ test('properly clones array', () => {
         cloneArray(array)
     ).not.toBe(array)
 })
+
+// jest --coverage will show overall coverage of tests
