@@ -1,0 +1,150 @@
+A single column form pandas dataframe is series.
+df.info() -> to start inspecting the datatypes of the various columns
+
+when we want to access only one column => df["COLUMN"]
+when we want to access multiple columns => df[["COLUMN1", "COLUMN2"]]
+
+print fist n rows of dataset => df.head(n)
+print last n rows of dataset => df.tail(n)
+
+select value at row index i and column "COLUMN"
+df.at[i, "COLUMN"]
+
+select values of "COLUMN" column
+df.get('COLUMN')
+
+insert new column in dataframe and displaying
+df.insert(loc=i, column="COLUMN", value='value')
+
+to get only numerical data from dataframe
+df2 = df.select_dtypes(exclude=['object'])
+
+to get only categorical data from dataframe
+df2 = df.select_dtypes(include=['object'])
+
+to get first n characters from string column of a dataframe
+df["COLUMN"].str[:n]
+
+drop column(s)
+df.drop(columns=["COLUMN"])
+
+sub_df=df[["COLUMN1", "COLUMN2"]] => to create sub dataframe from original dataframe with only required columns
+
+df["COLUMN"].unique() => returns unique values in a column
+df["COLUMN"].nunique() => returns number of unique values in a column
+
+to sort column => df.sort_values(by=["COLUMN"]) /  df.sort_values(by=["COLUMN"], ascending=False)
+
+df2 = df.corr() => to create a correlation matrix and to understand how columns are related with each other.
+-1 = strong negative correlation
+0 = no correlation
+1 = strong positive correlation
+
+correlation between 2 columns
+correlation = df['COLUMN1'].corr(df['COLUMN2'])
+
+pd.to_numeric(df["COLUMN"]) will try to convert column to numeric data and if there is any error then that error will be raised.
+https://pandas.pydata.org/docs/reference/api/pandas.to_numeric.html
+
+to get missing values in a dataframe
+df.isnull().sum()
+it will populate all columns in dataframe along with total number of missing values
+
+to drop missing values from entire dataframe
+df.dropna
+or
+df = df[~df.COLUMN.isnull()]
+or 
+df = df[~df["COLUMN"].isnull()]
+to take the complement of the null values from column
+
+to understand nulls for the column
+df[df["COLUMN].isnull()]
+
+to get the record data of a particular row from dataframe by index
+df.loc[<index or row number>,:]
+df[(condition for specific row)] ie. inp1[(inp1["Android Ver"].isnull() & (inp1["Category"] == "1.9"))]
+
+to get unique values and corresponding counts of a particular column values.
+df["COLUMN"].value_counts()
+this is to understand most common values in a column
+to get most common value in a column
+df["COLUMN"].mode()
+
+to fill NaNs in a column with some value
+df["COLUMN"] = df["COLUMN"].fillna(value)
+
+to modify the values in entire column
+df["COLUMN"].apply(custom_function such as lambda)
+
+to change the datatype of entire column
+df["COLUMN"].astype('int32')
+
+to get standard values such as count, median, mean, min, max from integer column
+df["COLUMN"].describe()
+
+pivot table
+A pivot table in pandas is a data summarization tool that allows you to reorganize, aggregate and summarize data in a DataFrame. 
+It allows you to transform and reshape your data by specifying which columns should be used as the index, which columns should be used as the columns in the resulting table, and which values should be aggregated.
+It's similar to pivot tables in spreadsheet software like Excel.
+
+Here are some key points about pivot tables in pandas:
+Structure: A pivot table takes simple column-wise data as input and groups the entries into a two-dimensional table that provides 
+a multidimensional summary of the data. It allows you to aggregate and summarize data across multiple dimensions.
+
+Functionality: Pivot tables in pandas can perform various operations such as grouping by one or more columns, applying aggregation 
+functions (like sum, mean, count, etc.) to numeric data, and displaying the results in a structured format.
+
+Parameters: When creating a pivot table in pandas, you specify the index (rows), columns, values, and aggregation functions. 
+This allows you to customize how the data is grouped and summarized.
+
+Flexibility: Pivot tables are highly flexible and can handle different types of data transformations and calculations. 
+They are particularly useful for data analysis, reporting, and exploring relationships within the data.
+
+Here's a breakdown of the key components of a pivot table in pandas:
+
+Index: This is the column (or multiple columns) whose unique values will become the index of the resulting pivot table. Each unique combination of values in the index columns will represent a row in the pivot table.
+
+Columns: These are the columns (or multiple columns) whose unique values will become the columns in the resulting pivot table. Each unique value in the columns will represent a separate column in the pivot table.
+
+Values: These are the values that will be aggregated in the pivot table. You can specify a single column or multiple columns whose values will be aggregated using a specific aggregation function (e.g., sum, mean, max, min, count, etc.).
+
+Aggregation Function: This is the function used to aggregate the values specified in the "Values" parameter. Common aggregation functions include np.sum, np.mean, np.max, np.min, np.count, etc. You can also define custom aggregation functions if needed.
+
+create pivot table for 2 categorical variables
+pd.pivot_table(df, index="Mother.edu", columns="Siblings", aggfunc='size', fill_value=0)
+
+filtering columns with certain values in a list.
+inp1[inp1["Content Rating"].isin(['Adults only 18+', 'Unrated'])]
+it will only shows those records for which "Content Rating" column has values ['Adults only 18+', 'Unrated']
+
+reset indexes of a dataframe
+When you perform operations on a DataFrame in pandas, the index of the DataFrame may change or become unordered. 
+The reset_index method allows you to reset the index to the default integer-based index and reset the index in 
+Pandas DataFrame optionally removing the current index.
+df.reset_index(inplace=True, drop=True)
+
+plot graphs using matplotlib
+df["COLUMN"].value_counts().plot.<plot_function>()
+inp1["Content Rating"].value_counts().plot.pie()
+
+grouping column values for aggregation
+to get aggregate values of a column by another column
+df.groupby(["ANOTHER_COLUMN"])["COLUMN"].<aggregation_function>()
+ex; get average rating for each content rating
+inp1.groupby(['Content Rating'])['Rating'].mean()
+Find the average Rating across all the months
+inp1.groupby(["updated_month"])['Rating'].mean()
+
+group by mutiple columns (categorical variables) and find average value
+average_marks = df.groupby(['Father.edu', 'Age'])['Science..'].mean().reset_index()
+
+pd.qcut => divides the entire column to the buckets on the basis of the percentiles.
+pd.qcut takes percentile values in decimals, as in 20th percentile becomes 0.2, 40th percentile becomes 0.4 and so on.
+
+pd.to_datetime(inp1["Last Updated"]) => convert column to datetime object
+to get only month from datetime object => pd.to_datetime(inp1["Last Updated"]).dt.month
+to get only month name from datetime object => pd.to_datetime(inp1["Last Updated"]).dt.month_name()
+
+create datetime
+pd.Timestamp('2017-01-03 23:59:59')

@@ -1,0 +1,117 @@
+Missing values:  data which have rows where no observation is recorded for a certain variable. 
+These can affect the analysis process and the generated insights significantly. 
+Some common techniques to treat this issue are
+1. Imputation, where you replace the missing value with another estimated value
+2. Dropping the rows containing the missing values altogether
+3. or depending on the case, you can also go ahead and keep the missing values as long as they don’t affect the analysis.
+
+Incorrect data types: This discrepancy mostly occurs due to some incorrect entry in the column which is stored in a format other than the desired one due to which the entire column gets misclassified. Or in some other cases, the format of the entire column is different from what we need for our analysis purposes. You either have to fix certain values or clean the entire column only to bring it to the correct format.
+
+In cases where there are numerical columns involved, both mean and median offer up as a good imputed value. 
+In the case of the categorical column, mode turns out to be a decent enough imputation to carry out.
+
+structure ways for data cleaning
+Fix rows and columns
+Fix missing values
+Standardise values
+Fix invalid values
+Filter data
+
+Checklist for Fixing Rows
+1. Delete summary rows: Total, Subtotal rows
+2. Delete incorrect rows: Header rows, Footer rows
+3. Delete extra rows: Column number, indicators, Blank rows, Page No.
+
+Checklist for Fixing Columns
+1. Merge columns for creating unique identifiers if needed: E.g. Merge State, City into Full address
+2. Split columns for more data: Split address to get State and City to analyse each separately
+3. Add column names: Add column names if missing
+4. Rename columns consistently: Abbreviations, encoded columns
+5. Delete columns: Delete unnecessary columns
+6. Align misaligned columns: Dataset may have shifted columns
+
+Imputing missing values in a dataset can be approached in several ways, depending on the nature of the data and the specific context. Here are a few common strategies:
+
+Mean/Median Imputation:
+Replace missing values with the mean or median of the non-missing values in the 'Income' column. This method is simple and often used when the data is normally distributed or not heavily skewed.
+Mode Imputation:
+
+Replace missing values with the mode (most frequent value) of the 'Income' column. This is suitable for categorical or discrete data.
+
+Regression Imputation:
+Use regression models to predict missing values based on other variables in the dataset. For example, you could use other features like education level, job title, or experience to predict income.
+
+Multiple Imputation:
+Generate multiple imputations for each missing value and then combine the results. This method accounts for uncertainty in imputation and can provide more reliable estimates.
+
+Nearest Neighbor Imputation:
+Find the nearest neighbors (rows with similar attributes) for each missing value and use their income values to impute the missing values.
+
+Random Imputation:
+Assign random values from the distribution of non-missing values in the 'Income' column to the missing values. This method is simple but may introduce noise.
+
+
+how to deal with missing values:
+1. Set values as missing values: Identify values that indicate missing data, and yet are not recognised by the software as such, e.g treat blank strings, "NA", "XX", "999", etc. as missing.
+
+2. Adding is good, exaggerating is bad: You should try to get information from reliable external sources as much as possible, but if you can’t, then it is better to keep missing values as such rather than exaggerating the existing rows/columns.
+
+3. Delete rows, columns: Rows could be deleted if the number of missing values are significant in number, as this would not impact the analysis. Columns could be removed if the missing values are quite significant in number.
+
+4. Fill partial missing values using business judgement: Missing time zone, century, etc. These values are easily identifiable.
+
+checklist for standardising variables for data cleaning exercises.
+Standardise units: Ensure all observations under a variable have a common and consistent unit, e.g. convert lbs to kgs, miles/hr to km/hr, etc.
+
+Scale values if required:  Make sure the observations under a variable have a common scale
+
+Standardise precision for better presentation of data, e.g. 4.5312341 kgs to 4.53 kgs.
+
+Remove outliers: Remove high and low values that would disproportionately affect the results of your analysis.
+
+checklist for standardising variables for data cleaning exercises.
+Remove extra characters like common prefix/suffix, leading/trailing/multiple spaces, etc. These are irrelevant to analysis.
+
+Standardise case: There are various cases that string variables may take, e.g. UPPERCASE, lowercase, Title Case, Sentence case, etc.
+
+Standardise format: E.g. 23/10/16 to 2016/10/23, “Modi, Narendra" to “Narendra Modi", e
+
+If you have an invalid value problem, and you do not know what accurate values could replace the invalid values, it is recommended to treat these values as missing. E.g. in the case of a string “tr8ml” in a Contact column, it is recommended to remove the invalid value and treat it as a missing value.
+
+checklist for fixing invalid values for data cleaning exercises.
+Encode unicode properly: In case the data is being read as junk characters, try to change encoding, E.g. CP1252 instead of UTF-8.
+
+Convert incorrect data types: Correct the incorrect data types to the correct data types for ease of analysis. E.g. if numeric values are stored as strings, it would not be possible to calculate metrics such as mean, median, etc. Some of the common data type corrections are — string to number: "12,300" to “12300”; string to date: "2013-Aug" to “2013/08”; number to string: “PIN Code 110001” to "110001"; etc.
+
+Correct values that go beyond range: If some of the values are beyond logical range, e.g. temperature less than -273° C (0 K), you would need to correct them as required. A close look would help you check if there is scope for correction, or if the value needs to be removed.
+
+Correct values not in the list: Remove values that don’t belong to a list. E.g. In a data set containing blood groups of individuals, strings “E” or “F” are invalid values and can be removed.
+
+Correct wrong structure: Values that don’t follow a defined structure can be removed. E.g. In a data set containing pin codes of Indian cities, a pin code of 12 digits would be an invalid value and needs to be removed. Similarly, a phone number of 12 digits would be an invalid value.
+
+Validate internal rules: If there are internal rules such as a date of a product’s delivery must definitely be after the date of the order, they should be correct and consistent.
+
+checklist for filtering values for data cleaning exercises.
+Deduplicate data: Remove identical rows, remove rows where some columns are identical
+
+Filter rows: Filter by segment, filter by date period to get only the rows relevant to the analysis
+
+Filter columns: Pick columns relevant to the analysis
+
+Aggregate data: Group by required keys, aggregate the rest
+
+removing outliers:
+Q1 = df.quantile(0.25)
+Q3 = df.quantile(0.75)
+IQR = Q3 - Q1
+
+df = df[~((df < (Q1 - 1.5 * IQR)) |(df > (Q3 + 1.5 * IQR))).any(axis=1)]
+in case you want specific columns:
+
+cols = ['col_1', 'col_2'] # one or more
+
+Q1 = df[cols].quantile(0.25)
+Q3 = df[cols].quantile(0.75)
+IQR = Q3 - Q1
+
+df = df[~((df[cols] < (Q1 - 1.5 * IQR)) |(df[cols] > (Q3 + 1.5 * IQR))).any(axis=1)]

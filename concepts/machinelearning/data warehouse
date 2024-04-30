@@ -1,0 +1,20 @@
+characteristics:
+subject-oriented
+integrated-repostiory
+non-volatile
+time-variant
+
+A data warehouse is a collection of data. It demonstrates the following properties:
+
+Subject-oriented: A data warehouse should contain information about a few well-defined subjects rather than the enterprise.
+Integrated: A data warehouse is an integrated repository of data. It contains information from various systems within an organisation.
+Non-volatile: The data values in a database cannot be changed without a valid reason.
+Time-variant: A data warehouse contains historical data for analysis.
+
+Star Schema
+Facts and dimensions are the two key elements of dimension modelling.
+only some facts and dimensions are combined in a specific manner to build the structure of a data warehouse, called a schema diagram. 
+A schema is an outline of the entire data warehouse. 
+It shows how different data sets are connected and how the different attributes of each data set are used for the data warehouse.
+
+In a star schema, Dimension table contains the metadata needed for analysing numerical/quantitative data.

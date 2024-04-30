@@ -1,16 +1,19 @@
 Role of init function
-In Go, the "init" function is a special function that is automatically called by the Go runtime when a package is initialized. It is called before the main function and can be used to perform initialization tasks for the package.
+In Go, the "init" function is a special function that is automatically called by the Go runtime when a package is initialized. 
+It is called before the main function and can be used to perform initialization tasks for the package.
 
-The "init" function does not take any arguments and does not return a value. It is typically used to set initial values for package-level variables, establish connections to external resources such as databases, or perform any other initialization tasks that need to be performed before the main function is called.
+The "init" function does not take any arguments and does not return a value. It is typically used to set initial values for 
+package-level variables, establish connections to external resources such as databases, or perform any other initialization tasks 
+that need to be performed before the main function is called.
 
-The "init" function can be defined anywhere in the package, and multiple "init" functions can be defined in the same package. All "init" functions within a package will be called by the Go runtime in the order they appear in the code.
+The "init" function can be defined anywhere in the package, and multiple "init" functions can be defined in the same package. 
+All "init" functions within a package will be called by the Go runtime in the order they appear in the code.
 
-The "init" function is a useful tool for performing initialization tasks that need to be done before the main function is called, and it is often used in conjunction with the "main" package to set up the environment for the main function to run. 
+The "init" function is a useful tool for performing initialization tasks that need to be done before the main function is called, 
+and it is often used in conjunction with the "main" package to set up the environment for the main function to run. 
 
 Difference between array and slice
-array is value type and slice is reference type
-
-You can see clearly that the array is over 10 times faster than the slice.
+array is over 10 times faster than the slice.
 
 var a [5]int 
 an array of integers with a length of 5
@@ -23,7 +26,9 @@ On the other hand, when you pass a slice to a function or assign it to a new var
 This can be important to consider when working with large arrays or when you want to avoid copying data unnecessarily.
 
 Goroutine leaks
-More specifically, for an unbuffered channel, the sender blocks until the receiver arrives at the channel and vice versa. A goroutine may be blocked forever trying to send or receive on a channel; such a situation where a blocked goroutine never gets unblocked is referred to as a goroutine leak.
+for an unbuffered channel, the sender blocks until the receiver arrives at the channel and vice versa. 
+A goroutine may be blocked forever trying to send or receive on a channel; 
+such a situation where a blocked goroutine never gets unblocked is referred to as a goroutine leak.
 
 function Closure
 In Go, a function closure is a function that refers to variables from the scope in which it was defined. 
@@ -46,7 +51,8 @@ fmt.Println(addX(5))  // still prints 15
 } 
 
 reflect in golang
-To inspect the type of a variable, you can use the reflect.TypeOf() function. This function takes an interface{} value and returns a reflect.Type value representing the type of the underlying value.
+To inspect the type of a variable, you can use the reflect.TypeOf() function. 
+This function takes an interface{} value and returns a reflect.Type value representing the type of the underlying value.
 package main 
 import ( 
 "fmt" 
@@ -62,7 +68,7 @@ fmt.Println(reflect.TypeOf(z)) // prints "string"
 } 
 
 difference between new and make
-In summary, new is used to allocate memory for a new value of a specified type and return a pointer to that memory, 
+new is used to allocate memory for a new value of a specified type and return a pointer to that memory, 
 while make is used to create a new instance of a reference type and initialize it to a non-zero value. 
 Both new and make are useful for creating new values in Go, depending on the situation.
 
@@ -70,46 +76,32 @@ func main() {
     fmt.Println("-- MAKE --")
     a := make([]int, 0)
     aPtr := &a
-    fmt.Println("pointer == nil :", *aPtr == nil)
-    fmt.Printf("pointer value: %p\n\n", *aPtr)
+    fmt.Println("pointer == nil :", *aPtr == nil) // pointer == nil : false
+    fmt.Printf("pointer value: %p\n\n", *aPtr) // pointer value: 0x118eff0  # address to underlying array
 
     fmt.Println("-- COMPOSITE LITERAL --")
     b := []int{}
     bPtr := &b
-    fmt.Println("pointer == nil :", *bPtr == nil)
-    fmt.Printf("pointer value: %p\n\n", *bPtr)
+    fmt.Println("pointer == nil :", *bPtr == nil) // pointer == nil : false
+    fmt.Printf("pointer value: %p\n\n", *bPtr) // pointer value: 0x118eff0  # address to underlying array
 
     fmt.Println("-- NEW --")
     cPtr := new([]int)
-    fmt.Println("pointer == nil :", *cPtr == nil)
-    fmt.Printf("pointer value: %p\n\n", *cPtr)
+    fmt.Println("pointer == nil :", *cPtr == nil) // pointer == nil : true
+    fmt.Printf("pointer value: %p\n\n", *cPtr) // pointer value: 0x0
 
     fmt.Println("-- VAR (not initialized) --")
     var d []int
     dPtr := &d
-    fmt.Println("pointer == nil :", *dPtr == nil)
-    fmt.Printf("pointer value: %p\n", *dPtr)
+    fmt.Println("pointer == nil :", *dPtr == nil) // pointer == nil : true
+    fmt.Printf("pointer value: %p\n", *dPtr) // pointer value: 0x0
 }
 
-output 
--- MAKE --
-pointer == nil : false
-pointer value: 0x118eff0  # address to underlying array
-
--- COMPOSITE LITERAL --
-pointer == nil : false
-pointer value: 0x118eff0  # address to underlying array
-
--- NEW --
-pointer == nil : true
-pointer value: 0x0
-
--- VAR (not initialized) --
-pointer == nil : true
-pointer value: 0x0
-
 Difference between new() and make():
-new(T) allocates zeroed storage for a new item of type T and returns its address, a value of type *T: it returns a pointer to a newly allocated zero value of type T, ready for use; it applies to value types like arrays and structs; it is equivalent to &T{ }
+new(T) allocates zeroed storage for a new item of type T and returns its address, 
+a value of type *T: it returns a pointer to a newly allocated zero value of type T, ready for use; 
+it applies to value types like arrays and structs; it is equivalent to &T{ }
+
 make(T) returns an initialized value of type T; it applies only to the 3 built-in reference types: slices, maps and channels.
 In other words, new allocates; make initializes;
 
@@ -161,9 +153,8 @@ func main() {
          (*u)["y"] = "world"
 }
 
-Rune literals are just 32-bit integer values (however they're untyped constants, so their type can change). They represent unicode codepoints. For example, the rune literal 'a' is actually the number 97.
-
-Therefore your program is pretty much equivalent to:
+Rune literals are just 32-bit integer values (however they're untyped constants, so their type can change). 
+They represent unicode codepoints. For example, the rune literal 'a' is actually the number 97.
 
 package main
 
@@ -183,4 +174,6 @@ func SwapRune(r rune) rune {
 func main() {
     fmt.Println(SwapRune('a'))
 }
-It should be obvious, if you were to look at the Unicode mapping, which is identical to ASCII in that range. Furthermore, 32 is in fact the offset between the uppercase and lowercase codepoint of the character. So by adding 32 to 'A', you get 'a' and vice versa.
+It should be obvious, if you were to look at the Unicode mapping, which is identical to ASCII in that range. 
+Furthermore, 32 is in fact the offset between the uppercase and lowercase codepoint of the character. 
+So by adding 32 to 'A', you get 'a' and vice versa.

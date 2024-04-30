@@ -1,3 +1,7 @@
+package golang
+
+import "fmt"
+
 // Polymorphism
 type Instrument interface {
 	Play()

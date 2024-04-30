@@ -1,0 +1,201 @@
+Univariate analysis
+rank-frequency plots enable you to extract meaning even from seemingly trivial unordered categorical variables such as country, name of an artist, name of a github user etc.
+
+Why plotting on a log-log scale helps
+The objective of using a log scale is to make the plot readable by changing the scale. 
+Plotting on a log scale compresses the values to a smaller scale which makes the plot easy to read.
+This happens because log(x) is a much smaller number than x.
+
+Plots are immensely helpful in identifying hidden patterns in the data 
+It is possible to extract meaningful insights from unordered categorical variables using rank-frequency plots
+Rank-frequency plots of unordered categorical variables, when plotted on a log-log scale, typically result in a power law distribution
+
+whenever you have a continuous or an ordered categorical variable, make sure you plot a histogram or a bar chart and observe any unexpected trends in it.
+
+While mean gives an average of all the values, median gives a typical value that could be used to represent the entire group. As a simple rule of thumb, always question someone if someone uses the mean, since median is almost always a better measure of ‘representativeness’.
+
+Standard deviation and interquartile difference are both used to represent the spread of the data.
+
+Interquartile difference is a much better metric than standard deviation if there are outliers in the data. This is because the standard deviation will be influenced by outliers while the interquartile difference will simply ignore them.
+
+if there are columns where correlation is high then it's best practice to remove such columns.
+
+Segmentation analysis:
+The entire segmentation process can be divided into four parts:
+Take raw data
+Group by dimensions
+Summarise using a relevant metric such as mean, median, etc.
+Compare the aggregated metric across groups/categories
+
+the three steps of segmented univariate analysis are as follows:
+1. Basis of segmentation
+2. Comparison of averages
+3. Comparison of other metrics
+
+explain bivariate analysis
+Bivariate analysis is a statistical method used to explore and understand the relationship between two variables in a dataset. These variables can be of different types, such as continuous (numerical) or categorical (qualitative). The primary goal of bivariate analysis is to examine how changes in one variable are associated with changes in another variable.
+
+Here are the key aspects and steps involved in bivariate analysis:
+
+Types of Variables:
+Continuous Variables: These are numerical variables that can take any value within a range. Examples include age, income, temperature, etc.
+Categorical Variables: These are qualitative variables that represent categories or groups. Examples include gender, ethnicity, education level, etc.
+Visual Exploration:
+For continuous variables, bivariate analysis often starts with visualizations such as scatter plots, line plots, or heatmaps. These visualizations help in visually assessing the relationship between the variables.
+For categorical variables, common visualizations include bar charts, stacked bar charts, and mosaic plots. These visualizations help in comparing the distribution of categories across different groups or conditions.
+Statistical Techniques:
+Continuous Bivariate Analysis: Involves statistical techniques such as correlation analysis (e.g., Pearson correlation coefficient, Spearman correlation), regression analysis (linear regression, nonlinear regression), and scatter plot analysis.
+Categorical Bivariate Analysis: Involves techniques such as chi-square tests, contingency tables, association measures (e.g., Cramer's V for nominal variables), and hypothesis testing for proportions.
+Correlation Analysis:
+Correlation analysis is a common approach in bivariate analysis for continuous variables. It measures the strength and direction of the linear relationship between two continuous variables. A correlation coefficient close to +1 indicates a strong positive relationship, close to -1 indicates a strong negative relationship, and close to 0 indicates no linear relationship.
+Regression Analysis:
+Regression analysis is used when one variable (dependent variable) is predicted based on another variable (independent variable). In bivariate analysis, simple linear regression is commonly used to model the relationship between two continuous variables.
+Hypothesis Testing:
+Bivariate analysis often involves hypothesis testing to determine if the observed relationship between variables is statistically significant. This includes assessing p-values, confidence intervals, and effect sizes.
+Interpretation:
+The interpretation of bivariate analysis results involves understanding the nature and strength of the relationship between variables. This includes assessing whether the relationship is causal or correlational, the direction of the relationship, and the practical significance of the findings.
+Overall, bivariate analysis plays a crucial role in data exploration, hypothesis generation, and understanding the underlying relationships between variables in a dataset. It forms the foundation for more complex multivariate analyses and predictive modeling techniques.
+
+Bivariate Analysis on Continuous Variables
+
+continuous variables can also be used as categorical ones?
+Yes, continuous variables can also be used as categorical variables under certain conditions and with appropriate transformations. Here are some common scenarios:
+
+Binning or Discretization: You can convert a continuous variable into a categorical one by binning or discretizing it into distinct intervals or categories. For example, you could convert ages into categories like "Child," "Teenager," "Adult," and "Elderly" by defining age ranges for each category.
+
+Encoding Numerical Ranges: You can encode numerical ranges directly into categorical labels. For example, converting income ranges into categories like "Low Income," "Medium Income," and "High Income."
+
+clustering -> The correlated variables are grouped by similarities, and correlation can also be calculated for ‘groups of variables’.
+
+Bivariate Analysis on Categorical Variables
+The categorical bivariate analysis is essentially an extension of the segmented univariate analysis to another categorical variable. In segmented univariate analysis, you compare metrics such as ‘mean of X’ across various segments of a categorical variable, e.g. mean marks of a student are higher for ‘degree and above’ than other levels of the mother’s education; or the median income of educated parents is higher than that of uneducated ones, etc.
+
+In the categorical bivariate analysis, you extend this comparison to other categorical variables and ask — is this true for all categories of another variable, say, men and women? Take another categorical variable, such as state, and ask — is the median income of educated parents higher than that of uneducated ones in all states ?
+
+Thus, you are drilling down into another categorical variable and getting closer to the true patterns in the data. In fact, you may also go to the next level and ask — is the median income of educated parents higher than that of uneducated ones (variable 1)  in all states (variable 2) for all age groups (variable 3)? This is what you may call ‘trivariate analysis’, and though it gives you a more granular version of the truth, it gets a bit complex to make sense of and explain to others (and hence it is not usually done in EDA).
+
+Thus, remember that only conducting segmented univariate analysis may deceive you into thinking that a certain phenomenon is true without asking the question — is it true for all sub-populations or is it true only when you aggregate information across the entire population?
+
+So in general, there are two fundamental aspects of analysing categorical variables:
+1. To see the distribution of two categorical variables. For example, if you want to compare the number of boys and girls who play games, you can make a ‘cross table’ to gain more insights
+2. To see the distribution of two categorical variables with one continuous variable. 
+
+difference between continuous bivariate analysis vs categorical bivariate analysis
+Continuous bivariate analysis and categorical bivariate analysis are two different approaches used in statistical analysis to understand relationships between variables. Here's a breakdown of the key differences between the two:
+
+Variable Types:
+Continuous Bivariate Analysis: Involves two continuous variables. These variables can take any numerical value within a range, such as age, income, temperature, etc.
+Categorical Bivariate Analysis: Involves at least one categorical variable. Categorical variables represent discrete categories or groups, such as gender, ethnicity, education level, etc.
+Analysis Techniques:
+Continuous Bivariate Analysis: Techniques used for continuous variables include correlation analysis (e.g., Pearson correlation coefficient), regression analysis (e.g., linear regression), scatter plots, and density plots. These techniques help to assess the strength and direction of the linear relationship between two continuous variables.
+Categorical Bivariate Analysis: Techniques used for categorical variables include chi-square tests, contingency tables, bar charts, and stacked bar charts. These techniques are used to examine associations, dependencies, or differences between categories within the variables.
+Interpretation:
+Continuous Bivariate Analysis: Focuses on understanding the degree and direction of the relationship between two continuous variables. For example, in a scatter plot, you might assess whether there is a positive, negative, or no correlation between variables.
+Categorical Bivariate Analysis: Focuses on examining how categories within variables are related or distributed. For example, in a contingency table or chi-square test, you might assess whether there is a significant association between two categorical variables.
+Examples:
+Continuous Bivariate Analysis: Examining the relationship between income and expenditure, age and health outcomes, temperature and sales figures.
+Categorical Bivariate Analysis: Analyzing the relationship between gender and voting preferences, education level and job type, region and product preferences.
+Purpose:
+Continuous Bivariate Analysis: Often used to identify patterns, trends, or correlations between numerical variables. Useful for predictive modeling, forecasting, and identifying key drivers of outcomes.
+Categorical Bivariate Analysis: Used to explore associations, differences, or dependencies between categories within variables. Commonly used in social sciences, market research, and categorical data analysis.
+In summary, continuous bivariate analysis focuses on numerical relationships, while categorical bivariate analysis explores associations or differences between categories within variables. The choice of analysis depends on the nature of the variables and the research question being addressed.
+
+similarity between continuous bivariate analysis vs categorical bivariate analysis
+While continuous bivariate analysis and categorical bivariate analysis have distinct differences due to the nature of the variables involved, they also share some similarities, particularly in the broader context of exploring relationships between variables. Here are some similarities between the two:
+
+Exploratory Nature: Both continuous and categorical bivariate analyses are exploratory in nature. They aim to uncover patterns, associations, or dependencies between variables within a dataset.
+Statistical Techniques: Both types of analyses utilize various statistical techniques to quantify relationships or associations. For example:
+Continuous Bivariate Analysis: Correlation coefficients (e.g., Pearson, Spearman), regression analysis (linear, nonlinear), scatter plots, and density plots.
+Categorical Bivariate Analysis: Chi-square tests, contingency tables, bar charts, stacked bar charts, and association measures (e.g., Cramer's V for nominal variables).
+Visualization: Both analyses often involve visualizations to aid in understanding relationships. While the specific types of visualizations may differ (e.g., scatter plots for continuous data vs. bar charts for categorical data), the goal is to present data in a way that reveals patterns or trends.
+Interpretation of Associations: In both types of analyses, the interpretation revolves around assessing the strength and direction of associations or relationships between variables. This includes understanding whether there is a positive or negative relationship, the magnitude of the relationship, and whether the relationship is statistically significant.
+Inference and Hypothesis Testing: Both types of analyses can involve inferential statistics and hypothesis testing to determine whether observed relationships or associations are statistically significant. This involves assessing p-values, confidence intervals, and effect sizes.
+Data Preparation: Both types of analyses require appropriate data preparation steps, such as handling missing values, outlier detection and treatment, data transformation (e.g., normalization for continuous variables), and encoding categorical variables as needed for analysis.
+Insight Generation: Ultimately, both continuous and categorical bivariate analyses aim to generate insights and inform decision-making based on the observed relationships or associations in the data. These insights can be used for predictive modeling, identifying key drivers of outcomes, or making informed recommendations.
+While continuous and categorical bivariate analyses differ in terms of the types of variables involved and the specific techniques used, they are united by the overarching goal of exploring and understanding relationships within data, making them essential tools in statistical analysis and data science.
+
+Types of Derived Metrics: Type Driven Metrics
+Broadly, there are three different types of derived metrics:
+
+1.    Type-driven metrics 
+    These metrics can be derived by understanding the variable’s typology.
+    Steven’s typology classifies variables into four types — nominal, ordinal, interval and ratio:
+
+    Nominal variables: Categorical variables, where the categories differ only by their names; there is no order among categories, e.g. colour (red, blue, green), gender (male, female), department (HR, analytics, sales)
+
+    These are the most basic form of categorical variables
+
+    Ordinal variables: Categories follow a certain order, but the mathematical difference between categories is not meaningful, e.g. education level (primary school, high school, college), height (high, medium, low), performance (bad, good, excellent), etc.
+
+    Ordinal variables are nominal as well
+
+    Interval variables: Categories follow a certain order, and the mathematical difference between categories is meaningful but division or multiplication is not, e.g. temperature in degrees celsius ( the difference between 40 and 30 degrees C is meaningful, but 30 degrees x 40 degrees is not), dates (the difference between two dates is the number of days between them, but 25th May / 5th June is meaningless), etc.
+
+    Interval variables are both nominal and ordinal
+
+    Ratio variables: Apart from the mathematical difference, the ratio (division/multiplication) is possible, e.g. sales in dollars ($100 is twice $50), marks of students (50 is half of 100), etc.
+
+    Ratio variables are nominal, ordinal and interval type
+
+    for example, A type-driven metric could be extracting years from the date column.
+
+2.    Business-driven metrics
+    Deriving metrics from the business perspective
+    for example, A business-driven metrics could be creating a new column which gives information on whether a player scored a century or not.
+
+3.    Data-driven metrics
+    if there are 2 cloumns which are highly correlated take the ratio as an independent metric instead of actual values for comaprision.
+    any analysis on data has the potential to create one or more column(s) and these column(s) are known as data driven column(s) and can be added to derived metrics.
+    data-driven metrics can be created based on the variables present in the existing data set.
+
+    For example, if you have two variables in your data set such as "weight" and "height" which shows a high correlation. So, instead of analysing "weight" and "height" variables separately, you can think of deriving a new metric "Body Mass Index (BMI)". Once you get the BMI, you can easily categorise people based on their fitness, e.g. a BMI below 18.5 should be considered as an underweight category, while BMI above 30.0 is considered as obese, by standard norms. This is how data-driven metrics can help you discover hidden patterns out of the data.
+
+similarities and difference between type driven, business domain driven and data driven methods for derived metrics
+
+Type-driven, business domain-driven, and data-driven methods for deriving metrics represent different approaches to deriving insights and metrics from data. Here are the similarities and differences between these methods:
+
+Similarities:
+Data Utilization: All three methods rely on data to derive metrics and insights, making use of the available data sources for analysis.
+Goal-Oriented: The ultimate goal of all three methods is to extract meaningful metrics and insights that can be used for decision-making, problem-solving, or understanding business processes.
+Contextual Understanding: They require a deep understanding of the context in which the data is collected and the domain-specific knowledge to interpret and derive meaningful metrics.
+Differences:
+Type-Driven Approach:
+Definition: In a type-driven approach, metrics are derived based on the type or nature of the data. For example, deriving metrics specific to numerical, categorical, or temporal data types.
+Examples: Calculating mean and standard deviation for numerical data, frequency distributions for categorical data, or time-based metrics like trends and seasonality.
+Focus: This approach focuses on the intrinsic properties of the data types and how they can be transformed or analyzed to derive insights.
+Business Domain-Driven Approach:
+Definition: In a business domain-driven approach, metrics are derived based on the specific requirements and goals of the business domain or industry.
+Examples: Deriving customer retention rates, sales conversion rates, operational efficiency metrics, or financial performance indicators based on business objectives.
+Focus: This approach focuses on aligning data analysis with business goals and leveraging domain knowledge to derive metrics that are relevant and actionable for business stakeholders.
+Data-Driven Approach:
+Definition: In a data-driven approach, metrics are derived based on patterns, trends, or anomalies observed in the data itself.
+Examples: Using machine learning algorithms for predictive modeling, anomaly detection, clustering, or classification to derive insights and metrics from data.
+Focus: This approach emphasizes leveraging data analysis techniques and algorithms to extract hidden patterns or knowledge from large datasets, often using statistical or machine learning methods.
+Key Considerations:
+Focus vs Flexibility:
+Type-driven: Focuses on data types and standard calculations, less flexible for domain-specific metrics.
+Business domain-driven: Highly flexible for domain-specific metrics, but may require deep domain knowledge.
+Data-driven: Highly flexible for discovering patterns and insights but may require advanced analytics skills and tools.
+Interpretability vs Automation:
+Type-driven: Easily interpretable metrics based on data types, less automation required.
+Business domain-driven: Interpretable metrics aligned with business objectives, moderate automation depending on data complexity.
+Data-driven: Insights may be less interpretable but highly automated, requiring sophisticated algorithms and tools.
+Each method has its strengths and weaknesses, and the choice of approach depends on factors such as the nature of the data, the specific goals of the analysis, the level of domain knowledge available, and the analytical tools and techniques at hand. Often, a combination of these methods may be used to derive comprehensive and actionable insights from data.
+
+
+Univariate Analysis
+when we will be analysing single variable
+Mean, Median, Max, Min, Std, Variance, Count
+Distribution (Histogram, CountPlot, BoxPlot etc.)
+Histogram -> for numerical column
+CountPlot -> for categorical column
+
+Bivariate Analysis
+when we will be analysing 2 variable at a time
+ex. gender vs age
+Realtionship between 2 variables (Scatter plot, boxplot, barplot etc.)
+
+Mutlivariate Analysis
+when we will be analysing more than variable at a time
+ex. age distribution gender wise and state wise
+Realtionship between more than 1 variable (HeatMap etc.)
