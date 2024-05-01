@@ -1,3 +1,5 @@
+package golang
+
 // insert value at specific index
 func insert(a []int, index int, value int) []int {
 	if len(a) == index { // nil or empty slice or after last element
@@ -11,7 +13,7 @@ func insert(a []int, index int, value int) []int {
 // function Closure
 // In Go, a function closure is a function that refers to variables from the scope in which it was defined. 
 // These variables are "closed over" by the function, and they remain accessible even after the function is invoked outside of their original scope. 
-package main 
+
 import "fmt" 
 func main() { 
 // Create a variable x and initialize it to 10 
@@ -30,7 +32,6 @@ fmt.Println(addX(5))  // still prints 15
 
 // reflect in golang
 // To inspect the type of a variable, you can use the reflect.TypeOf() function. This function takes an interface{} value and returns a reflect.Type value representing the type of the underlying value.
-package main 
 import ( 
 "fmt" 
 "reflect" 
@@ -144,4 +145,12 @@ func main() {
          (*u)["x"] = "goodbye" // !!panic!!: runtime error: 
                    // assignment to entry in nil map
          (*u)["y"] = "world"
+}
+
+func reverseString(input string) string {
+	runes := []rune(input)
+	for i, j := 0, len(runes)-1; i < j; i, j = i+1, j-1 {
+		runes[i], runes[j] = runes[j], runes[i]
+	}
+	return string(runes)
 }

@@ -65,9 +65,7 @@ func main() {
 
 	fmt.Println(car.Seats)
 	fmt.Println(car.Color)
-}
 
-func main() {
 	motorCycle := &MotorCycle{
 		Vehicle{
 			Seats: 2,
