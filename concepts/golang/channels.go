@@ -97,7 +97,7 @@ This means that it can hold a certain number of elements without a corresponding
 When a value is sent on a buffered channel, the sender can continue execution unless the channel is full. 
 Similarly, when receiving from a buffered channel, the receiver can continue unless the channel is empty.
 Buffered channels are useful when you want to decouple the sender and receiver, 
-allowing them to operate independently as long as the buffer doesn't overflow or underflow.
+allowing them to operate independently as long as the buffer doesnt overflow or underflow.
 
 Example:
 ch := make(chan int, 3) // buffered channel with capacity 3

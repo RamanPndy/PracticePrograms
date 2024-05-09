@@ -18,7 +18,8 @@ class Solution(object):
         5. traverse todo stack:
             - get current number, index and combination stack from popping todo stack
             - if current number is < value of candidate at index then continue
-            - if current number is not equal to target and current number present in the pool then add current number to combination stack and append it to result array
+            - if current number is not equal to target and current number present in the pool then add current number to 
+              combination stack and append it to result array
             - while index is < len(candidates) and current number is >= value of candidate at index
               then append ((current number - value of candidate at index), index , create temp stack and add value of candidate at index and join with combination stack)
               increase index value by 1

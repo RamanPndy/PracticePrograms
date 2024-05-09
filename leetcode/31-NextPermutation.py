@@ -6,14 +6,16 @@ class Solution(object):
         Input: nums = [1,2,3]
         Output: [1,3,2] 
         Steps:
-        1. To find next permutations, we'll start from the end. create 2 vars which have lenght of nums
+        1. To find next permutations, we'll start from the end. create 2 vars which have lenght of nums - 1
             # First we'll find the first non-increasing element starting from the end
             After completion of the first loop, there will be two cases
-        2. Our i becomes zero (This will happen if the given array is sorted decreasingly). 
+        case 1:
+            Our i becomes zero (This will happen if the given array is sorted decreasingly). 
             In this case, we'll simply reverse the sequence and will return 
+        case 2:
         3. If it's not zero then we'll find the first number grater then nums[i-1] starting from end
-            # Now out pointer is pointing at two different positions
-            # i. first non-assending number from end
+            # Now our pointer is pointing at two different positions
+            # i. first non-ascending number from end
             # j. first number greater than nums[i-1]
             # We'll swap these two numbers
             # We'll reverse a sequence strating from i to end

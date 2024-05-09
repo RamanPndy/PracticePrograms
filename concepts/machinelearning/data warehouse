@@ -16,5 +16,37 @@ Facts and dimensions are the two key elements of dimension modelling.
 only some facts and dimensions are combined in a specific manner to build the structure of a data warehouse, called a schema diagram. 
 A schema is an outline of the entire data warehouse. 
 It shows how different data sets are connected and how the different attributes of each data set are used for the data warehouse.
+In Star Schema, there is a central fact table and there are lots of dimensions associated with fact table.
+the fact table contains some quantitative data that we want to analyse and dimension table represents the metadata associated with those facts table.
 
 In a star schema, Dimension table contains the metadata needed for analysing numerical/quantitative data.
+
+Transactiona Database: 
+also known as OLTP (Online Transaction Processing System)
+OLTP is used for day-to-day transactions
+OLTP systems use simple queries for adding, deleting, updating and retrieving data.
+Purpose: To perform business Transactions
+User: End users for business Transactions
+Technology: No ETL process, DBMS, server side application
+Frontend: Web servers, browsers, interact with payment gateways and payment systems
+Database Design: Based on itegrity issues and normalization, No star schema, CRUD operations
+
+Data Warehouse:
+also known as OLAP (Online Analytical Processing System)
+OLAP is used for analytical purposes. 
+dimensional modelling and star schema are essential for creating the structure of a data warehouse. 
+These techniques involve finding out the variables on which analysis can be performed and then combining them with the metadata to gain meaningful insights. 
+complex queries are used in OLAP involving aggregations.
+A data warehouse is an integrated repository of data from various sources. OLAP systems have a data warehouse at the backend.
+Schema diagrams are essential for creating a data warehouse design. They indicate how the fact and dimension tables will be connected.
+Purpose: To conduct analysis and decision making
+User: Managers, CEO, CXO for decision making
+Technology: ETL 
+Frontend: BI Tools which are reporting tools (Cognos, Tableau, Reporting front end structure)
+Database Design: Based on dimensional modeling, creation of star schema
+
+SETL (Select,Extract, Transform, Load)
+Select - Identification of the data that you want to analyse
+Extract - Connecting to the particular data source and pulling out the data
+Transform - Modifying the extracted data to standardise it
+Load - Push the data into the data warehouse

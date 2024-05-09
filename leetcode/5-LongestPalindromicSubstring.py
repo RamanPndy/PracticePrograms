@@ -9,7 +9,8 @@ class Solution(object):
         Input: s = "cbbd"
         Output: "bb"
         Idea: Expanding Around Centers
-        The idea behind this approach is to consider every character in the string as a potential center of a palindrome and then expand around that center to find the longest palindromic substring.
+        The idea behind this approach is to consider every character in the string as a potential center of a palindrome and 
+        then expand around that center to find the longest palindromic substring.
 
         steps: 
         1. create res and resLen which will hold result string and it's length
@@ -27,6 +28,7 @@ class Solution(object):
         res = ""
         resLen = 0
         for i in range(len(s)):
+            #even palindrome string
             l,r = i, i
             while l >= 0 and r < len(s) and s[l] == s[r]:
                 if r-l+1 > resLen:
@@ -35,6 +37,7 @@ class Solution(object):
                 l = l -1
                 r = r + 1
             
+            #odd palindrome string
             l,r = i, i+1
             while l >= 0 and r < len(s) and s[l] == s[r]:
                 if r-l+1 > resLen:
@@ -53,9 +56,9 @@ class Solution(object):
 
         longest = ""
         for i in range(len(s)):
-            # Odd length palindrome
-            palindrome1 = expandAroundCenter(i, i)
             # Even length palindrome
+            palindrome1 = expandAroundCenter(i, i)
+            # Odd length palindrome
             palindrome2 = expandAroundCenter(i, i + 1)
 
             if len(palindrome1) > len(longest):

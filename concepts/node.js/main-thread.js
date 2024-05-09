@@ -9,7 +9,7 @@ const server = http.createServer((req, res) => {
         const worker = new Worker("./worker-thread.js")
         worker.on("message", (j) => {
             res.writeHead(200, {"Content-Type": "text/plain"})
-            res.end("slow page {j}")
+            res.end(`slow page ${j}`)
         })
     }
 })

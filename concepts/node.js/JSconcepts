@@ -1,0 +1,39 @@
+In JavaScript, there are several types of data types:
+
+Primitive Data Types:
+    Number: Represents numeric values.
+    String: Represents textual data.
+    Boolean: Represents true or false values.
+    Undefined: Represents a variable that has been declared but not assigned a value.
+    Null: Represents an intentional absence of any value.
+    Symbol: Represents a unique identifier.
+    BigInt: Represents integers of arbitrary length.
+Non-Primitive Data Types (Reference Types):
+    Object: Represents a collection of key-value pairs (e.g., { key: value }).
+    Array: Represents a collection of indexed elements (e.g., [1, 2, 3]).
+    Function: Represents reusable blocks of code.
+    Date: Represents date and time.
+    RegExp: Represents regular expressions for pattern matching.
+
+Shallow Copy:
+A shallow copy creates a new object or array and copies the references of the original elements. 
+This means that if the original object contains nested objects or arrays, the shallow copy only copies the references to these nested objects, not their actual content.
+Shallow copy methods in JavaScript include Object.assign(), the spread operator (...), and Array.prototype.slice() for arrays.
+Example
+const originalArray = [1, 2, [3, 4]];
+const shallowCopyArray = originalArray.slice();
+shallowCopyArray[0] = 5; // Modifying the shallow copy
+shallowCopyArray[2][0] = 6; // Modifying the nested array in the shallow copy
+console.log(originalArray); // Output: [1, 2, [6, 4]]
+
+Deep Copy:
+A deep copy creates a completely new object or array and recursively copies all elements, including nested objects or arrays, so that the copied object is entirely independent of the original.
+Deep copy methods in JavaScript typically involve using custom functions or libraries like JSON.parse(JSON.stringify()) to serialize and deserialize the object, effectively creating a deep copy.
+Example:
+const originalArray = [1, 2, [3, 4]];
+const deepCopyArray = JSON.parse(JSON.stringify(originalArray));
+deepCopyArray[0] = 5; // Modifying the deep copy
+deepCopyArray[2][0] = 6; // Modifying the nested array in the deep copy
+console.log(originalArray); // Output: [1, 2, [3, 4]]
+
+
