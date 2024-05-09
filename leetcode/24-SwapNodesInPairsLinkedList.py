@@ -9,6 +9,8 @@ class Solution(object):
         """
         :type head: ListNode
         :rtype: ListNode
+        Input: head = [1,2,3,4]
+        Output: [2,1,4,3]
         """
         dummy = ListNode(0)
         dummy.next = head

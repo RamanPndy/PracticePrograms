@@ -177,3 +177,87 @@ func main() {
 It should be obvious, if you were to look at the Unicode mapping, which is identical to ASCII in that range. 
 Furthermore, 32 is in fact the offset between the uppercase and lowercase codepoint of the character. 
 So by adding 32 to 'A', you get 'a' and vice versa.
+
+In Go, Mutex and RWMutex are synchronization primitives used to manage access to shared resources among goroutines. Here's a comparison of Mutex and RWMutex in Go:
+
+Mutex (sync.Mutex):
+Exclusive Lock: 
+A Mutex provides exclusive access to a resource. Only one goroutine can hold the lock at a time. 
+If another goroutine tries to acquire the lock while it's held by one goroutine, it will be blocked until the lock is released.
+Locking and Unlocking: 
+To protect a critical section of code, you use Mutex by calling Lock() to acquire the lock and Unlock() to release it.
+Simple and Efficient:
+Mutex is simple to use and efficient for scenarios where only one goroutine should access a resource at a time.
+Example:
+var mutex sync.Mutex
+
+// Lock the mutex before accessing the shared resource
+mutex.Lock()
+// Access the shared resource
+// ...
+// Unlock the mutex when done
+mutex.Unlock()
+
+RWMutex (sync.RWMutex):
+Read-Write Lock: 
+An RWMutex allows multiple goroutines to read a resource concurrently, but only one goroutine can hold a write lock at a time. 
+When a goroutine holds a write lock, no other goroutine can read or write to the resource.
+Read Locking and Write Locking: 
+Use RLock() to acquire a read lock (for reading) and Lock() to acquire a write lock (for writing). 
+Use RUnlock() to release a read lock and Unlock() to release a write lock.
+Optimized for Read-Heavy Workloads: 
+RWMutex is useful when the resource is predominantly read from, as it allows multiple readers to access the resource concurrently.
+Example:
+var rwMutex sync.RWMutex
+
+// Acquire a read lock before reading the shared resource
+rwMutex.RLock()
+// Read from the shared resource
+// ...
+// Release the read lock
+rwMutex.RUnlock()
+
+// Acquire a write lock before writing to the shared resource
+rwMutex.Lock()
+// Write to the shared resource
+// ...
+// Release the write lock
+rwMutex.Unlock()
+
+In summary, use Mutex when you need exclusive access to a resource, ensuring that only one goroutine can access it at a time. 
+Use RWMutex when you have a resource that is frequently read but infrequently written, allowing multiple goroutines to read concurrently 
+but only one goroutine to write at a time.
+
+Go's runtime scheduler (GOMAXPROCS) manages the distribution of goroutines across available CPU cores, and it can be adjusted to optimize 
+performance based on the specific workload and hardware.
+GOMAXPROCS setting: By default, Go's runtime scheduler (GOMAXPROCS) sets the number of operating system threads available to execute Go 
+code to the number of CPU cores on the machine. This means that, by default, Go will try to run as many goroutines as there are CPU cores 
+concurrently.
+
+Goroutine vs OS threads
+Goroutine:
+managed by the Go runtime and are multiplexed onto a smaller number of OS threads.
+Goroutines have a small initial stack size (typically 2KB) and can dynamically grow or shrink their stack as needed. 
+This makes them efficient for handling large numbers of concurrent tasks.
+
+Goroutines have lower creation and teardown overhead compared to OS threads. 
+
+Goroutines are managed by the Go runtime's scheduler, which multiplexes them onto a smaller number of OS threads. 
+This allows efficient concurrent execution even on machines with a limited number of CPU cores.
+
+Goroutines communicate and synchronize using channels, which are built-in constructs in Go for safely passing data between concurrent 
+goroutines. Channels help avoid race conditions and ensure safe concurrent access to shared data.
+
+OS Threads:
+managed by the operating system's kernel. They are typically heavier in terms of resource usage compared to goroutines. 
+Each OS thread has its own stack size allocated by the operating system, which is usually larger than the initial stack size of a goroutine.
+
+Creating and destroying OS threads can be more expensive in terms of time and resources due to the overhead of allocating and managing 
+resources at the operating system level.
+
+OS threads are managed by the operating system's scheduler. The number of OS threads that can run concurrently is limited by factors such 
+as the number of CPU cores and the operating system's scheduling policies.
+
+OS threads typically use lower-level synchronization mechanisms such as mutexes, condition variables, and semaphores for communication 
+and synchronization. These mechanisms require more manual management and can be prone to issues like deadlocks and race conditions if not 
+used carefully.

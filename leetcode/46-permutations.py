@@ -3,6 +3,8 @@ class Solution(object):
         """
         :type nums: List[int]
         :rtype: List[List[int]]
+        Input: nums = [1,2,3]
+        Output: [[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,1,2],[3,2,1]]
         """
         res = []
         if len(nums) == 1:

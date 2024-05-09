@@ -13,8 +13,9 @@ class Solution(object):
         s5 = "abcd"
         s6 = "abcdaxyz"
         Steps:
-        1. if string is empty then return 0 and create 2 vars res and maxLen which will hold result string and it's length.
-        2. traverse through string character by character 
+        1. if string is empty then return 0
+        2. create 2 vars res and maxLen which will hold result string and it's length.
+        3. traverse through string character by character 
             - if current character is not present in res then add it and update maxLen with len(res)
             - else split res on current character and append 1st splitted character along with current character in res.
 

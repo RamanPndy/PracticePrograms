@@ -32,7 +32,9 @@ func main() {
 	fmt.Println("Counter:", counter)
 }
 
-// Using channels : Use channels for communication between goroutines to avoid race conditions. Channels ensure that only one goroutine has access to the data at any given time.
+// Using channels : Use channels for communication between goroutines to avoid race conditions.
+// Channels ensure that only one goroutine has access to the data at any given time.
+
 func increment(counter chan int, done chan bool) {
 	for i := 0; i < 1000; i++ {
 		counter <- 1

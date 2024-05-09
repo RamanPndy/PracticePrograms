@@ -13,7 +13,7 @@ class Solution(object):
             - pop the first element from queue which will return index and character
             - if index is length(digits) then append character in result array
             - else 
-                i. get next digit from digits i.e. digits[i]
+                i. get next digit from digits i.e. from current index which is digits[i]
                 ii. get all letters from the phone number dictionary for next digit found in above step
                 iii. traverse each letter and append it to queue along with (index + 1, character + letter)
         r. return result array
