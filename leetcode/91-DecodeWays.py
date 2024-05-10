@@ -17,7 +17,8 @@ class Solution(object):
         1. create dp map and intialize it with len(s):1 because if we get empty string then we will return 1. (base case)
         2. in bottom up approach traverse string in reverse order by index.
         3. if first character is 0 then we return 0 (base case)
-        4. if it is not 0 then it means next number is between 1-9 then we can take this value as single digit then subproblem becomes i+1
+        4. if it is not 0 then it means next number is between 1-9 then we can take this value as single digit 
+            then subproblem becomes i+1
         5. check for double digit character if i+1 < len(s) and (s[i] == "1" or (s[i] == "2" and s[i+1] in "0123456")) then subproblemn becomes i+2
         6. return dp[0]
         """

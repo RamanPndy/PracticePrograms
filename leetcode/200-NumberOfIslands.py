@@ -3,9 +3,11 @@ class Solution(object):
         """
         :type grid: List[List[str]]
         :rtype: int
-        Traverse the given matrix, and for each unvisited cell that is part of an island, perform BFS starting from that cell.
+        Traverse the given matrix, and for each unvisited cell that is part of an island, perform BFS starting from 
+        that cell.
         In the BFS algorithm, enqueue the current cell and mark it as visited. 
-        Then, while the queue is not empty, dequeue a cell and enqueue its unvisited neighbors that are part of the same island. 
+        Then, while the queue is not empty, dequeue a cell and enqueue its unvisited neighbors that are part of the 
+        same island. 
         Mark each of these neighbors as visited. After BFS is complete, increment the island count by 1.
         Repeat previous steps until all unvisited cells have been processed. Return the total island count.
         """
