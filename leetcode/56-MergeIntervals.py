@@ -11,7 +11,8 @@ class Solution(object):
         2. put first in result array
         3. iterate through all remaining intervals
             - get end of last interval from last entry of result array
-            - if last interval end >= current interval start then update last interval end with maximum of current interval end and last interval end
+            - if last interval end >= current interval start then update last interval end with maximum of current 
+                interval end and last interval end
             - else append current interval in result array
         4. return result
         """
