@@ -10,17 +10,19 @@ class Solution(object):
         :type root: TreeNode
         :type k: int
         :rtype: int
+        Input: root = [5,3,6,2,4,null,null,1], k = 3
+        Output: 3
         """
         if root is None:
             return 0
-        s = [root]
+        q = [root]
         a = []
-        while s:
-            node = s.pop(0)
+        while q:
+            node = q.pop(0)
             a.append(node.val)
             if node.left:
-                s.append(node.left)
+                q.append(node.left)
             if node.right:
-                s.append(node.right)
+                q.append(node.right)
         a = sorted(a)
         return a[k-1]

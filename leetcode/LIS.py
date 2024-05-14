@@ -7,8 +7,7 @@ class Solution(object):
         Output: 4
         Explanation: The longest increasing subsequence is [2,3,7,101], therefore the length is 4.
         Step 1: define the dp array
-        I use the dynamic programming to solve this problem. I use an array called dp to store the dp results, 
-        where dp[i] represents the length of the longest increasing subsequence that ends with nums[i].
+        dp[i] represents the length of the longest increasing subsequence that ends with nums[i].
         Step 2: find the dp rule
         Here is the rule:
         dp[i] = max(dp[i], dp[j]+1) for each j<i and dp[j]< dp[i].

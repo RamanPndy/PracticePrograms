@@ -10,10 +10,11 @@ class Solution(object):
         If we imagine the search as a tree, what is " the fewest number of coins that you need to make up that amount" 
         It is the shortest path! And the shortest path is BFS. So, when you use BFS you don't have to think about the minimum: the first found number of coins will be the answer.
         Steps:
-        1. create a queue and append (amount and num of coins) along with visited array
+        1. create a queue and append (amount and num of coins(to be calculated)) along with visited set
         2. traverse queue and get current amount and num of coins
         3. if current amount is 0 then return num of coins
-        4. traverse each coin and get new amount by subtracting coin from current amount
+        4. traverse each coin
+            - get new amount by subtracting coin from current amount
             - if new amount already present in visited or new amount is negative then continue
             - increase num of coins and append (new amount and increased num of coins) in queue
             - add new amount in visited

@@ -5,6 +5,16 @@ class Solution(object):
         :rtype: str
         Input: s = "3[a]2[bc]"
         Output: "aaabcbc"
+        Steps:
+        1. create a stack ans vars to hold current string and current number
+        2. tranverse string character by character
+            - if character is a number then assign it to current number
+            - if character is opening bracket "["
+                - append current number and current string in stack
+                - reset current number and current string to 0 and ""
+            - if character is closing bracket "]"
+                - get previous string and previous number from stack after popping
+                - append (previous string) + (current string * previous number) in current string
         """
         st = []
         cs = ''

@@ -13,15 +13,16 @@ class Solution(object):
         Steps:
         1. create a result array and todo stack and append (target, 0, combination stack([])) in stack
         2. sort candidates
-        3. create pool of unique candidates such as set of candidates
+        3. create pool of unique candidates ie. set of candidates
         4. if target present in the pool then append in result array
         5. traverse todo stack:
             - get current number, index and combination stack from popping todo stack
             - if current number is < value of candidate at index then continue
-            - if current number is not equal to target and current number present in the pool then add current number to 
+            - if current number is not equal to target and but present in the pool then add current number to 
               combination stack and append it to result array
             - while index is < len(candidates) and current number is >= value of candidate at index
-              then append ((current number - value of candidate at index), index , create temp stack and add value of candidate at index and join with combination stack)
+              create temp stack and add candidate at current index and extend with combination stack
+              then append ((current number - value of candidate at current index), index ,temp stack)
               increase index value by 1
         6. return result array
         """

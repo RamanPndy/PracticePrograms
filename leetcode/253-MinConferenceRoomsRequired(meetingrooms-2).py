@@ -11,6 +11,17 @@ import heapq
 class Solution:
   # Time: O(sort)
   # Space: O(n)
+  '''
+  1. create variable to store total intervals
+  2. create vars to store start and end of all intervals.
+  3. traverse intervals array and add start and end of intervals in respective arrays.
+  4. sort start and end intervals arrays
+  5. create right pointer and set to 0.
+  6. traverse total intervals by index
+    - if starts[current index] < ends[right pointer] then increase answer
+    - otherwise increase right pointer
+  7. return answer
+  '''
   def minMeetingRooms(self, intervals):
     n = len(intervals)
     ans = 0

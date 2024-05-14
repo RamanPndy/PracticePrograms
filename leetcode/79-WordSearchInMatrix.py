@@ -4,6 +4,8 @@ class Solution(object):
         :type board: List[List[str]]
         :type word: str
         :rtype: bool
+        Input: board = [["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]], word = "ABCCED"
+        Output: true
         """
         rows, cols = len(board), len(board[0])
         visited = set()

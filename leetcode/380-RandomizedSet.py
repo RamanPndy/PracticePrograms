@@ -22,8 +22,8 @@ randomizedSet.getRandom(); // Since 2 is the only number in the set, getRandom()
 class RandomizedSet(object):
 
     def __init__(self):
-        self.arr = list()
-        self.m = dict()
+        self.arr = list() #list to hold elements
+        self.m = dict() #Dictionary to hold index of element
 
     def insert(self, val):
         """

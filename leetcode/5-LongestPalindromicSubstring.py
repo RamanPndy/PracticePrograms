@@ -9,18 +9,18 @@ class Solution(object):
         Input: s = "cbbd"
         Output: "bb"
         Idea: Expanding Around Centers
-        The idea behind this approach is to consider every character in the string as a potential center of a palindrome and 
-        then expand around that center to find the longest palindromic substring.
+        The idea behind this approach is to consider every character in the string as a potential center of a 
+        palindrome and then expand around that center to find the longest palindromic substring.
 
         steps: 
         1. create res and resLen which will hold result string and it's length
         2. traverse through length of string
-        3. use 2 pointer approach for even and odd places
-            even := l,r = i, i
-            odd := l, r = i, i+1
-        4. for both above cases loop until l >= 0 and r < len(s) and s[l] == s[r]
-            - if r-l+1 > resLen then res = s[l:r+1]
-            decrease l and increase r
+            1. use 2 pointer approach for even and odd places
+                even := l,r = i
+                odd := l, r = i+1
+            2. for both above cases loop until l >= 0 and r < len(s) and s[l] == s[r]
+                - if r-l+1 > resLen then res = s[l:r+1]
+                decrease l and increase r
 
         # Time: O(n2)
         # Space: O(1)

@@ -8,6 +8,13 @@ class MedianFinder(object):
         """
         :type num: int
         :rtype: None
+        Steps:
+        1. create left and right pointer with value 0 and length -1
+        2. traverse while left <= right
+            - get the mid index
+            - if data at mid index is < input number then increase mid index by 1 and assign to left
+            - otherwise decrease mid index by 1 an assign to right
+        3. increase length by 1
         """
         l, r = 0, self.length -1
         while l <= r:

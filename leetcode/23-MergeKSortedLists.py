@@ -30,16 +30,17 @@ class Solution(object):
             - add node with value in current node
             - proceed with next current node
             - if there is any list in lists array then append it to heap and proceed with next node
-        5. retun next of head
+        5. return next of head
         """
         head = ListNode()
         curr = head
         heap = []
+        # print(lists) [ListNode{val: 1, next: ListNode{val: 4, next: ListNode{val: 5, next: None}}}, ListNode{val: 1, next: ListNode{val: 3, next: ListNode{val: 4, next: None}}}, ListNode{val: 2, next: ListNode{val: 6, next: None}}]
         for i in range(len(lists)):
             if lists[i]:
                 heapq.heappush(heap, (lists[i].val, i))
                 lists[i] = lists[i].next
-            
+        # print(heap) [(1, 0), (1, 1), (2, 2)]
         while heap:
             val, i = heapq.heappop(heap)
             curr.next = ListNode(val)
