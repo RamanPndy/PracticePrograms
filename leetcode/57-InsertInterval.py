@@ -9,9 +9,11 @@ class Solution(object):
         Steps:
         1. create result array
         2. iterate through each interval by index
-        3. if new interval end < curent interval start then push new interval and return with appending rest of intervals from the current index
+        3. if new interval end < curent interval start then push new interval and return with appending rest of intervals 
+           from the current index
         4. if new interval start > current interval end then push current interval in result array
-        5. otherwise update new interval with min of new interval start and current interval start and max of new interval end and current interval end
+        5. otherwise update new interval with min of new interval start and current interval start and max of new interval end 
+           and current interval end
         6. append new inteval in result array
         7. return result
         """

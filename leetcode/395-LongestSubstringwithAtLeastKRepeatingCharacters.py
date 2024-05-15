@@ -18,7 +18,9 @@ class Solution(object):
         If all characters have a frequency greater than or equal to k, we can immediately return the 
         length of the string.
         4. If we have found a character with a frequency less than k, we split the string into two 
-        parts: the substring before the current index, and the substring after the current index. 
+        parts left and right viz
+        left : substring before the current index
+        right : substring after the current index. 
         We then recursively call the longestSubstring function on each substring to find the longest 
         substring in each part.
         5. Finally, we return the maximum length of the two substrings found in step 4.

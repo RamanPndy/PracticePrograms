@@ -24,7 +24,8 @@ class Solution(object):
         2. get left and right tail of left and right subtrees.
         3. if leftTail is not None:
             a. assign right of the root to right of left tail. now right of the left tail and right of the root points to same node.
-            b. now to flatten the tree we need to put left of the root to in between of root and right of the root so right of the root will now point to left of the root.
+            b. now to flatten the tree we need to put left of the root to in between of root and right of the root so right of
+               the root will now point to left of the root.
             c. after this there should not be any left node for the root so left of root becomes None
         4. tail of list will be right most node of the root ie. rightTail
         5. if rightTail is None but leftTail is not None in that case leftTail will become tail of list

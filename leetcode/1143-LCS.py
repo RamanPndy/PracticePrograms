@@ -4,6 +4,9 @@ class Solution(object):
         :type text1: str
         :type text2: str
         :rtype: int
+        Input: text1 = "abcde", text2 = "ace" 
+        Output: 3  
+        Explanation: The longest common subsequence is "ace" and its length is 3.
         """
         m, n = len(text1), len(text2)
         dp = [[0 for i in range(n + 1)] for j in range(m + 1)]

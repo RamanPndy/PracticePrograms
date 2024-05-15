@@ -11,13 +11,13 @@ class Solution(object):
 
         Steps:
         1. get the count of negative numbers in matrix.
-        2. get the minimum absolute number from matrix.
+        2. find minimum absolute number from matrix.
         3. traverse matrix
             1. if number is negative then increase negative count.
             2. add absolute number in the matrix sum.
-            3. update minimum of matirx by absoulte number.
+            3. update minimum of matrix by absolute number.
         4. if negative count is even then all numbers can be turned into positive in matrix and sumOfMatrix will be actual sum.
-        5. if negative count is odd then only minimum number of the matrix can be turned into negative then twice of that number 
+        5. if negative count is odd then only minimum number in the matrix can be turned into negative then twice of that number 
             can be subtracted from matrix sum which would be answer.
         """
         negativeCounts, sumOfMatrix = 0, 0

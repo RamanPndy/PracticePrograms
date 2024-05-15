@@ -10,7 +10,8 @@ class Solution(object):
         2. Initialize dp list of size cols with the first element of dp being the first element of the first row of the grid.
         3. Loop through the remaining columns of the first row, updating each dp[i] as dp[i-1] + grid[0][i].
         4. Loop through the remaining rows of the grid, updating the first column of each row as dp[0] + grid[i][0].
-        5. Loop through the remaining columns of the current row, updating each dp[j] as the minimum of dp[j-1] and dp[j] plus the current grid element.
+        5. Loop through the remaining columns of the current row, updating each dp[j] as the 
+            minimum of dp[j-1] and dp[j] plus the current grid element.
         6. Return the last element of dp which is the minimum path sum from top left to bottom right.
 
         """

@@ -135,3 +135,85 @@ using(Ship_id);
 select *,
 avg(Runs) over(order by year(Year) rows 4 preceding) as '5-year moving average'
 from Kohli_Batting;
+
+-- Table: SalesPerson
+
+-- +-----------------+---------+
+-- | Column Name     | Type    |
+-- +-----------------+---------+
+-- | sales_id        | int     |
+-- | name            | varchar |
+-- | salary          | int     |
+-- | commission_rate | int     |
+-- | hire_date       | date    |
+-- +-----------------+---------+
+-- sales_id is the primary key (column with unique values) for this table.
+-- Each row of this table indicates the name and the ID of a salesperson alongside their salary, commission rate, and hire date.
+ 
+
+-- Table: Company
+
+-- +-------------+---------+
+-- | Column Name | Type    |
+-- +-------------+---------+
+-- | com_id      | int     |
+-- | name        | varchar |
+-- | city        | varchar |
+-- +-------------+---------+
+-- com_id is the primary key (column with unique values) for this table.
+-- Each row of this table indicates the name and the ID of a company and the city in which the company is located.
+ 
+
+-- Table: Orders
+
+-- +-------------+------+
+-- | Column Name | Type |
+-- +-------------+------+
+-- | order_id    | int  |
+-- | order_date  | date |
+-- | com_id      | int  |
+-- | sales_id    | int  |
+-- | amount      | int  |
+-- +-------------+------+
+-- order_id is the primary key (column with unique values) for this table.
+-- com_id is a foreign key (reference column) to com_id from the Company table.
+-- sales_id is a foreign key (reference column) to sales_id from the SalesPerson table.
+-- Each row of this table contains information about one order. This includes the ID of the company, the ID of the salesperson, the date of the order, and the amount paid.
+ 
+
+-- Write a solution to find the names of all the salespersons who did not have any orders related to the company with the name "RED".
+SELECT s.name FROM Orders o
+INNER JOIN Company c ON (o.com_id = c.com_id AND c.name = 'RED') 
+RIGHT JOIN SalesPerson s on (o.sales_id = s.sales_id) 
+WHERE o.sales_id IS NULL
+
+-- here group by 1 means group by first column of table regardless whatever is given in the select query
+select class from courses group by 1 having count(student) >= 5
+
+-- +-----------------+----------+
+-- | Column Name     | Type     |
+-- +-----------------+----------+
+-- | order_number    | int      |
+-- | customer_number | int      |
+-- +-----------------+----------+
+-- order_number is the primary key (column with unique values) for this table.
+-- This table contains information about the order ID and the customer ID.
+ 
+
+-- Write a solution to find the customer_number for the customer who has placed the largest number of orders.
+select customer_number from orders group by 1 order by count(order_number) desc limit 1
+
++-------------+---------+
+-- | Column Name | Type    |
+-- +-------------+---------+
+-- | id          | int     |
+-- | email       | varchar |
+-- +-------------+---------+
+-- id is the primary key (column with unique values) for this table.
+-- Each row of this table contains an email. The emails will not contain uppercase letters.
+ 
+
+-- Write a solution to delete all duplicate emails, keeping only one unique email with the smallest id.
+
+-- For SQL users, please note that you are supposed to write a DELETE statement and not a SELECT one.
+delete p2 from person as p1  inner join person as p2  on (p1.email =p2.email) where p1.id < p2.id

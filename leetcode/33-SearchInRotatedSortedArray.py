@@ -6,6 +6,22 @@ class Solution(object):
         :rtype: int
         Input: nums = [4,5,6,7,0,1,2], target = 0
         Output: 4   
+        Steps:
+        1. create left and right such that left = 0 and right = len(nums) -1
+        2. loop while left <= right:
+            - get the mid index by (left + right) / 2
+            - if mid is the target then return index of mid
+            - if mid is >= left number ie. array is left rotated
+                if target is in middle of left number and mid ie. nums[left] <= target < nums[mid]
+                    decrease right by mid index - 1
+                else 
+                    increase left by mid index + 1
+            - else array is right rotated
+                if target is in middle of mid and right number ie. nums[mid] < target <= nums[right]
+                    increase left by mid index + 1
+                else
+                    decrease right by mid index - 1
+        3. otherwise return -1
         """
         l , r = 0, len(nums) -1
         while l <= r:

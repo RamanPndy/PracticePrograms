@@ -12,7 +12,8 @@ class Solution(object):
         Get the character count, say c2, of the first n1 chars of s2, where n1, and n2 are lengths of s1 and s2 respectively.
         Use the sliding-window approach to slide c2 one character at a time to the right of s2
         After every slide, compare if c1 equals c2. If yes, we found a permutation of s1 in s2, hence return True, else continue.
-        To avoid linear time comparision of c1 and c2, use a equality counter, say eq_count which keeps count of number of characters in c1 and c2 with equal counts. This reduces the comparision to constant time.
+        To avoid linear time comparision of c1 and c2, use a equality counter, say eq_count which keeps count of number of 
+        characters in c1 and c2 with equal counts. This reduces the comparision to constant time.
         """
         n1, n2 = len(s1), len(s2)
         c1, c2 = Counter(s1), Counter(s2[:n1])
