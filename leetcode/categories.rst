@@ -57,7 +57,7 @@ Array Traversal
 128-LongestConsecutiveSequence
 152-MaximumProductSubArray
 238-ProductOfArrayExceptSelf
-560-SubarraySumEqualsK
+122-BestTimeBuySellStockInfinite.py (greedy)
 
 String Traversal
 3-LongestSubstringWORepeatingChars
@@ -138,3 +138,9 @@ LFU
 
 Bit Manipulation
 Add2NumsUsingBitsManipulation
+
+Prefix Sum
+560-SubarraySumEqualsK
+
+Prefix Map
+523-ConinuousSubarraySum.py
