@@ -1,3 +1,4 @@
+from systemdesign.splitwise.interface import ExpenseManager, Subject
 class Splitwise(Subject, ExpenseManager):
     def __init__(self):
         self.users = []

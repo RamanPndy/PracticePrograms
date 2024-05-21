@@ -7,7 +7,7 @@ class Player:
 
 class Dice:
     def rollDice(self):
-        return random.randint(1,10)
+        return random.randint(1,6)
 
 class Jumper:
     def __init__(self, startPoint, endPoint) -> None:
@@ -28,13 +28,15 @@ class GameBoard:
         self.snakes = list()
         self.ladders = list()
         self.playersCurrentPosition = dict()
+        self.currentPosition = 0
     
     def play(self):
         while len(self.nextTurn) > 1:
             player = self.nextTurn.pop(0)
-            currentPosition = self.playersCurrentPosition[player.name]
+            if player.name in self.playersCurrentPosition:
+                self.currentPosition = self.playersCurrentPosition[player.name]
             diceValue = self.dice.rollDice()
-            nextCell = currentPosition + diceValue
+            nextCell = self.currentPosition + diceValue
             if nextCell > self.boardSize:
                 self.nextTurn.append(player)
             elif nextCell == self.boardSize:

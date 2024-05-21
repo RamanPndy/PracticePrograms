@@ -1,10 +1,12 @@
 '''
 Swiggy-like delivery system consists of Restaurant, Customer, Order, DeliveryExecutive, and 
-DeliverySystem classes. The Restaurant class represents restaurants with names and locations. 
-The Customer class represents customers with names and addresses. The Order class represents 
-individual orders with order IDs, restaurant details, customer details, items, order time, and 
-assigned delivery executive. The DeliveryExecutive class represents delivery executives with names and 
-vehicles. The DeliverySystem class manages the orders and delivery executives, providing methods to 
+DeliverySystem classes. 
+The Restaurant class represents restaurants with names and locations. 
+The Customer class represents customers with names and addresses. 
+The Order class represents individual orders with order IDs, restaurant details, customer details, items, order time, and 
+assigned delivery executive. 
+The DeliveryExecutive class represents delivery executives with names and vehicles. 
+The DeliverySystem class manages the orders and delivery executives, providing methods to 
 place orders, assign delivery executives, and add delivery executives to the system.
 '''
 from datetime import datetime

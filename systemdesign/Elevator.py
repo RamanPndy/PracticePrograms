@@ -1,12 +1,8 @@
-class Direction:
-    UP = 1
-    DOWN = 2
-
-class State:
-    IDLE = 1
-    MOVING = 2
-    STOPPED = 3
-    OUTOFORDER = 4
+from enum import Enum
+class Direction(Enum):
+    UP, DOWN = 1, 2
+class State(Enum):
+    IDLE, MOVING, STOPPED, OUTOFORDER = 1, 2, 3, 4
 
 class Elevator:
     def __init__(self, id) -> None:
@@ -54,7 +50,6 @@ class Schedular:
     def dispatch(self, elevatorId, floor):
         pass
 
-    
 class Elevator:
     def __init__(self, num_floors):
         self.num_floors = num_floors

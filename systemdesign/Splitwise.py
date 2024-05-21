@@ -12,10 +12,8 @@ from enum import Enum
 from collections import defaultdict
 
 class ExpenseType(Enum):
-    EQUAL = 1
-    EXACT = 2
-    PERCENTAGE = 3
-
+    EQUAL, EXACT, PERCENTAGE = 1, 2, 3
+    
 class User:
     def __init__(self, user_id, name):
         self.user_id = user_id

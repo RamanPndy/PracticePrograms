@@ -1,3 +1,4 @@
+from systemdesign.splitwise.interface import Observer
 class User(Observer):
     def __init__(self, name):
         self.name = name

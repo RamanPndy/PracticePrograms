@@ -1,7 +1,8 @@
 '''
-the flight tracking system consists of Flight, Airport, and FlightTracker classes. The Flight class 
-represents individual flights with flight numbers, departure and arrival airports, and departure and 
-arrival times. The Airport class represents airports with airport codes and locations. 
+the flight tracking system consists of Flight, Airport, and FlightTracker classes. 
+The Flight class represents individual flights with flight numbers, departure and arrival airports, and departure and 
+arrival times. 
+The Airport class represents airports with airport codes and locations. 
 The FlightTracker class maintains a list of flights and provides methods to add flights and track a 
 specific flight by its flight number.
 '''
