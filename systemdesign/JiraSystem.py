@@ -3,11 +3,8 @@ from datetime import datetime
 from enum import Enum
 
 class IssueStatus(Enum):
-    OPEN = "Open"
-    IN_PROGRESS = "In Progress"
-    RESOLVED = "Resolved"
-    CLOSED = "Closed"
-
+    OPEN, IN_PROGRESS, RESOLVED, CLOSED = 1, 2, 3, 4
+    
 class User:
     def __init__(self, name):
         self.user_id = str(uuid.uuid4())

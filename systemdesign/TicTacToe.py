@@ -1,9 +1,6 @@
-class State:
-    FIRST = 1
-    SECOND = 2
-    DRAW = 3
-    UNDECIDED = 4
-
+from enum import Enum
+class State(Enum):
+    FIRST, SECOND, DRAW, UNDECIDED = 1, 2, 3, 4
 class Move:
     def __init__(self,player, row, col) -> None:
         self.player = player

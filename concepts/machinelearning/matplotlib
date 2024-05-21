@@ -173,3 +173,7 @@ inp1.groupby(["updated_month"])['Rating'].mean().plot()
 
 Stacked bar chart
 df.plot(kind="bar", stacked=True, figsize=[10,6])
+
+In a scatter plot, the "hue" parameter is used to add an additional dimension of information by using color to differentiate 
+data points based on categorical variables. This is particularly useful for visualizing the relationship between multiple 
+variables in a single plot, as it allows you to see how different categories affect the data.

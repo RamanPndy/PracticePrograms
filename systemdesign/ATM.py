@@ -85,7 +85,7 @@ class ATM:
     self.__screen = Screen()
     self.__printer = Printer()
     self.__check_deposit = CheckDeposit()
-    self.__cash_deposit = CashDeposit
+    self.__cash_deposit = CashDeposit()
 
   def authenticate_user(self):
     None

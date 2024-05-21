@@ -7,12 +7,9 @@ class FixedWindowCounter:
 
     window_size, which specifies the time window in seconds.
 
-    allow_request method checks if the current time exceeds 
-    the start time of the window plus the window size. 
-    If it does, it resets the request count to 1 and 
-    updates the window start time to the current time, allowing the request. 
-    Otherwise, it increments the request count and 
-    allows the request if the count is within a certain limit.
+    allow_request method checks if the current time exceeds  the start time of the window plus the window size. 
+    If it does, it resets the request count to 1 and updates the window start time to the current time, allowing the request. 
+    Otherwise, it increments the request count and allows the request if the count is within a certain limit.
 
     request_count attribute tracks the number of requests made within the current window, 
     and the window_start_time attribute tracks the start time of the current window.

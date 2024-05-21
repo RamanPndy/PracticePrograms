@@ -1,3 +1,6 @@
+from systemdesign.splitwise.users import User
+from systemdesign.splitwise.expensemanager import Splitwise
+
 # Create users and Splitwise instance
 alice = User("Alice")
 bob = User("Bob")
@@ -7,6 +10,8 @@ splitwise = Splitwise()
 splitwise.add_user(alice)
 splitwise.add_user(bob)
 splitwise.add_user(charlie)
+
+# Attach users to observer list
 splitwise.attach(alice)
 splitwise.attach(bob)
 splitwise.attach(charlie)
