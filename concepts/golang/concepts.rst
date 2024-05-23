@@ -3,8 +3,8 @@ In Go, the "init" function is a special function that is automatically called by
 It is called before the main function and can be used to perform initialization tasks for the package.
 
 The "init" function does not take any arguments and does not return a value. It is typically used to set initial values for 
-package-level variables, establish connections to external resources such as databases, or perform any other initialization tasks 
-that need to be performed before the main function is called.
+package-level variables, establish connections to external resources such as databases, or perform any other initialization 
+tasks that need to be performed before the main function is called.
 
 The "init" function can be defined anywhere in the package, and multiple "init" functions can be defined in the same package. 
 All "init" functions within a package will be called by the Go runtime in the order they appear in the code.
@@ -32,7 +32,9 @@ such a situation where a blocked goroutine never gets unblocked is referred to a
 
 function Closure
 In Go, a function closure is a function that refers to variables from the scope in which it was defined. 
-These variables are "closed over" by the function, and they remain accessible even after the function is invoked outside of their original scope. 
+These variables are "closed over" by the function, and they remain accessible even after the function is invoked outside of 
+their original scope. 
+
 package main 
 import "fmt" 
 func main() { 
@@ -178,7 +180,8 @@ It should be obvious, if you were to look at the Unicode mapping, which is ident
 Furthermore, 32 is in fact the offset between the uppercase and lowercase codepoint of the character. 
 So by adding 32 to 'A', you get 'a' and vice versa.
 
-In Go, Mutex and RWMutex are synchronization primitives used to manage access to shared resources among goroutines. Here's a comparison of Mutex and RWMutex in Go:
+In Go, Mutex and RWMutex are synchronization primitives used to manage access to shared resources among goroutines. 
+Here's a comparison of Mutex and RWMutex in Go:
 
 Mutex (sync.Mutex):
 Exclusive Lock: 
@@ -225,14 +228,14 @@ rwMutex.Lock()
 rwMutex.Unlock()
 
 In summary, use Mutex when you need exclusive access to a resource, ensuring that only one goroutine can access it at a time. 
-Use RWMutex when you have a resource that is frequently read but infrequently written, allowing multiple goroutines to read concurrently 
-but only one goroutine to write at a time.
+Use RWMutex when you have a resource that is frequently read but infrequently written, allowing multiple goroutines to read 
+concurrently but only one goroutine to write at a time.
 
-Go's runtime scheduler (GOMAXPROCS) manages the distribution of goroutines across available CPU cores, and it can be adjusted to optimize 
-performance based on the specific workload and hardware.
-GOMAXPROCS setting: By default, Go's runtime scheduler (GOMAXPROCS) sets the number of operating system threads available to execute Go 
-code to the number of CPU cores on the machine. This means that, by default, Go will try to run as many goroutines as there are CPU cores 
-concurrently.
+Go's runtime scheduler (GOMAXPROCS) manages the distribution of goroutines across available CPU cores, and it can be adjusted 
+to optimize performance based on the specific workload and hardware.
+GOMAXPROCS setting: By default, Go's runtime scheduler (GOMAXPROCS) sets the number of operating system threads available to 
+execute Go code to the number of CPU cores on the machine. 
+This means that, by default, Go will try to run as many goroutines as there are CPU cores concurrently.
 
 Goroutine vs OS threads
 Goroutine:
@@ -245,18 +248,19 @@ Goroutines have lower creation and teardown overhead compared to OS threads.
 Goroutines are managed by the Go runtime's scheduler, which multiplexes them onto a smaller number of OS threads. 
 This allows efficient concurrent execution even on machines with a limited number of CPU cores.
 
-Goroutines communicate and synchronize using channels, which are built-in constructs in Go for safely passing data between concurrent 
-goroutines. Channels help avoid race conditions and ensure safe concurrent access to shared data.
+Goroutines communicate and synchronize using channels, which are built-in constructs in Go for safely passing data between 
+concurrent goroutines. Channels help avoid race conditions and ensure safe concurrent access to shared data.
 
 OS Threads:
 managed by the operating system's kernel. They are typically heavier in terms of resource usage compared to goroutines. 
-Each OS thread has its own stack size allocated by the operating system, which is usually larger than the initial stack size of a goroutine.
+Each OS thread has its own stack size allocated by the operating system, which is usually larger than the initial stack size 
+of a goroutine.
 
-Creating and destroying OS threads can be more expensive in terms of time and resources due to the overhead of allocating and managing 
-resources at the operating system level.
+Creating and destroying OS threads can be more expensive in terms of time and resources due to the overhead of allocating and 
+managing resources at the operating system level.
 
-OS threads are managed by the operating system's scheduler. The number of OS threads that can run concurrently is limited by factors such 
-as the number of CPU cores and the operating system's scheduling policies.
+OS threads are managed by the operating system's scheduler. The number of OS threads that can run concurrently is limited by 
+factors such as the number of CPU cores and the operating system's scheduling policies.
 
 OS threads typically use lower-level synchronization mechanisms such as mutexes, condition variables, and semaphores for communication 
 and synchronization. These mechanisms require more manual management and can be prone to issues like deadlocks and race conditions if not 

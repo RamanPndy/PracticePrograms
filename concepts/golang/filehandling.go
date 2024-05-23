@@ -106,3 +106,61 @@ func readWithReadLine(file *os.File) {
         fmt.Println(string(line))
     }
 }
+
+func writeToFile() {
+	// Create a file
+	file, err := os.Create("example.txt")
+	if err != nil {
+		fmt.Println("Error creating file:", err)
+		return
+	}
+	// Ensure the file is closed properly
+	defer file.Close()
+
+	// Write to the file
+	_, err = file.WriteString("Hello, World!\n")
+	if err != nil {
+		fmt.Println("Error writing to file:", err)
+		return
+	}
+
+	fmt.Println("File written successfully")
+}
+
+func writeToFileWithScanner() {
+	// Create or open the file for writing
+	file, err := os.Create("output.txt")
+	if err != nil {
+		fmt.Println("Error creating file:", err)
+		return
+	}
+	defer file.Close() // Ensure the file is closed properly
+
+	// Create a scanner to read from standard input
+	scanner := bufio.NewScanner(os.Stdin)
+	fmt.Println("Enter text to write to the file (type 'exit' to finish):")
+
+	for scanner.Scan() {
+		// Read the input
+		input := scanner.Text()
+
+		// Exit the loop if the user types 'exit'
+		if input == "exit" {
+			break
+		}
+
+		// Write the input to the file
+		_, err := file.WriteString(input + "\n")
+		if err != nil {
+			fmt.Println("Error writing to file:", err)
+			return
+		}
+	}
+
+	// Check for scanner errors
+	if err := scanner.Err(); err != nil {
+		fmt.Println("Error reading input:", err)
+	}
+
+	fmt.Println("Finished writing to the file")
+}

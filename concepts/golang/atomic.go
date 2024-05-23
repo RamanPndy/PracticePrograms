@@ -6,7 +6,8 @@ import (
 	"time"
 )
 
-// Atomic operations are useful for low-level synchronization and for ensuring that certain operations are performed atomically without interference from concurrent goroutines.
+// Atomic operations are useful for low-level synchronization and for ensuring that certain operations are performed
+// atomically without interference from concurrent goroutines.
 
 func main() {
 	var counter int64 // Atomic counter
