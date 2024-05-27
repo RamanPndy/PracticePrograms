@@ -8,6 +8,15 @@ class Solution(object):
         :rtype: List[int]
         Input: temperatures = [73,74,75,71,69,72,76,73]
         Output: [1,1,4,2,1,1,0,0]
+        Steps:
+            1. create result array of temperatures length
+            2. create stack
+            3. traverse temperatures by index:
+                - while stack is not empty and temperature at current index is > stack last element temperature
+                    - get stack last element temperature and corresponding index
+                    - update result array at stack corresponding index difference of current index and stack last element index.
+                - else append (current temperature and it's corresponding index) in stack
+            4. retrun result
         """
         res = [0] * len(temperatures)
         s = []

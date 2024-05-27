@@ -102,6 +102,7 @@
 - 23-MergeKSortedLists
 - 767-ReorganizeString
 - 347-TopKFrequentElementsUsingMaxHeap
+- 973-KClosestPoints2Origin
 
 # Matrix
 - 54-SpiralMatrix

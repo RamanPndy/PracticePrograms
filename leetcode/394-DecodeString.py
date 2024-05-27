@@ -6,15 +6,18 @@ class Solution(object):
         Input: s = "3[a]2[bc]"
         Output: "aaabcbc"
         Steps:
-        1. create a stack ans vars to hold current string and current number
-        2. tranverse string character by character
+        1. create a stack and vars to hold current string and current number
+        2. traverse string character by character
             - if character is a number then assign it to current number
             - if character is opening bracket "["
                 - append current number and current string in stack
                 - reset current number and current string to 0 and ""
             - if character is closing bracket "]"
                 - get previous string and previous number from stack after popping
-                - append (previous string) + (current string * previous number) in current string
+                - set current string as (previous string) + (current string * previous number) in current string
+            - otherwise add current character in string
+        3. while stack is not empty get current character from stack and add it to current string
+        4. return current string
         """
         st = []
         cs = ''
