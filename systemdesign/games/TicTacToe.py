@@ -140,3 +140,75 @@ if __name__ == "__main__":
         if game.is_board_full():
             print("It's a tie!")
             break
+
+class TicTacToe:
+    def __init__(self):
+        self.board = [[' ' for _ in range(3)] for _ in range(3)]
+        self.current_player = 'X'
+    
+    def print_board(self):
+        print("  0 1 2")
+        for i, row in enumerate(self.board):
+            print(f"{i} {' '.join(row)}")
+    
+    def is_winner(self, player):
+        # Check rows
+        for row in self.board:
+            if all(cell == player for cell in row):
+                return True
+        
+        # Check columns
+        for col in range(3):
+            if all(self.board[row][col] == player for row in range(3)):
+                return True
+        
+        # Check diagonals
+        if all(self.board[i][i] == player for i in range(3)) or all(self.board[i][2 - i] == player for i in range(3)):
+            return True
+        
+        return False
+    
+    def is_draw(self):
+        return all(cell != ' ' for row in self.board for cell in row)
+    
+    def make_move(self, row, col):
+        if self.board[row][col] != ' ':
+            print("Cell is already occupied! Try again.")
+            return False
+        self.board[row][col] = self.current_player
+        return True
+    
+    def switch_player(self):
+        self.current_player = 'O' if self.current_player == 'X' else 'X'
+    
+    def play(self):
+        while True:
+            self.print_board()
+            print(f"Player {self.current_player}'s turn")
+            try:
+                row, col = map(int, input("Enter row and column (separated by space): ").split())
+                if row not in range(3) or col not in range(3):
+                    print("Invalid input! Please enter values between 0 and 2.")
+                    continue
+            except ValueError:
+                print("Invalid input! Please enter numeric values.")
+                continue
+            
+            if not self.make_move(row, col):
+                continue
+            
+            if self.is_winner(self.current_player):
+                self.print_board()
+                print(f"Player {self.current_player} wins!")
+                break
+            
+            if self.is_draw():
+                self.print_board()
+                print("It's a draw!")
+                break
+            
+            self.switch_player()
+
+if __name__ == "__main__":
+    game = TicTacToe()
+    game.play()

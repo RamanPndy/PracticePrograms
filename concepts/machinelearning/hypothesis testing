@@ -1,0 +1,79 @@
+Inferential statistics is used to find some population parameter (mostly population mean) when you have no initial number to start with. So, you start with the sampling activity and find out the sample mean. Then, you estimate the population mean from the sample mean using the confidence interval.
+
+Hypothesis testing is used to confirm your conclusion (or hypothesis) about the population parameter (which you know from EDA or your intuition). Through hypothesis testing, you can determine whether there is enough evidence to conclude if the hypothesis about the population parameter is true or not.
+
+The null hypothesis is always formulated by either = or ≤ or ≥ whereas the alternate hypothesis is formulated by ≠ or > or <. 
+
+You can tell the type of the test and the position of the critical region on the basis of the ‘sign’ in the alternate hypothesis.
+
+       ≠ in H₁    →   Two-tailed test        →     Rejection region on both sides of distribution
+
+       < in H₁    →   Lower-tailed test     →     Rejection region on left side of distribution
+
+       > in H₁    →   Upper-tailed test     →     Rejection region on right side of distribution
+
+Before you proceed with finding the Zc and finally the critical values, let’s revise the steps performed in this method till now.
+
+First, you define a new quantity called α, which is also known as the significance level for the test. It refers to the proportion of the sample mean lying in the critical region. For this test, α is taken as 0.05 (or 5%).
+
+Then, you calculate the cumulative probability of UCV from the value of α, which is further used to find the z-critical value (Zc) for UCV.
+
+value of α is 0.03 (of 3%), so the area of the rejection region would be 0.03 and the area of the acceptance region would be 0.97. In addition, since this is a two-tailed test, the area of the critical region on the right-hand side would be half of 0.03, i.e. 0.015.
+
+so the area of the critical region would be 0.03 and the area of the acceptance region would be 0.97. Since this is an upper-tailed test, the critical region is only on the right-hand side of the distribution, and the area of the critical region would be 0.03.
+
+After formulating the hypothesis, the steps you have to follow to make a decision using the critical value method are as follows:
+1.Calculate the value of Zċ from the given value of α (significance level). Take it a 5% if not specified in the problem.
+2.Calculate the critical values (UCV and LCV) from the value of Zċ.
+3.Make the decision on the basis of the value of the sample mean x with respect to the critical values (UCV AND LCV).
+
+For 3% significance level, you would have two critical regions on both sides with a total area of 0.03. So, the area of the critical region on the right side would be 0.015, which means that the area till UCV (cumulative probability of that point) would be 1 - 0.015 = 0.985. So, you need to find the z-value of 0.985. The z-score for 0.9850 in the z-table is 2.17 (2.1 on the horizontal axis and 0.07 on the vertical axis).
+
+The critical values can be calculated from μ ± Zc x (σ/​√N) as 36 ± 2.17(4/​√49​) = 36 ± 1.24 which comes out to be 37.24 and 34.76.
+
+The UCV and LCV values for this test are 37.24 and 34.76. The sample mean in this case is 34.5 months, which is less than LCV. So, this implies that the sample mean lies in the critical region and you can reject the null hypothesis.
+
+if alternate hypothesis has > sign then it means that the critical region is on the right-hand side (versus both the sides) and, therefore, you only need to use a one-tailed test.
+
+In one tailed test, the area of the critical region beyond the only critical point, which is on the right side, is 0.05 (in two tailed test, it was 0.025). So, the cumulative probability of the critical point (the total area till that point) would be 0.950. (1 - α)
+
+The critical value can be calculated from μ + Zc x (σ/√N). 350 + 1.645(90/√36) = 374.67. 
+Since 370.16 (¯x) is less than 374.67, ¯x lies in the acceptance region and you fail to reject the null hypothesis.
+
+The critical value can be calculated from μ + Zc x (σ/​√N), as 2.5 + 1.88(0.6 /​√100​) = 2.61 ppm . You need to use the + sign since the critical value is on the right-hand side (upper-tailed test). Since the sample mean 2.6 ppm is less than the critical value (2.61 ppm), you fail to reject the null hypothesis and don’t raise a regulatory alarm against Sunshine.
+
+Since Zc is calculated from the given value of α (3%), it remains the same. 
+Critical value is calculated using the formula: μ + Zc x (σ/​√N), since it is an upper-tailed test. 
+If you increase the value of N, the critical value would decrease according to the formula.
+
+In the critical value method, the z-score is calculated for the critical points, which is called Zc
+In the p-value method, the z-score is calculated for the sample mean
+
+p-value as the probability of the null hypothesis being accepted (or more aptly, not being rejected).
+Higher the p-value, higher is the probability of failing to reject a null hypothesis. On the other hand, lower the p-value, higher is the probability of the null hypothesis being rejected.
+
+After formulating the null and alternate hypotheses, the steps to follow in order to make a decision using the p-value method are as follows:
+1. Calculate the value of z-score for the sample mean point on the distribution
+2. Calculate the p-value from the cumulative probability for the given z-score using the z-table
+3. Make a decision on the basis of the p-value (multiply it by 2 for a two-tailed test) with respect to the given value of α (significance value).
+To find the correct p-value from the z-score, first find the cumulative probability by simply looking at the z-table, which gives you the area under the curve till that point.
+
+The value in the z-table corresponding to -2.6 on the vertical axis and 0.02 on the horizontal axis is 0.0044. Since the sample mean is on the left side of the distribution and this is a two-tailed test, the p-value would be 2 * 0.0044 = 0.0088.
+Here, the p-value comes out to be 2 * 0.0044 = 0.0088. Since the p-value is less than the significance level (0.0088 < 0.03), you reject the null hypothesis that the average lifespan of the manufacturer's product is 36 months.
+
+You can calculate the z-score for the sample mean 510 mg using the formula: (​¯x - μ) / (σ /​√N​). 
+This gives you (510 - 500) / (110 /√900) = (10) / (110 / 30) = 2.73. Notice that, since the sample mean lies on the right side of the hypothesised mean of 500 mg, the z-score comes out to be positive.
+The value in the z-table corresponding to 2.7 on the vertical axis and 0.03 on the horizontal axis is 0.9968. 
+Since the sample mean is on the right side of the distribution and this is a two-tailed test (because we want to test if the value of the paracetamol is too low or too high), the p-value would be 2 * (1 - 0.9968) = 2 * 0.0032 = 0.0064.
+Here, the p-value comes out to be 0.0064. Since the p-value is less than the significance level (0.0064 < 0.05) and smaller p-value gives you greater evidence against the null hypothesis. So you reject the null hypothesis that the average amount of paracetamol in medicines is 500 mg. So, this is a regulatory alarm for the company and the manufacturing process needs to change.
+
+A type I-error represented by α occurs when you reject a true null hypothesis.
+A type-II error represented by β occurs when you fail to reject a false null hypothesis.
+
+With an increase in the sample size, the denominator of the z-score decreases, and thus the absolute value of Z-score increases, which means that the sample mean would move away from the central tendency towards the tails. This means that the p-value would actually decrease. Conceptually, Increasing the sample size will make the distribution of sample means narrower, and chance of sample mean falling in the critical region decreases. So p-value will decrease.
+
+If you observe the same sample mean and sample standard deviation for a larger sample size (greater than 50), the p-value is likely to decrease. This is because as the sample size increases, the standard error decreases, leading to a narrower distribution of sample means around the population mean. A narrower distribution means that extreme values (those far from the null hypothesis mean) are less likely to occur by chance, resulting in a lower p-value.
+
+The p-value is a measure of the strength of evidence against the null hypothesis. A smaller p-value indicates stronger evidence against the null hypothesis, while a larger p-value suggests weaker evidence against the null hypothesis.
+
+So, if you observe the same sample mean and sample standard deviation for a larger sample size, the p-value is expected to decrease, indicating stronger evidence against the null hypothesis.

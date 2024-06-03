@@ -1,13 +1,3 @@
-'''
-In this example, we have classes for User, Expense, and ExpenseSplit. The Splitwise class manages the 
-users and expenses. Users are represented by the User class, and expenses are represented by the 
-Expense class, which includes information about the description, amount, expense type 
-(equal, exact, percentage), users involved, and the user who paid the expense. The ExpenseSplit class 
-represents the amount split by each user for a particular expense.
-The Splitwise class provides methods to add users and expenses. The calculate_balances method 
-calculates the balances for each user based on the expenses. The balances are stored in a dictionary, 
-where the key is the user ID, and the value is the balance amount.
-'''
 from enum import Enum
 from collections import defaultdict
 
@@ -30,6 +20,10 @@ class Group:
         self.expenses.append(expense)
 
 class Expense:
+    '''
+    This class includes information about the description, amount, expense type 
+    (equal, exact, percentage), users involved, and the user who paid the expense.
+    '''
     def __init__(self, expense_id, description, amount, expense_type, users):
         self.expense_id = expense_id
         self.description = description
@@ -47,11 +41,17 @@ class Expense:
         self.expense_type = expense_type
 
 class ExpenseSplit:
+    '''
+    This class represents the amount split by each user for a particular expense.
+    '''
     def __init__(self, user, amount):
         self.user = user
         self.amount = amount
 
 class Splitwise:
+    '''
+    This class manages the users and expenses. it provides methods to add users and expenses.
+    '''
     def __init__(self):
         self.users = {}
         self.expenses = []
@@ -101,6 +101,10 @@ class Splitwise:
         self.expenses.append(expense)
 
     def calculate_balances(self):
+        '''
+        calculates the balances for each user based on the expenses.
+        The balances are stored in a dictionary, where the key is the user ID, and the value is the balance amount.
+        '''
         balances = {}
 
         for expense in self.expenses:
