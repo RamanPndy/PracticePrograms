@@ -53,7 +53,7 @@ class ParkingFloor:
         parkingSlotType = self.pickCorrectSlot(vehicle.vehicleCategory)
         relevantParkingSlot = self.parkingSlots.get(parkingSlotType)
         for floor, parkingSlot in relevantParkingSlot:
-            if parkingSlot.isAvailable():
+            if parkingSlot.isAvailable:
                 parkingSlot.addVehicle(vehicle)
                 return parkingSlot
     

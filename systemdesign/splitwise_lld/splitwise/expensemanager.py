@@ -1,4 +1,9 @@
 from systemdesign.splitwise.interface import ExpenseManager, Subject
+from enum import Enum
+
+class ExpenseType(Enum):
+    EQUAL, EXACT, PERCENTAGE = 1, 2, 3
+
 class Splitwise(Subject, ExpenseManager):
     def __init__(self):
         self.users = []
