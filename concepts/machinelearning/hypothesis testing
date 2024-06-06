@@ -77,3 +77,8 @@ If you observe the same sample mean and sample standard deviation for a larger s
 The p-value is a measure of the strength of evidence against the null hypothesis. A smaller p-value indicates stronger evidence against the null hypothesis, while a larger p-value suggests weaker evidence against the null hypothesis.
 
 So, if you observe the same sample mean and sample standard deviation for a larger sample size, the p-value is expected to decrease, indicating stronger evidence against the null hypothesis.
+
+Whenever the standard deviation of the population is known, you have to use z-distribution, irrespective of the value of the sample size (N).
+T distribution is used only if the standard deviation of the population is unknown.
+
+since, for sample size ≥ 30, the t-distribution is the same as the z-distribution.
