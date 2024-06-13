@@ -35,3 +35,17 @@ The most common protocol used to achieve distributed transactions is the Two-Pha
 - **Failure Handling**: Handling failures in a distributed system is more challenging as it involves multiple networked components.
 
 Distributed transactions are a crucial aspect of maintaining data consistency in modern distributed systems, despite their inherent complexities and challenges.
+
+BASE
+BASE stands for Basically Available, Soft state, and Eventual consistency. These properties are often used in NoSQL databases to allow for high availability and scalability, sometimes at the expense of strong consistency.
+
+Basically Available: Ensures that the system is available most of the time, with some potential for outages or partial availability.
+
+Soft state: Indicates that the state of the system may change over time, even without input. This is in contrast to the rigid state of ACID transactions.
+
+Eventual consistency: Ensures that the system will become consistent over time, given that there are no new updates. This allows for a more flexible consistency model suitable for distributed systems.
+
+Use Cases
+ACID properties are typically used in traditional relational database systems like MySQL, PostgreSQL, and Oracle, where strong consistency and reliability are crucial.
+
+BASE properties are often applied in NoSQL databases like Cassandra, MongoDB, and DynamoDB, which prioritize availability and scalability, making them suitable for distributed systems and applications with large-scale data needs.
