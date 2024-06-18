@@ -53,3 +53,16 @@ MSE derivative = -2/m X^T (Y-XW) (transpose)
 
 https://colab.research.google.com/drive/1h41-Ww3HlsRwUm1TxUmCAwvT6pD-XUBK?usp=sharing
 https://github.com/peteflorence/MachineLearning6.867/blob/master/Bishop/Bishop%20-%20Pattern%20Recognition%20and%20Machine%20Learning.pdf
+
+Machine learning models can be classified into the following three types based on the task performed and the nature of the output:
+Regression: The output variable to be predicted is a continuous variable, e.g. scores of a student
+Classification: The output variable to be predicted is a categorical variable, e.g. classifying incoming emails as spam or ham
+Clustering: No pre-defined notion of a label is allocated to groups/clusters formed, e.g. customer segmentation 
+
+Supervised learning methods
+  Past data with labels is used for building the model
+  Regression and classification algorithms fall under this category
+
+Unsupervised learning methods
+  No pre-defined labels are assigned to input data
+  Clustering algorithms fall under this category

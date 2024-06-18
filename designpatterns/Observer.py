@@ -32,3 +32,35 @@ channel.subscribe("siddharth")
 channel.subscribe("pankaj")
 
 channel.notify("new video released")
+
+'''
+Defines a one-to-many dependency between objects so that when one object changes state, all its dependents are notified and 
+updated automatically.
+'''
+class Subject:
+    def __init__(self):
+        self._observers = []
+
+    def attach(self, observer):
+        self._observers.append(observer)
+
+    def detach(self, observer):
+        self._observers.remove(observer)
+
+    def notify(self):
+        for observer in self._observers:
+            observer.update()
+
+class Observer:
+    def update(self):
+        pass
+
+class ConcreteObserver(Observer):
+    def update(self):
+        print("Observer notified!")
+
+# Usage
+subject = Subject()
+observer = ConcreteObserver()
+subject.attach(observer)
+subject.notify()  # Observer notified!
