@@ -1,0 +1,97 @@
+Designing a system like Google Drive involves several key components, especially when dealing with uploading large files in chunks and ensuring data integrity in case of interruptions. Here’s a high-level design (HLD) focusing on these aspects:
+
+### High-Level Design (HLD) of Google Drive
+
+#### Key Components
+
+1. **Client Application**: Interface for users to upload, download, and manage files.
+2. **Chunk Manager**: Handles the logic for splitting files into chunks and managing their upload.
+3. **Upload Service**: Receives file chunks from clients, performs validation, and stores them temporarily.
+4. **Storage Service**: Manages the permanent storage of file chunks and their metadata.
+5. **Database**: Stores metadata about files, users, and chunks, including information on upload progress and chunk hashes.
+6. **Network Handler**: Manages connectivity issues, retry logic, and ensures data integrity.
+
+#### File Upload Process
+
+1. **File Splitting**:
+   - The client application splits the file into smaller chunks.
+   - Each chunk is assigned a unique identifier (chunk ID) and a hash for integrity verification.
+
+2. **Upload Initialization**:
+   - The client sends a request to the upload service to start a new file upload.
+   - The upload service responds with an upload ID and details of the expected chunks.
+
+3. **Uploading Chunks**:
+   - The client starts uploading chunks to the upload service.
+   - For each chunk, the client includes the chunk ID, upload ID, and hash.
+
+4. **Chunk Storage**:
+   - The upload service validates each chunk (e.g., checks the hash) and stores it in temporary storage.
+   - Metadata about the uploaded chunk (e.g., chunk ID, upload ID, hash) is saved in the database.
+
+5. **Upload Completion**:
+   - Once all chunks are uploaded, the client sends a completion request.
+   - The upload service verifies all chunks are received and match their hashes.
+   - The chunks are then assembled into the final file in permanent storage.
+
+#### Handling Internet Issues
+
+1. **Checkpointing**:
+   - During the upload process, the client periodically sends progress updates to the upload service.
+   - The service logs which chunks have been successfully uploaded.
+
+2. **Resuming Uploads**:
+   - If the internet connection drops, the client pauses the upload.
+   - When the connection is restored, the client queries the upload service for the current status of the upload (using the upload ID).
+
+3. **Chunk Verification**:
+   - The upload service responds with the list of successfully uploaded chunks.
+   - The client cross-references this list with its local records.
+
+4. **Integrity Checks**:
+   - For each chunk in the list, the client verifies the hash to ensure data integrity.
+   - If a mismatch is found, the client re-uploads the affected chunk.
+
+5. **Continuation**:
+   - The client resumes uploading any remaining chunks, ensuring no duplicates or missing parts.
+   - The process continues until all chunks are successfully uploaded and verified.
+
+### Diagram
+
+A simplified flow diagram might look like this:
+
+```
+Client         Chunk Manager         Upload Service         Storage Service          Database
+  |                  |                     |                      |                      |
+  |----- Split File into Chunks ---------> |                      |                      |
+  |                  |                     |                      |                      |
+  |---- Initialize Upload Request -------> |                      |                      |
+  |                  |                     |                      |                      |
+  |                  |------ Store Metadata ----->|               |                      |
+  |                  |                     |                      |                      |
+  |--- Upload Chunk 1 Request -----------> |                      |                      |
+  |                  |                     |--- Validate Chunk -->|                      |
+  |                  |                     |                      |--- Store Chunk 1 ----|
+  |                  |                     |--- Store Chunk 1 Metadata ----->|           |
+  |                  |                     |                      |                      |
+  |--- Upload Chunk N Request -----------> |                      |                      |
+  |                  |                     |--- Validate Chunk -->|                      |
+  |                  |                     |                      |--- Store Chunk N ----|
+  |                  |                     |--- Store Chunk N Metadata ----->|           |
+  |                  |                     |                      |                      |
+  |--- Upload Completion Request -------->|                      |                      |
+  |                  |                     |--- Verify Chunks ----> Storage Complete     |
+  |                  |                     |                      |                      |
+```
+
+### Additional Considerations
+
+1. **Security**: Use secure channels (e.g., HTTPS) for all communications. Implement authentication and authorization mechanisms to ensure only authorized users can upload/download files.
+
+2. **Scalability**: Ensure the upload and storage services can scale horizontally to handle large volumes of concurrent uploads.
+
+3. **Redundancy**: Implement redundancy and replication strategies to ensure data durability and availability.
+
+4. **Monitoring and Alerts**: Implement monitoring for upload progress, error rates, and system performance. Set up alerts for any anomalies.
+
+This design ensures efficient, reliable, and secure handling of file uploads, even in the face of intermittent connectivity issues.

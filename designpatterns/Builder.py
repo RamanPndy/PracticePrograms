@@ -1,3 +1,7 @@
+'''
+Separates the construction of a complex object from its representation, allowing the same construction process to create 
+various representations.
+'''
 class Burger:
     def __init__(self) -> None:
         self.buns = None

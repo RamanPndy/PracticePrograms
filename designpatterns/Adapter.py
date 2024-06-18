@@ -34,3 +34,26 @@ class MicroToUsbAdapter(UsbCable):
 microToUsbAdapter = MicroToUsbAdapter(MicroUsbCable())
 usbPort2 = UsbPort()
 usbPort2.plug(microToUsbAdapter)
+
+'''
+Allows the interface of an existing class to be used as another interface.
+'''
+class EuropeanPlug:
+    def plug_in(self):
+        return "220V"
+
+class USPlug:
+    def connect(self):
+        return "110V"
+
+class Adapter:
+    def __init__(self, plug):
+        self.plug = plug
+
+    def plug_in(self):
+        return self.plug.connect()
+
+# Usage
+us_plug = USPlug()
+adapter = Adapter(us_plug)
+print(adapter.plug_in())  # 110V
