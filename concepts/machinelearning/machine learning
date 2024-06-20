@@ -66,3 +66,111 @@ Supervised learning methods
 Unsupervised learning methods
   No pre-defined labels are assigned to input data
   Clustering algorithms fall under this category
+
+In linear regression, the relationship between the dependent variable \(Y\) and the independent variable \(X\) is typically expressed as:
+
+\[ Y = \beta_0 + \beta_1 X + \epsilon \]
+
+where \(\beta_0\) is the intercept, \(\beta_1\) is the slope coefficient, and \(\epsilon\) is the error term.
+
+To determine the strength and direction of the linear relationship between the number of X-ray machines purchased (X) and the cost per machine (Y), we can analyze both the \( R^2 \) value and the correlation.
+
+### Strength of the Linear Relationship
+
+The \( R^2 \) value, also known as the coefficient of determination, indicates the proportion of the variance in the dependent variable (Y) that is predictable from the independent variable (X). An \( R^2 \) value of 0.87 means that 87% of the variance in the cost per machine can be explained by the number of machines purchased. This is a high \( R^2 \) value, suggesting a strong linear relationship between X and Y.
+
+### Direction of the Correlation
+
+To determine the direction of the correlation, we can look at the data trend:
+
+- When X (number of machines) increases from 1 to 15, Y (cost per machine) decreases from 89 to 64.
+
+This inverse relationship indicates that as the number of machines purchased increases, the cost per machine decreases. Therefore, the correlation between X and Y is negative.
+
+### Conclusion
+
+- **Strength of the linear relationship:** Strong, since \( R^2 \) is 0.87.
+- **Direction of the correlation:** Negative, because an increase in the number of machines is associated with a decrease in the cost per machine.
+
+So, the linear relationship between the number of X-ray machines purchased and the cost per machine is strong and negative.
+
+Error terms are normally distributed with mean zero(not X, Y):
+
+There is no problem if the error terms are not normally distributed if you just wish to fit a line and not make any further interpretations.
+But if you are willing to make some inferences on the model that you have built (you will see this in the coming segments), you need to have a notion of the distribution of the error terms. One particular repercussion of the error terms not being normally distributed is that the p-values obtained during the hypothesis test to determine the significance of the coefficients become unreliable. (You'll see this in a later segment)
+The assumption of normality is made, as it has been observed that the error terms generally follow a normal distribution with mean equal to zero in most cases.
+
+Error terms are independent of each other:
+
+The error terms should not be dependent on one another (like in a time-series data wherein the next value is dependent on the previous one).
+
+Error terms have constant variance (homoscedasticity):
+
+The variance should not increase (or decrease) as the error values change.
+Also, the variance should not follow any pattern as the error terms change.
+
+What will be the effect of the error terms not being homoscedastic in nature?
+Even if you fit a line through the data, you cannot make inferences about the model. The parameters used to make inferences (which you will study in later segments) will become highly unreliable.
+
+The error terms are normally distributed.
+The mean in the distribution of the error terms is zero.
+The error terms have constant variance.
+
+You start by saying that 
+β
+1
+ is not significant, i.e. there is no relationship between X and y.
+
+So in order to perform the hypothesis test, we first propose the null hypothesis that 
+β
+1
+ is 0. And the alternative hypothesis thus becomes 
+β
+1
+ is not zero.
+
+Null Hypothesis (
+H
+0
+): 
+β
+1
+=
+0
+Alternate Hypothesis (
+H
+A
+): 
+β
+1
+≠
+0
+ 
+
+Let's first discuss the implications of this hypothesis test. If you fail to reject the null hypothesis that would mean that 
+β
+1
+ is zero which would simply mean that 
+β
+1
+ is insignificant and of no use in the model. Similarly, if you reject the null hypothesis, it would mean that 
+β
+1
+ is not zero and the line fitted is a significant one.
+
+ Let's do a quick recap of how do you calculate p-value anyway:
+
+Calculate the value of t-score for the mean point (in this case, zero, according to the Null hypothesis that we have stated) on the distribution
+Calculate the p-value from the cumulative probability for the given t-score using the t-table
+Make the decision on the basis of the p-value with respect to the given value of 
+β
+  (significance level)
+
+Now, if the p-value turns out to be less than 0.05, you can reject the null hypothesis and state that 
+β
+1
+ is indeed significant.
+
+The t-statistic along with the t-distribution table is used to determine the p-value of the coefficient.
+
+In case of a small sample size, we use a t-distribution which is very similar to a normal distribution.
