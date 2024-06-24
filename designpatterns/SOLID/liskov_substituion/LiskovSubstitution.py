@@ -33,7 +33,6 @@ class Member(ABC):
     def save_database(self):
         pass
 
-
 class Teacher(Member):
     def __init__(self, name: str, age: int, teacher_id: str):
         super().__init__(name, age)
@@ -41,7 +40,6 @@ class Teacher(Member):
 
     def save_database(self):
         print("Saving teacher data to database")
-
 
 class Student(Member):
     def __init__(self, name: str, age: int , student_id: str):
