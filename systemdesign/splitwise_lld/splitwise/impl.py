@@ -1,6 +1,6 @@
-from systemdesign.splitwise_lld.splitwise.interface import Expense
+from systemdesign.splitwise_lld.splitwise.interface import IExpense
 
-class ExactExpense(Expense):
+class ExactExpense(IExpense):
     def __init__(self, amount, paid_by, splits):
         self.amount = amount
         self.paid_by = paid_by
@@ -9,7 +9,7 @@ class ExactExpense(Expense):
     def calculate_shares(self):
         return self.splits
 
-class EqualExpense(Expense):
+class EqualExpense(IExpense):
     def __init__(self, amount, paid_by, users):
         self.amount = amount
         self.paid_by = paid_by
@@ -19,7 +19,7 @@ class EqualExpense(Expense):
         share = self.amount / len(self.users)
         return {user.user_id: share for user in self.users}
 
-class PercentageExpense(Expense):
+class PercentageExpense(IExpense):
     def __init__(self, amount, paid_by, splits):
         self.amount = amount
         self.paid_by = paid_by
@@ -29,7 +29,7 @@ class PercentageExpense(Expense):
         return {user.user_id: self.amount * percentage / 100 for user, percentage in self.splits.items()}
 
 class ExpenseContext:
-    def __init__(self, expense_type: Expense):
+    def __init__(self, expense_type: IExpense):
         self.expense_type = expense_type
 
     def calculate_shares(self):
