@@ -1,28 +1,30 @@
 from abc import ABC, abstractmethod
+from typing import Dict
 
-class Observer(ABC):
+class IExpense(ABC):
     @abstractmethod
-    def update(self, message):
-        pass
-
-class Subject(ABC):
-    @abstractmethod
-    def attach(self, observer):
-        pass
-    
-    @abstractmethod
-    def detach(self, observer):
-        pass
-    
-    @abstractmethod
-    def notify(self, message):
+    def calculate_shares(self) -> Dict[str, float]:
         pass
 
-class ExpenseManager(ABC):
+class IUser(ABC):
     @abstractmethod
-    def add_expense(self, payer, amount, participants):
+    def update_balance(self, amount: float):
         pass
-    
+
+class IGroup(ABC):
     @abstractmethod
-    def settle_expense(self, payer, payee, amount):
+    def add_expense(self, expense: IExpense):
+        pass
+
+    @abstractmethod
+    def settle_group(self):
+        pass
+
+class IBalanceSheet(ABC):
+    @abstractmethod
+    def update_balance(self, user_id: str, amount: float):
+        pass
+
+    @abstractmethod
+    def get_balance(self, user_id: str) -> float:
         pass

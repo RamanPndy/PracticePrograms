@@ -32,7 +32,7 @@ class NodeCopy:
 
 
 class Solution:
-    def copyRandomBinaryTree(self, root: 'Optional[Node]') -> 'Optional[NodeCopy]':
+    def copyRandomBinaryTree(self, root):
         # Helper function to perform a deep copy of the tree using DFS
         def dfs_clone(node):
             # Base case: If the current node is None, return None

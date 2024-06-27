@@ -4,6 +4,9 @@
 - 394-DecodeString
 - 739-DailyTemperatures
 - 2375-ConstructSmallestNumberFromDIString
+- 2625-FlattenDeeplyNestedArray
+- 853-CarFleet
+- 224-BasicCalculator
 
 # Linked List
 - 2-AddTwoNumbers
@@ -31,7 +34,11 @@
     - 114-FlattenBT2LinkedList
     - 124-BTMaxPathSum
     - 226-InvertBinaryTree
+    - 1485-CloneBTRandomPointer
 - 235-LCABST
+
+# Map
+- 781-RabbitsInForest
 
 # Graph
 - BFS:
@@ -86,6 +93,7 @@
 - 239-SlidingWindowMaximum
 - 567-PermutationInString
 - 438-FindAllAnagaramsInString
+- 424-LongestRepeatingCharacterReplacement
 
 # BFS
 - 17-LetterCombinationsOfPhoneNumber
@@ -138,6 +146,7 @@
 - 380-RandomizedSet
 - LRU
 - LFU
+- 341-FlattenNestedListIterator
 
 # Bit Manipulation
 - Add2NumsUsingBitsManipulation
