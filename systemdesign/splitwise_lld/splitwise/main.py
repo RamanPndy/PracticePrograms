@@ -1,26 +1,31 @@
-from systemdesign.splitwise.users import User
-from systemdesign.splitwise.expensemanager import Splitwise
+# Create Users
+from systemdesign.splitwise_lld.splitwise.factory import ExpenseFactory, ExpenseType
+from systemdesign.splitwise_lld.splitwise.impl import ExpenseContext
+from systemdesign.splitwise_lld.splitwise.interface import User
+from systemdesign.splitwise_lld.splitwise.notifier import ExpenseNotifier
 
-# Create users and Splitwise instance
-alice = User("Alice")
-bob = User("Bob")
-charlie = User("Charlie")
+'''
+Factory Pattern to create expenses.
+Observer Pattern for notifying users.
+Strategy Pattern for different expense types handling.
+'''
 
-splitwise = Splitwise()
-splitwise.add_user(alice)
-splitwise.add_user(bob)
-splitwise.add_user(charlie)
+user1 = User(1, "Alice")
+user2 = User(2, "Bob")
+user3 = User(3, "Charlie")
 
-# Attach users to observer list
-splitwise.attach(alice)
-splitwise.attach(bob)
-splitwise.attach(charlie)
+# Add users to notifier
+notifier = ExpenseNotifier()
+notifier.add_user(user1)
+notifier.add_user(user2)
+notifier.add_user(user3)
 
-# Adding expenses and settling balances
-splitwise.add_expense(alice, 100, [alice, bob, charlie])
-splitwise.add_expense(bob, 50, [bob, charlie])
-splitwise.settle_expense(alice, charlie, 30)
+# Create an equal expense
+expense = ExpenseFactory.create_expense(ExpenseType.EQUAL, 300, user1, users=[user1, user2, user3])
+context = ExpenseContext(expense)
+shares = context.calculate_shares()
 
-print(f"Alice's Balance: ${alice.get_balance()}")
-print(f"Bob's Balance: ${bob.get_balance()}")
-print(f"Charlie's Balance: ${charlie.get_balance()}")
+# Update user balances
+for user_id, share in shares.items():
+    notifier.notify(user_id, -share)
+notifier.notify(user1.user_id, expense.amount)

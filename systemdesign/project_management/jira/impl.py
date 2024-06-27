@@ -1,4 +1,4 @@
-from systemdesign.jira.interface import Issue, User, Project, Workflow
+from systemdesign.project_management.jira.interface import Issue, User, Project, Workflow
 
 class ConcreteUser(User):
     def __init__(self, user_id, user_role):

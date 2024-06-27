@@ -1,17 +1,8 @@
-from systemdesign.splitwise.interface import Observer
-class User(Observer):
-    def __init__(self, name):
+class User:
+    def __init__(self, user_id, name):
+        self.user_id = user_id
         self.name = name
-        self.balance = 0
+        self.balance = 0.0
 
-    def update(self, message):
-        print(f"{self.name} received: {message}")
-
-    def pay(self, amount):
-        self.balance -= amount
-
-    def receive(self, amount):
+    def update_balance(self, amount):
         self.balance += amount
-
-    def get_balance(self):
-        return self.balance
