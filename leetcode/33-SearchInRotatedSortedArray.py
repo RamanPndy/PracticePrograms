@@ -22,6 +22,7 @@ class Solution(object):
                 else
                     decrease right by mid index - 1
         3. otherwise return -1
+        TC: O(logn)
         """
         l , r = 0, len(nums) -1
         while l <= r:
