@@ -79,6 +79,7 @@
 # Binary Search
 - 4-Median2SortedArray
 - 33-SearchInRotatedSortedArray
+- 34-FirstAndLastPositionInSortedArray
 - 162-FindPeakElement
 - 295-FindMedianDataStream
 
