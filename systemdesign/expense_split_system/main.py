@@ -1,7 +1,7 @@
 # Initialize the balance sheet and ledger
 from systemdesign.money_manager.balance_sheet import BalanceSheetSingleton
 from systemdesign.money_manager.factory import ExpenseFactory
-from systemdesign.money_manager.persistence import InMemoryLedger
+from systemdesign.money_manager.repository import InMemoryLedger
 from systemdesign.money_manager.service import ExpenseService
 
 

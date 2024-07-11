@@ -1,0 +1,60 @@
+Q1. A bag A contains 3 Red and 4 Green balls and another bag B contains 4 Red and 6 Green balls. One bag is selected at random and a ball is drawn from it. If the ball drawn is found Green , find the probability that the bag chosen was A.
+Step 1:
+
+Let E1, E2 denote the events of selecting bag A and B respectively. 
+
+Then P(E1) = P(E2) = 1/2.
+
+ Let G denote the event that the ball chosen from the selected bag is Green.
+
+Then we have to find P(E1/G).
+
+Step 2:
+
+By hypothesis P(G/E1) = 4/7 and  P(G/E2) = 6/10
+
+By Bayes theorem P(E1/G) = (P(G/E1)*P(E1))/P(G)
+
+ Now what is P(G) ?  P(G) = P(G,E1) + P(G,E2)
+
+    = P(G/E1)P(E1) + P(G/E2)P(E2)
+
+Therefore  P(E1/G) =  (P(G/E1)*P(E1))/P(G)
+
+                    =P(G/E1)*P(E1)/P(E1)P(G/E1) + P(E2)P(G/E2)
+
+=(4/7)x(1/2) / (1/2)x(4/7)+(1/2)x(6/10)=(4/14) / (4/14 + 6/20)=20/41
+
+Q2. The bag A  contain 6 Green, 4 Blue ; B contains 4 Green, 6 Blue and C contains 5 Green, 5 Blue balls respectively. A bag is randomly selected  and a ball is drawn from it. If the ball drawn is Green, find the probability that it is drawn from bag A.
+Let EA, EB, EC and G be the events defined as follows:
+
+EA =   Bag A is chosen, EB = Bag B is chosen,
+
+EC = Bag C is chosen, and G= ball drawn is Green.
+
+Step 1:
+
+Since there are three bags and one of the three bags is chosen at random, therefore
+
+P(EA) = P(EB) = P(EC) = 1/3
+
+If EA is already occurred, then first bag has been chosen which contains 6 Green and 4 Black balls. The probability of drawing a green ball from it is 6/10.
+
+So, P(G/EA) = 6/10
+
+Similarly, we have P(G/EB) = 4/10  and P(G/EC) = 5/10
+
+Step 2:
+
+We are required to find P(EA/G) , i.e. given that the ball drawn is Green , what is the probability that it is drawn from bag A.
+
+By Bayes’ theorem, we have
+
+P(EA/G) = P(G/EA)*P(EA)P(G)
+
+Now what is P(G) ?  P(G) = P(G, EA ) + P(G,EB ) + P(G,EC)
+
+= P(G/EA)P(EA) + P(G/EB)P(EB) + P(G/EC)P(EC)
+
+Therefore P(EA/G) =(6/10)(1/3) / (1/3)(6/10) +(1/3)(4/10)+ (1/3)(5/10)=2/5
+
