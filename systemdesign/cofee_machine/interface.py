@@ -34,3 +34,4 @@ class ICoffeeMachine(ABC):
     @abstractmethod
     def refill_ingredient(self, ingredient: str, quantity: int):
         pass
+
