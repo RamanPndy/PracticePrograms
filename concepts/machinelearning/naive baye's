@@ -1,0 +1,68 @@
+Naïve Bayes is a probabilistic classifier that returns the probability of a test point belonging to a class, using Bayes’ theorem. As you learned previously, Bayes’ theorem is defined as —
+
+P
+(
+C
+i
+|
+x
+)
+=
+P
+(
+x
+|
+C
+i
+)
+P
+(
+C
+i
+)
+P
+(
+x
+)
+ , where 
+C
+i
+ denotes the classes, and X denotes the features of the data point.
+
+Probabilities are calculated simply by counting the number of instances/occurrences for categorical data.
+
+The effect of the denominator P(x) is not incorporated while calculating probabilities as it is the same for both the classes and hence, can be ignored without affecting the final outcome.
+
+The class assigned to the new test point is the class for which  
+P
+(
+C
+i
+|
+x
+)
+ is greater.
+
+ Naïve Bayes follows an assumption that the variables are conditionally independent given the class i.e. P(X = convex,smooth | C= edible) can be written as P(X=smooth | C=edible)\timesP(X=convex | C=edible). The terms P(X=smooth | C=edible) and P(X=convex | C=edible) is simply calculated by counting the data points. Hence, the name “Naïve” because in most real-world situations the variables are not conditionally independent given the class label but most of the times the algorithm works nonetheless.
+
+ Let us say you are trying to compute P(A and B | C). If P(A | C) is the same for all values of B and P(B | C) is the same for all values of A, then there is conditional independence between A and B, given C. This is when P(A and B | C) = P(A | C) x P(B | C), implying that A is not conditioned on B or vice versa.
+
+ 
+
+Despite this assumption, Naive Bayes has proven to work very well in some cases, such as text classification.
+
+What is P(CONVEX | edible) = 4/8
+
+P(SMOOTH| edible) = 2/8
+
+P(CONVEX | poisonous) = 1 and
+
+P(SMOOTH| poisonous) = 1/4
+
+
+If all mushrooms above 50% probability of being edible are classified as edible, is the CONVEX, SMOOTH mushroom edible?
+P(edible | CONVEX, SMOOTH) = P(edible).P(CONVEX | edible).P(SMOOTH| edible)/denominator = (8/12)(4/8)(2/8)/d = 1/12d
+
+P(poisonous | CONVEX, SMOOTH) = P(poisonous).P(CONVEX | poisonous). P(SMOOTH| poisonous)/denominator = (4/12)(1)(1/4)/d = 1/12d.
+
+Since both numerators are equal to 1/12d, this mushroom cannot be classified with a 50% threshold. Although if you would take a higher threshold, like 60% (which is reasonable since you don't want to take responsibility of people eating poisonous mushrooms), then it will be classified as poisonous. Why? Because, when you set the threshold as 60%, you want the probability of edible|CONVEX,SMOOTH to atleast 60%.

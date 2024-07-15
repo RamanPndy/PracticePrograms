@@ -1,0 +1,115 @@
+To find the probability that the chosen bag was A given that the drawn ball is green, we can use Bayes' Theorem. 
+
+Bayes' Theorem states that:
+\[ P(A | B) = \frac{P(B | A) \cdot P(A)}{P(B)} \]
+
+Where:
+- \( P(A | B) \) is the probability of choosing bag A given that the ball drawn is green.
+- \( P(B | A) \) is the probability of drawing a green ball given that bag A was chosen.
+- \( P(A) \) is the prior probability of choosing bag A.
+- \( P(B) \) is the total probability of drawing a green ball.
+
+First, let's define our events:
+- Let \( A_1 \) be the event that bag A is chosen.
+- Let \( A_2 \) be the event that bag B is chosen.
+- Let \( G \) be the event that a green ball is drawn.
+
+The probabilities are as follows:
+- \( P(A_1) = \frac{1}{2} \) (since one of the two bags is chosen at random).
+- \( P(A_2) = \frac{1}{2} \).
+
+The conditional probabilities of drawing a green ball from each bag are:
+- \( P(G | A_1) = \frac{4}{7} \) (since there are 4 green balls out of 7 total balls in bag A).
+- \( P(G | A_2) = \frac{6}{10} = \frac{3}{5} \) (since there are 6 green balls out of 10 total balls in bag B).
+
+Next, we calculate the total probability of drawing a green ball (\( P(G) \)) using the law of total probability:
+\[ P(G) = P(G | A_1) \cdot P(A_1) + P(G | A_2) \cdot P(A_2) \]
+\[ P(G) = \frac{4}{7} \cdot \frac{1}{2} + \frac{3}{5} \cdot \frac{1}{2} \]
+\[ P(G) = \frac{4}{14} + \frac{3}{10} \]
+To add these fractions, we need a common denominator, which is 70:
+\[ P(G) = \frac{4 \cdot 5}{14 \cdot 5} + \frac{3 \cdot 7}{10 \cdot 7} \]
+\[ P(G) = \frac{20}{70} + \frac{21}{70} \]
+\[ P(G) = \frac{41}{70} \]
+
+Now we can apply Bayes' Theorem:
+\[ P(A_1 | G) = \frac{P(G | A_1) \cdot P(A_1)}{P(G)} \]
+\[ P(A_1 | G) = \frac{\frac{4}{7} \cdot \frac{1}{2}}{\frac{41}{70}} \]
+\[ P(A_1 | G) = \frac{\frac{4}{14}}{\frac{41}{70}} \]
+\[ P(A_1 | G) = \frac{4}{14} \cdot \frac{70}{41} \]
+\[ P(A_1 | G) = \frac{4 \cdot 70}{14 \cdot 41} \]
+\[ P(A_1 | G) = \frac{280}{574} \]
+\[ P(A_1 | G) = \frac{140}{287} \]
+\[ P(A_1 | G) = \frac{20}{41} \]
+
+Therefore, the probability that the chosen bag was A given that the drawn ball is green is \( \frac{20}{41} \).
+
+To find the probability that the green ball was drawn from bag A, given that a green ball was drawn, we will use Bayes' Theorem.
+
+Bayes' Theorem states:
+\[ P(A | G) = \frac{P(G | A) \cdot P(A)}{P(G)} \]
+
+Where:
+- \( P(A | G) \) is the probability that the ball was drawn from bag A given that it is green.
+- \( P(G | A) \) is the probability of drawing a green ball from bag A.
+- \( P(A) \) is the prior probability of choosing bag A.
+- \( P(G) \) is the total probability of drawing a green ball.
+
+First, let's define our events:
+- Let \( A \) be the event that bag A is chosen.
+- Let \( B \) be the event that bag B is chosen.
+- Let \( C \) be the event that bag C is chosen.
+- Let \( G \) be the event that a green ball is drawn.
+
+The probabilities are as follows:
+- \( P(A) = \frac{1}{3} \) (since one of the three bags is chosen at random).
+- \( P(B) = \frac{1}{3} \).
+- \( P(C) = \frac{1}{3} \).
+
+The conditional probabilities of drawing a green ball from each bag are:
+- \( P(G | A) = \frac{6}{10} = \frac{3}{5} \) (since there are 6 green balls out of 10 total balls in bag A).
+- \( P(G | B) = \frac{4}{10} = \frac{2}{5} \) (since there are 4 green balls out of 10 total balls in bag B).
+- \( P(G | C) = \frac{5}{10} = \frac{1}{2} \) (since there are 5 green balls out of 10 total balls in bag C).
+
+Next, we calculate the total probability of drawing a green ball (\( P(G) \)) using the law of total probability:
+\[ P(G) = P(G | A) \cdot P(A) + P(G | B) \cdot P(B) + P(G | C) \cdot P(C) \]
+\[ P(G) = \frac{3}{5} \cdot \frac{1}{3} + \frac{2}{5} \cdot \frac{1}{3} + \frac{1}{2} \cdot \frac{1}{3} \]
+\[ P(G) = \frac{3}{15} + \frac{2}{15} + \frac{1}{6} \]
+
+To add these fractions, we need a common denominator, which is 30:
+\[ P(G) = \frac{6}{30} + \frac{4}{30} + \frac{5}{30} \]
+\[ P(G) = \frac{15}{30} \]
+\[ P(G) = \frac{15}{30} = \frac{1}{2} \]
+
+Now we can apply Bayes' Theorem:
+\[ P(A | G) = \frac{P(G | A) \cdot P(A)}{P(G)} \]
+\[ P(A | G) = \frac{\frac{3}{5} \cdot \frac{1}{3}}{\frac{1}{2}} \]
+\[ P(A | G) = \frac{\frac{3}{15}}{\frac{1}{2}} \]
+\[ P(A | G) = \frac{3}{15} \cdot 2 \]
+\[ P(A | G) = \frac{6}{15} \]
+\[ P(A | G) = \frac{2}{5} \]
+
+Therefore, the probability that the green ball was drawn from bag A is \( \frac{2}{5} \).
+
+To prove that two variables (say A and B) are independent, we must show that
+P( A AND B) = P(A | B) * P(B) = P(A) * P(B)
+
+First, from the Contingency Table:
+P(A AND B) is P( Male AND BD Student) = 50/500
+P(A) = P(Male) = 260/500
+P(B) = P(BD Student) = 120/500
+P(A | B) = P(Male GIVEN BD Student) = 50/120
+OK- now we have everything we need to check for independence:
+
+P( A AND B) = P(A | B) * P(B) = P(A) * P(B)
+P(A | B) * P(B)= P(Male | BD Student) * P(BD Student)
+                     = 50/120 * 120/500 = 50/500
+
+P(A) * P(B) = P(Male) * P(BD Student) = 260/500 * 120/500
+
+As we can see P(Male | BD Student) * P(BD Student) not equal to P(Male) * P(BD Student)
+
+So NO these are NOT independent.
+
+The likelihood , in the context of a classification problem, can be interpreted as What is the probability of observing a given feature vector knowing that it belongs to a class C
+The prior probability, in the context of a classification problem, can be interpreted as What is the probability of a class C in the sample being considered
+The posterior probability, in the context of a classification problem, can be interpreted as What is the probability that a particular object belongs to class C given its observed feature values

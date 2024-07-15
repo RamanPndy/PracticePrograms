@@ -17,3 +17,62 @@ P
 i
 )
 ------ for all non-diabetics --------] * [(Pi)(Pi) -------- for all diabetics -------]
+
+if there are many variables whose p-values are high, implying that that variable is statistically insignificant. So we need to eliminate some of the variables in order to build a better model.
+We'll first eliminate a few features using Recursive Feature Elimination (RFE), and once we have reached a small set of variables to work with, we can then use manual feature elimination (i.e. manually eliminating features based on observing the p-values and VIFs).
+
+Sensitivity = Number of actual Yeses correctly predicted / Total number of actual Yeses
+
+Specificity = Number of actual Nos correctly predicted / Total number of actual Nos
+
+Actual/Predicted	Not Churn	Churn
+Not Churn	True Negatives	False Positives
+Churn	False Negatives	True Positives
+
+Accuracy = TP+TN / Total(TP+FP+TN+FN)
+Sensitivity (Recall) = TP / (TP + FN)
+Specificity = TN / (TN + FP)
+Precision = TP / (TP + FP)
+Total number of actual positives = TP + FN
+Total number of actual negatives = TN + FP
+True Positive Rate (Sensitivity) = TP / (TP+FN)
+False Positive Rate = FP / (TN+FP)
+Positive Predicted Value (Precision) = TP / (TP + FP) (number of positives correctly predicted by the total number of positives predicted. This is also known as 'Precision'.)
+Negative Predicted Value = TN / (TN + FN) (number of negatives correctly predicted by the total number of negatives predicted.)
+The good model is the one in which TPR is high and FPR is low.
+
+ROC curve : When you plot the true positive rate against the false positive rate, you get a graph which shows the trade-off between them and this curve is known as the ROC curve.
+for higher values of TPR, you will also have higher values of FPR, which might not be good.
+a good ROC curve is the one which touches the upper-left corner of the graph; so higher the area under the curve of an ROC curve, the better is your model.
+
+When the value of TPR (on the Y-axis) is increasing, the value of FPR (on the X-axis) also increases.
+when the ROC curve is more towards the top left corner of the graph, the model is deemed to be more accurate. Hence, a greater area under the curve would mean the model is more accurate.
+
+False Postive Rate  = (1 - True Negative Rate) 
+True Negative Rate is simply the specificity.
+False Positive Rate = 1 - Specificity
+
+TP = confusion[1,1] # true positive 
+TN = confusion[0,0] # true negatives
+FP = confusion[0,1] # false positives
+FN = confusion[1,0] # false negatives
+
+How to choose the  Optimal Cut-off?
+The optimal cut-off point exists where the values of accuracy, sensitivity, and specificity are fairly decent and almost equal. 
+To determine the optimal cut-off point, we typically look for a balance between sensitivity and specificity that maximizes the overall performance of the model. One common approach is to select the cut-off point that maximizes the sum of sensitivity and specificity, or to find a balance point where both metrics are reasonably high and the accuracy is also maximized.
+
+if you increase sensitivity (% of correctly predicted churns), the specificity (% of correctly predicted non-churns) will reduce.
+high sensitivity implies that your model will correctly identify almost all customers who are likely to churn. It will do that by over-estimating the churn likelihood, i.e. it will misclassify some non-churns as churns, but that is the trade-off you need to choose rather than the opposite case (in which case you may lose some low churn risk customers to the competition).
+
+There is a measure known as F1-score which essentially combines both precision and recall. It is the basically the harmonic mean of precision and recall and its formula is given by:
+
+F = 2 × (precision × recall) / (precision + recall)
+
+The F1-score is useful when you want to look at the performance of precision and recall together.
+
+The optimal cutoff point is where the values of precision and recall will be equal. This is similar to what you saw in the sensitivity-specificity tradeoff curve as well. 
+
+TP = 440
+FN = 40
+TN = 500
+FP = 20
