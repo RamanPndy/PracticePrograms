@@ -26,3 +26,54 @@ Here's a more detailed explanation:
      where \( n \) is the number of observations and \( p \) is the number of predictors.
 
 In summary, \( R^2 \) is a useful measure for assessing the explanatory power of a linear regression model, but it should be used in conjunction with other metrics and domain knowledge to evaluate the model's performance comprehensively.
+
+What according to you are the reasons for a linear regression model overfitting?
+Overfitting in a linear regression model occurs when the model is too complex and fits the noise or random fluctuations in the training data rather than capturing the underlying relationship. Here are some common reasons for overfitting in linear regression:
+
+Too Many Features:
+Including too many predictor variables, especially if they are not relevant or have little predictive power, can cause the model to fit the noise in the training data.
+
+High Multicollinearity:
+When predictor variables are highly correlated with each other, it can lead to unstable estimates of coefficients and overfitting.
+
+Insufficient Training Data:
+Having a small training dataset with too many features can lead to a model that is too tailored to the specific data points in the training set.
+
+Outliers:
+Presence of outliers can significantly affect the regression model, leading to overfitting as the model tries to accommodate these extreme values.
+
+Complex Polynomial Terms:
+Adding high-degree polynomial terms or interaction terms can increase model complexity and result in overfitting.
+
+Lack of Regularization:
+Regularization techniques like Ridge (L2) or Lasso (L1) regression help to penalize large coefficients and reduce overfitting. Absence of such techniques can contribute to overfitting.
+
+Noise in the Data:
+If the data contains a lot of random noise, a complex model may fit this noise rather than the underlying trend.
+
+Feature Engineering:
+Creating too many derived or interaction features without proper validation can lead to an overly complex model.
+
+To mitigate overfitting, one can use techniques such as cross-validation, regularization, simplifying the model by removing irrelevant features, and ensuring that the training dataset is sufficiently large and representative of the population.
+
+when building an OLS model, we want to estimate the coefficients for which the cost/loss, i.e., RSS, is minimum. 
+Optimising this cost function results in model coefficients with the least possible bias, although the model may have overfitted and hence have high variance. 
+
+In case of overfitting, we know that we need to manage the model’s complexity by primarily taking care of the magnitudes of the coefficients.
+The more extreme values of the coefficients are (high positive or negative values of the coefficients), the more complex the model is and, hence, the higher are the chances of overfitting. 
+
+Ridge Regularization:
+Unlike OLS, which has a single set of model coefficients, Ridge regressions gets different model coefficients for each value of lambda.
+The model coefficients of ridge regression can shrink very close to 0 but do not become 0 and hence there is no feature selection with ridge regression.
+The cost function in regularized regression models has two terms: the error term and the regularization term. The objective of the learning algorithm is to find the coefficients, betas, such that The sum of the error term and the regularization term is minimised. The objective is to minimise the error term and penalise the coefficients in the regularization term in order to obtain a simpler model
+A large lambda implies a simpler model. Therefore, a simpler model would have higher bias and lower variance.
+
+Lasso vs. Ridge
+Generally, Lasso should perform better in situations where only a few among all the predictors that are used to build our model have a significant influence on the response variable. So, feature selection, which removes the unrelated variables, should help. But Ridge should do better when all the variables have almost the same influence on the response variable.
+
+Lasso performs better in situations where only a few among all the predictors that are used to build our model have a significant influence on the response variable.
+
+Higher the value of lambda in the shrinkage term, more are the model coefficients pushed towards 0 and hence more the regularization.
+
+Standardizing variables is necessary before regularization.
+
