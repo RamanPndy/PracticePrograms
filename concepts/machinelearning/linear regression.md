@@ -77,3 +77,8 @@ Higher the value of lambda in the shrinkage term, more are the model coefficient
 
 Standardizing variables is necessary before regularization.
 
+As λ increases from 0 to infinity, select the correct option that describes the pattern of the residual sum of squares (RSS) of the training dataset. Differentiating the cost function with lambda=0 gives the value of the coefficients which minimizes the RSS. Again, putting λ = infinity gives us a constant model with maximum RSS. Thus, the RSS steadily increases with the variation of lambda.
+
+When λ=0, the alphas have their least square estimate values. The actual estimates heavily depend on the training data and hence variance is high. As we increase λ, alphas start decreasing and model becomes simpler. In the limiting case of λ approaching infinity, all betas reduce to zero and model predicts a constant and has no variance.
+
+When λ=0, alphas have their least-square estimate values and hence have the least bias. As λ increases, alphas start reducing towards zero, the model fits less accurately to training data and hence bias increases. In the limiting case of λ approaching infinity, the model predicts a constant and hence bias is maximum.
