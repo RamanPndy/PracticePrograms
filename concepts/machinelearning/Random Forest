@@ -1,0 +1,34 @@
+Boosting:
+The weak learners in boosting algorithm have an error rate less than 0.5 and each model corrects the mistakes of the previous trees. i.e. Each weak learner is dependent on the previous model.
+
+How do we calculate the final model in the Adaboost algorithm?
+The final model is the weighted sum of the predictions from all these weak learners to get an overall strong learner.
+The final model tries to give importance to each weak learner depending on the error it made in predicting all the samples. 
+So the final model is a weighted sum of all the weak learners.
+
+How do we find the variable which will become the root node for the decision tree?
+1. The variable having the highest Gini score is chosen as the root node.
+Gini score = 1- Gini impurity. Therefore the higher the Gini impurity the lower is the score.
+2. The variable having the lowest Gini impurity is chosen as the root node.
+Gini impurity is a measure of misclassification for a node. Lower the Gini Impurity, higher is the homogeneity of the node. 
+For a pure node(i.e they belong to the same class), the Gini Impurity will be zero.
+
+After each weak learner has been built and done their prediction, the weights of each sample are modified by a multiplicative factor, according to the total misclassification the 
+weak learner has made.
+The multiplicative factor is a growing weight for all the misclassified samples, therefore they will be given more importance next time.The misclassified samples should be given more weight.
+The multiplicative factor is a decaying weight for all the correctly classified samples, therefore they will be given less importance next time.The correctly classified samples should be given less weight.
+
+The say/importance of a weak learner decreases with an increase in the error rate of the model.
+If the model performs poorly and makes many incorrect predictions, it is given less significance, whereas if the model performs well and makes correct predictions most of the time, 
+it is given more significance in the overall model.
+
+Suppose you are performing a binary classification using Adaboost. There are total of 10 samples and the first tree that the model predicted has 2 misclassifications. 
+With this understanding, what will be the say/importance of this tree
+The say/importance of a decision tree = 0.5*ln((1-0.2)/0.2) = 0.693
+With this understanding, what will be the total updated weights of all incorrect predictions?
+The new weights of incorrect predictions = 2*0.1 * e^0.693
+
+Why is the error ϵt always less than 1/2 in AdaBoost?
+In the context of AdaBoost, a weak learner is defined as a classifier that performs slightly better than random guessing. For a binary classification problem, random guessing would lead to an error rate of 50%. AdaBoost ensures that each weak learner used in the boosting process has an error rate strictly less than 0.5
+After each iteration, AdaBoost adjusts the weights of the training examples. The weights of the misclassified examples are increased, making them more likely to be correctly classified in the next iteration. This adjustment relies on the assumption that the weak learner is better than random guessing. If a weak learner had an error rate greater than or equal to 0.5 the weighted combination of weak learners would not improve the overall model, and boosting would not work effectively.
+AdaBoost aims to combine weak learners to create a strong classifier. For this to be successful, each weak learner must contribute to reducing the overall error. If any weak learner had an error rate >= 0.5 it would not help improve the accuracy of the combined classifier. In fact, it could degrade the performance if included. Hence, AdaBoost selects weak learners with < 0.5
