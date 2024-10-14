@@ -1,0 +1,14 @@
+Multicollinearity
+1. Multicollinearity generally occurs when there are high correlations between two or more predictor variables.
+2. In the case of multicollinearity, some of the predictor variables can be used to predict some other predictor variables.
+3. An easy way to detect multicollinearity is to calculate correlation coefficients for all combinations of predictor variables.
+4. Multicollinearity leads to incorrect estimates of the model parameters. Hence, never helps in a better convergence.
+
+Principal Component Analysis
+It is an unsupervised technique
+Principal components are the linear combinations of original variables
+Principal components are constructed to capture the maximum information
+PCA helps in solving the multicollinearity problem by creating new uncorrelated features which are used as input for the predictive model.
+With a dimensionality reduction technique like PCA, you convert a dataset having N dimensions to another dataset having k dimensions where N > k.
+
+PCA can help to solve curse of dimensionality.

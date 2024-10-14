@@ -1,0 +1,10 @@
+In a classification problem with 12 attributes and 3 class labels, the number of neurons in the input and output layers will be 12, 3.
+The input layer will have 12 neurons corresponding to the 12 attributes, and the output layer will have 3 neurons corresponding to the probability of the class labels 1, 2 and 3.
+
+Suppose the output layer has 4 neurons, and all of them have the same input ‘x’. The weights associated with them are represented as 
+w0, w1, w2 and w3, respectively. What will be the expression for p3?
+e^(w3.x′)/(e^w0.x′+e^w1.x′+e^w2.x′+e^w3.x′)
+
+Suppose we have two classes (0 and 1) in the output, and the probability of getting class 0 as the output is p0 and the probability of getting class 1 as the output is p1. 
+In the softmax output layer, if the minimum value of p0 is 0.5, then range of p1 is 0 to 0.5. We know that 
+p0+p1=1. Hence, the maximum value for p1 is p1=1−p0=1−0.5=0.5, and the minimum value is 0. 

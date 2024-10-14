@@ -1,0 +1,5 @@
+Heirarichal clustering
+Linkage:
+Complete Linkage: Here, the distance between 2 clusters is defined as the maximum distance between any 2 points in the clusters.In the complete linkage, inter cluster distance is calculated as the maximum distance between 2 points (one in each cluster), However, the point is assigned to a new cluster basis it’s minimum distance from the clusters
+Single Linkage: Here, the distance between 2 clusters is defined as the shortest distance between points in the two clusters
+Average Linkage: Here, the distance between 2 clusters is defined as the average distance between every point of one cluster to every other point of the other cluster.
