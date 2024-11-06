@@ -5,7 +5,7 @@
 <li>We multiply λt(learning rate) with the incremental model ht+1 so that the new model does not overfit.
 </ol></p>
 <b>Ans :</b>Only 2
-<b>Explaination :</b>At each iteration, we add an incremental model ht+1, which fits on the negative gradients of the loss function evaluated at current target values. But to generate the final model we multiply λt with the incremental model ht+1 so that the new model doesn't  overfit
+<b>Explaination :</b>At each iteration, we add an incremental model ht+1, which fits on the negative gradients of the loss function evaluated at current target values. But to generate the final model we multiply λt with the incremental model ht+1 so that the new model doesn't overfit
 <hr>
 
 <h3>Adaboost</h3>
