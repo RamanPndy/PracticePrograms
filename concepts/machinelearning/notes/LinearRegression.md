@@ -22,8 +22,8 @@
 <h3>Multiple Linear Regression</h3>
 
 ![Alt text](images/multiple-lr.png)
-<b>Ans:</b><p> The predicted value of Y increases by β1 for a unit increase in X1, given X2 does not change.</p><br>
-<b>Explaination:</b><p>Consider the value of X1 changes from 0 to 1 and the value of X2 stays as 0 or a constant. Then, the value of Y would have changed by β1 units given beta2 and X2 are constants.</p>
+<b>Ans:</b>The predicted value of Y increases by β1 for a unit increase in X1, given X2 does not change.<br>
+<b>Explaination:</b>Consider the value of X1 changes from 0 to 1 and the value of X2 stays as 0 or a constant. Then, the value of Y would have changed by β1 units given beta2 and X2 are constants.
 <hr>
 <h3>Rsq-Adjusted</h3>
 <p>In the R-squared Adjusted metric, R-squared is “adjusted” or modified according to:</p>
@@ -56,9 +56,9 @@
 Recall that the null hypothesis states that the variable is insignificant. Thus, if we fail to reject the null hypothesis, you can say that the predictor is insignificant.<br>
 For e.g. if you fail to reject null hypothesis for x1, you can say that x1 is insignificant. This would also imply that the coefficient for x1 i.e., β1 = 0.<br>
 In other words, the null hypothesis tests if the predictor's coefficient, i.e βi = 0. If the null hypothesis is rejected then βi ≠ 0.</p><br>
-<p>If β1 = β2 = 0 holds and β3 = 0 fails to hold, then what can you conclude?
-<b>Ans:</b><p>There is a linear relationship between the outcome variable(Y) and x3</p>
-<b>Explaination:</b><p>Since, β3=0 fails to hold, this means that x3 is a significant variable in this linear regression model. Thus, we can say that there is a linear relationship between the outcome variable(Y) and x3</p>
+<p>If β1 = β2 = 0 holds and β3 = 0 fails to hold, then what can you conclude?<br>
+<b>Ans:</b>There is a linear relationship between the outcome variable(Y) and x3<br>
+<b>Explaination:</b>Since, β3=0 fails to hold, this means that x3 is a significant variable in this linear regression model. Thus, we can say that there is a linear relationship between the outcome variable(Y) and x3
 <hr>
 <p>An analyst observes a positive relationship between digital marketing expenses and online sales for a firm. However, she intuitively feels that she should add an additional predictor variable, one which has a high correlation with marketing expenses.<br>
 
@@ -73,8 +73,8 @@ If the analyst adds this independent variable to the model, which of the followi
 </li>
 </ul>
 <hr>
-<p>Suppose you need to build a model on a data set which contains 2 categorical variables with 2 and 4 levels respectively. How many dummy variables should you create for model building?>
-<b>Ans:</b><p>Since n-1 dummy variables can be used to describe a variable with n levels, you will get 1 dummy variable for the variable with two levels, and 3 dummy variables for the variable with 4 levels.</p>
+<p>Suppose you need to build a model on a data set which contains 2 categorical variables with 2 and 4 levels respectively. How many dummy variables should you create for model building?</p><br>
+<b>Ans:</b>Since n-1 dummy variables can be used to describe a variable with n levels, you will get 1 dummy variable for the variable with two levels, and 3 dummy variables for the variable with 4 levels.
 <hr>
 <p>If one of the feature variables say, A is being explained well by some of the other feature variables, this would mean that the variable A has:</p>
 <b>Ans:</b>A high VIF<br>
@@ -94,22 +94,22 @@ Now, if A is being explained by some of the other feature variables, this would 
 <b>Explaination:</b><p>This is kept so because in case that the Null hypothesis is rejected, you can conclude that β1 is not zero and the coefficient is significant, but if we fail to reject the Null Hypothesis, the coefficient is deemed insignificant.</p><br>
 <hr>
 <p>Which metric is used to determine the significance of the overall model fit?</p>
-<b>Ans:</b><p>F-statistic</p><br>
-<b>Explaination:</b><p>The F-statistic tells whether the overall model fit is significant or not.</p><br>
+<b>Ans:</b>F-statistic<br>
+<b>Explaination:</b>The F-statistic tells whether the overall model fit is significant or not.<br>
 <hr>
 <p>Why do you add a constant to the train set using the sm.add_constant() command, when you’re fitting a line using statsmodels?</p>
-<b>Ans:</b><p>statsmodels fits a line passing through the origin by default.</p><br>
-<b>Explaination:</b><p>By default, statsmodels fits a line passing through the origin, i.e. it doesn't fit an intercept. Hence, you need to use the command 'add_constant' so that it also fits an intercept.</p><br>
+<b>Ans:</b>statsmodels fits a line passing through the origin by default.<br>
+<b>Explaination:</b>By default, statsmodels fits a line passing through the origin, i.e. it doesn't fit an intercept. Hence, you need to use the command 'add_constant' so that it also fits an intercept.<br>
 <hr>
 <p>The correlation coefficient between the age of a person and their IQ test score is found to be -1.0087.
 What can you conclude from this?</p>
-<b>Ans:</b><p>The correlation coefficient should be in the range [1,-1]. A value beyond this range indicates an error in measurement.</p><br>
+<b>Ans:</b>The correlation coefficient should be in the range [1,-1]. A value beyond this range indicates an error in measurement.<br>
 <hr>
 <p>A Singapore-based startup Healin launched an app called JustShakeIt, which enables a user to send an emergency alert to emergency contacts and/or caregivers simply by shaking the phone with one hand. The program uses a machine learning algorithm to distinguish between actual emergency shakes and everyday jostling, using data with labels.
 
 What kind of problem is this?</p>
 <b>Ans:</b><p>Supervised learning-Classification</p><br>
-<b>Explaination:</b><p>The algorithm has to distinguish between actual emergency shakes and everyday jostling. Here, your output variable has predefined labels (shake/jostle), which are categorical in nature. So, this is a supervised learning-classification problem.</p><br>
+<b>Explaination:</b><p>The algorithm has to distinguish between actual emergency shakes and everyday jostling. Here, your output variable has predefined labels (shake/jostle), which are categorical in nature. So, this is a supervised learning-classification problem.</p>
 <hr>
 <h3>Regression in Machine Learning</h3>
 <p>Select all the tasks where linear regression algorithm can be applied.</p>
@@ -124,12 +124,12 @@ Here, the output variable (dependent variable, which is to be predicted) is sale
 <h3>Coefficients of Regression Equation</h3>
 <p>The independent variable X from a linear regression is measured in miles. If you convert it to kilometres (keeping the unit of the dependent variable Y the same), how will the slope coefficient change? (Note: 1 mile = 1.6 km)</p>
 <b>Ans:</b><p>It will get divided by 1.6.</p><br>
-<b>Explaination:</b><p>In the linear regression equation, X gets multiplied by 1.6 with no change in Y. So, the slope will be divided by 1.6.</p><br>
+<b>Explaination:</b><p>In the linear regression equation, X gets multiplied by 1.6 with no change in Y. So, the slope will be divided by 1.6.</p>
 <hr>
 <h3>Strength of the Regression Model</h3>
 
 ![Alt text](images/strength-regression-model.png)
 
 <b>Ans:</b><p>The linear relation between X and Y is strong, and their correlation will be negative.</p><br>
-<b>Explaination:</b><p>A higher value of R² means a strong linear relation. As Y is decreasing with the increasing value of X, you can conclude that their correlation will be negative.</p><br>
+<b>Explaination:</b><p>A higher value of R² means a strong linear relation. As Y is decreasing with the increasing value of X, you can conclude that their correlation will be negative.</p>
 <hr>
