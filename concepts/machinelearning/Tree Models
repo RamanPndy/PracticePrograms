@@ -1,0 +1,137 @@
+min_samples_split is the minimum number of data points required in a node to be considered for further splitting.
+As we increase the value of the hyperparameter min_samples_leaf, the resulting tree will become less complex, and the depth will tend to reduce. 
+min_samples_leaf is the minimum number of samples required in a (resulting) leaf for the split to happen. 
+Thus, if you specify a high value of min_samples_leaf, the tree will be forced to stop splitting quite early.
+
+What will be the effect on the depth of the tree if min_sample_leaf is set to 1? Will the tree be overfitting the train data or the test data?
+Setting the min_samples_leaf parameter to 1 in a decision tree algorithm has significant implications for both the depth of the tree and its tendency to overfit.
+
+Effect on the Depth of the Tree
+When min_samples_leaf is set to 1, the decision tree is allowed to split until each leaf node contains at least one data point. This typically results in the tree growing very deep because it will continue splitting until it perfectly classifies all the training samples. Consequently, the depth of the tree will likely be maximal, with the tree capturing even the smallest variations and noise in the training data.
+
+Overfitting the Data
+Overfitting the Train Data:
+Overfitting Definition: Overfitting occurs when a model learns the training data too well, including its noise and outliers, leading to a model that performs well on training data but poorly on unseen test data.
+Effect of min_samples_leaf = 1: By allowing the tree to split until each leaf node has only one sample, the model becomes highly complex and tailored to the training data. This complexity means the tree captures noise and specific patterns that do not generalize well to new data.
+Result: The model will exhibit very low error on the training data but will likely perform poorly on the test data due to its inability to generalize.
+
+Underfitting the Test Data:
+Underfitting Definition: Underfitting occurs when a model is too simple to capture the underlying structure of the data, leading to poor performance on both training and test data.
+Effect of min_samples_leaf = 1: Setting min_samples_leaf to 1 does not directly cause underfitting. Instead, it leads to overfitting. The model complexity is increased, causing it to memorize the training data but fail to generalize to the test data.
+Result: The model will not underfit the test data in the traditional sense but will overfit the training data, resulting in high error rates when evaluated on the test data.
+
+Conclusion
+Setting min_samples_leaf to 1 will:
+Increase the depth of the tree.
+Lead to overfitting of the training data, resulting in poor generalization to the test data.
+
+This means that while the training error will be very low, the test error will likely be high due to the model's inability to generalize from the training data to unseen data. It is generally advisable to use a higher value for min_samples_leaf to prevent overfitting and improve the model's performance on test data.
+
+What is the difference between min_sample_split and min_sample_leaf?
+`min_samples_split` and `min_samples_leaf` are two hyperparameters used in decision tree algorithms that control how the tree is grown. Both parameters help to prevent overfitting, but they do so in different ways.
+
+### `min_samples_split`
+
+- **Definition:** This parameter specifies the minimum number of samples required to split an internal node.
+- **Effect:** 
+  - If a node has fewer than `min_samples_split` samples, it will not be split any further.
+  - This helps to prevent the tree from growing too deep and creating nodes with very few samples, which could lead to overfitting.
+  - For example, if `min_samples_split` is set to 10, any node with fewer than 10 samples will not be split and will become a leaf node.
+- **Typical Use Case:** Setting this parameter can help to create a more generalized model by ensuring that splits only occur when there is a sufficient number of samples, thereby reducing the likelihood of capturing noise in the training data.
+
+### `min_samples_leaf`
+
+- **Definition:** This parameter specifies the minimum number of samples that a leaf node must have.
+- **Effect:**
+  - If setting this parameter to a value greater than 1, the tree will not create leaf nodes with fewer samples than the specified number.
+  - This ensures that the tree does not have leaves with very few samples, which can lead to overfitting.
+  - For example, if `min_samples_leaf` is set to 5, every leaf node must have at least 5 samples.
+- **Typical Use Case:** This parameter is particularly useful for ensuring that the tree remains balanced and that the leaves are not too specific to individual samples, promoting better generalization.
+
+### Comparison
+
+- **Control Over Splits:**
+  - `min_samples_split` controls the minimum number of samples needed to consider splitting a node. It affects how deep the tree can grow.
+  - `min_samples_leaf` controls the minimum number of samples in the leaf nodes, affecting the smallest size of leaves.
+
+- **Impact on Tree Structure:**
+  - `min_samples_split` impacts the decision to split any node, affecting the overall depth and number of splits in the tree.
+  - `min_samples_leaf` impacts the size of the terminal nodes (leaves), ensuring that each leaf has a certain minimum number of samples, which can prevent overly specific nodes.
+
+- **Usage:**
+  - Use `min_samples_split` to control the creation of new splits and manage the growth of the tree in general.
+  - Use `min_samples_leaf` to ensure that each leaf node has enough samples to provide a stable and generalized prediction.
+
+### Example
+
+Let's consider an example to illustrate the difference:
+
+#### Dataset:
+
+| Feature 1 | Feature 2 | Target |
+|-----------|-----------|--------|
+| 5         | 2         | 0      |
+| 10        | 2         | 1      |
+| 15        | 5         | 0      |
+| 10        | 8         | 1      |
+| 7         | 5         | 1      |
+| 6         | 7         | 0      |
+| 3         | 3         | 0      |
+| 8         | 8         | 1      |
+| 9         | 6         | 0      |
+| 2         | 1         | 1      |
+
+#### If `min_samples_split` is 4:
+- A node with fewer than 4 samples will not be split further, potentially stopping the growth of the tree at certain points.
+
+#### If `min_samples_leaf` is 2:
+- Any leaf node must have at least 2 samples, preventing the creation of very small leaf nodes that may capture noise in the data.
+
+### Conclusion
+
+Both `min_samples_split` and `min_samples_leaf` are used to control the growth of decision trees and prevent overfitting, but they do so in different ways. `min_samples_split` focuses on the decision to split nodes, while `min_samples_leaf` ensures that leaf nodes have a minimum number of samples to be stable and generalize better. Adjusting these parameters appropriately can help create a more robust decision tree model.
+
+What does the min_samples_split = 5 imply? 
+The minimum no. of samples required to split an internal node is equal to 5. The hyperparameter min_samples_split is the minimum no. of samples required to split an internal node. 
+Its default value is 2, which means that even if a node is having 2 samples it can be further divided into leaf nodes. 
+Even if a node is having 5 samples it can be further divided into leaf nodes.
+
+min_samples_split = 5 implies that the node should have at least five data points for splitting.
+min_samples_split = 5 indicates that splitting will not be performed if the number of data points in the node is less than 5. 
+The min_samples_split specifies the minimum number of data points a node should have for splitting to be attempted.
+The min_samples_split sets a lower bar on the number of data points a node should have.
+
+Suppose you decide to tweak the hyperparameters so as to decrease the overfitting. Which of the following steps will help? 
+Increasing min_samples_split
+A low value of the min_samples_split will lead to a small number of data points in the nodes. 
+This means that it is very likely that each leaf (obtained after splitting) is going to represent very few (or only one, in some cases) data points. 
+So, you increase the min_samples_split.
+Decreasing max_depth will stop the tree to grow deeper, in that way your tree will not overfit the data and you will have a decent accuracy in both test and train.
+
+What will the (likely) impact of increasing the value of min_sample_splits from 5 to 10?
+Since the node should now contain at least 10 data points before splitting, as opposed to 1, all the branches — where the nodes had less than 10 data points — will be chopped off, leading to a decrease in the tree depth.
+
+The regression tree building process can be summarised as follows:
+1.Calculate the MSE of the target variable.
+2.Split the data set based on different rules obtained from the attributes and calculate the MSE for each of these nodes.
+3.The resulting MSE is subtracted from the MSE before the split. This result is called the MSE reduction.
+4.The attribute with the largest MSE reduction is chosen for the decision node.
+5.The dataset is divided based on the values of the selected attribute. This process is run recursively on the non-leaf branches, until you get significantly low MSE and the 
+node becomes as homogeneous as possible.
+6.Finally, when no further splitting is required, assign this as the leaf node and calculate the average as the final prediction when the number of instances is more than one at a leaf node.
+
+Which of the following homogeneity measures is used in tree regression? 
+The MSE is used to measure the homogeneity in regression where the target variable is continuous.
+Each leaf in regression contains an average value that is used for prediction.
+The MSE is a measure of the average squared differences between the estimated values and the actual value. MSE gives a sense of how good or bad the regression tree fit is.
+A decision tree splits a data set on the attribute that results in the maximum increase in homogeneity. 
+Decision tree regression and classification are similar in the sense that both try to pick an attribute (for splitting) that maximises the homogeneity of a data set.
+
+steps involved in decision tree construction.
+First, decide if it is a classification problem or a regression problem. 
+Then, select a homogeneity measure for splitting accordingly; of the many attributes, select the first attribute for splitting. 
+After this, split the original data set on the selected attribute, and keep splitting until you obtain a sufficiently low MSE. 
+Once you stop splitting, you will get leaves containing linear regression models.
+
+
+

@@ -4,12 +4,27 @@ class Solution(object):
         :type board: List[List[str]]
         :type word: str
         :rtype: bool
-        Input: board = [["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]], word = "ABCCED"
-        Output: true
+        TC: O(n * m * )
         """
         rows, cols = len(board), len(board[0])
         visited = set()
         directions = [(0, 1), (0, -1), (1, 0), (-1, 0)]
+
+        def dfs(r,c,curr_char_in_target_word):
+            if curr_char_in_target_word == len(word):
+                return True
+            if (r < 0 or c < 0 or r >= rows or c >= cols or 
+                word[curr_char_in_target_word] != board[r][c] or
+                (r,c) in visited):
+                return False
+            visited.add((r,c))
+            res= (dfs(r + 1, c, curr_char_in_target_word+1) or
+            dfs(r - 1, c, curr_char_in_target_word+1) or
+            dfs(r, c + 1, curr_char_in_target_word+1) or
+            dfs(r, c - 1, curr_char_in_target_word+1))
+            visited.remove((r,c))
+            return res
+        
 
         def bfs(row, col):
             q = [(row, col, word[0], 0)]
@@ -30,6 +45,6 @@ class Solution(object):
         
         for r in range(rows):
             for c in range(cols):
-                if bfs(r,c):
+                if dfs(r,c, 0):
                     return True
         return False

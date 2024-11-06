@@ -1,0 +1,31 @@
+Given a multiple linear regression, how will you identify if there is non-linearity present in the data?
+Residual Plots:
+Plot the residuals (the differences between observed and predicted values) against the predicted values or each predictor variable.
+If the residuals show a pattern (such as a curve) rather than being randomly scattered, it suggests that there may be non-linearity in the data.
+
+Added Variable Plots (Partial Regression Plots):
+These plots show the relationship between the response variable and a particular predictor, after accounting for the effects of all other predictors.
+Non-linearity may be evident if the added variable plot displays a pattern or curve.
+
+Polynomial Features:
+Fit polynomial features (e.g., quadratic or cubic terms) and check if they significantly improve the model.
+Significant improvement suggests that non-linearity might be present.
+
+Non-Parametric Methods:
+Use non-parametric methods like Local Regression (LOESS) or Kernel Regression to model the relationship and check if the model improves or shows a different pattern compared to the linear regression.
+
+Visual Inspection:
+Plot the relationship between the response variable and each predictor variable.
+If the scatter plot shows a non-linear pattern (e.g., exponential, logarithmic, or sinusoidal), it indicates possible non-linearity.
+
+Transformation and Interaction Terms:
+Experiment with transformations (e.g., log, square root) and interaction terms in your model.
+Significant improvements or changes in the model's performance may indicate that non-linearity was present and addressed.
+
+We assess the appropriateness of the data transformation by checking the residual plots for any violations of assumptions.
+The residual plots help determine whether the assumptions of linear regression are met, including:
+Linearity: Residuals should have no discernible pattern.
+Homoscedasticity: Residuals should have constant variance.
+Independence: Residuals should be independent.
+Normality: Residuals should be approximately normally distributed.
+If the residuals after transformation show no patterns and meet these assumptions, it indicates that the data transformation was appropriate.

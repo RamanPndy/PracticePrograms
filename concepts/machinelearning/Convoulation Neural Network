@@ -1,0 +1,516 @@
+Receptive Field : Each neuron is trained to look at only a certain patch of the image. This patch is called the receptive field of that neuron.
+The receptive fields of all neurons are almost identical in shape and size.
+
+There is a hierarchy in the units: 
+Units at the initial level do very basic tasks such as picking raw features (such as horizontal edges) in the image. 
+The subsequent units extract more abstract features, such as identifying textures, detecting movement, etc. 
+The layers 'higher' in the hierarchy typically aggregate the features in the lower ones.
+
+RNNs are good at processing sequential information such as videos (a sequence of images), text (a sequence of words or sentences), etc.
+
+three main terminologies related to the CNN architecture:
+Convolutions
+Pooling 
+Feature Maps
+
+Convolution:
+Mathematically, the convolution operation is the summation of the element-wise product of two matrices.
+
+Given an input image of size (10,10) and a filter of size (4,4), what will be the size of the output size on convolving the image with the filter?
+The size of the output image after convolving an input image of size (10,10) with a filter of size (4,4) can be calculated using the formula for the output dimensions in convolution:
+
+\[
+\text{Output Size} = \left( \frac{N - F}{S} + 1 \right)
+\]
+
+Where:
+- \( N \) is the size of the input image (in this case, 10),
+- \( F \) is the size of the filter (in this case, 4),
+- \( S \) is the stride (default is 1, if not specified),
+- No padding (assuming zero padding).
+
+For a stride \( S = 1 \) and no padding, the output size will be:
+
+\[
+\text{Output Height/Width} = \frac{10 - 4}{1} + 1 = 7
+\]
+
+So the output image size will be (7,7).
+
+Given an input image X, which of the following filters will detect an edge in the vertical direction? 
+Any matrix that takes the difference between the left and the right pixel can find the edge. 
+
+Which of the following filters can be used to detect a diagonal edge (an edge at an angle of 45 degrees from the x-axis) in an image?
+A diagonal edge will have pixel values such that there is a gradient in the direction perpendicular to the 45-degree line, i.e. a gradient in pixel values from top-left to bottom-right. The filter should also have a gradient in this direction.
+
+Padding of 'x' means that 'x units' of rows/columns are added all around the image.
+
+You may have noticed that when you convolve an image without padding (using any filter size), the output size is smaller than the image (i.e. the output 'shrinks'). For example. when you convolve a (6, 6) image with a (3, 3) filter and stride of 1, you get an output of (4, 4). 
+If you want to maintain the same size, you can use padding.
+
+Doing convolutions without padding reduces the output size. It is important to note that only the width and height decrease (not the depth) when you convolve without padding.  The depth of the output depends on the number of filters used
+
+Given an image of size (n, n), a kernel of size (3, 3), no padding, and a stride length of 1, the output size will be: 
+Try convolving (3, 3), (4, 4), (5, 5) etc. images - you will note a pattern. In general, an (n, n) image will produce an (n-2, n-2) output on convolving with a (3, 3) filter.
+
+Given an image of size 5x5, filter size 3x3, stride 2, what is the padding required (on either side) to make the output size same as input size?
+3 pixels of padding is required around each edge of the image to make the output size the same as the image size. 
+
+You saw that doing convolutions without padding reduces the output size (relative to the input which is being convolved). The main reason this is not always beneficial is that:
+There will be heavy loss of information (especially in deep networks) if all the convolutional layers reduce the output size.
+If all the layers keep shrinking the output size, by the time the information flows towards the end of the network, the output would have reduced to a very small size (say 2 x 2) - which will be insufficient to store information for complex tasks.
+
+Very often, you want to maintain the output size after convolution, i.e. if you have an (n, n) input, you want the output to be of size (n, n) as well. A general strategy to achieve this is:
+Use padding of 1 pixel (on both sides), a (3, 3) filter, and stride length 1.
+The output size is ((n+2p−k)/s)+1. With p=1, k=3, s=1, the output will always be (n, n).  Going forward, you may find remembering this useful.
+
+Given the following size :
+
+Image  - n x n
+Filter - k x k
+Padding - P
+Stride - S
+
+After padding, we get an image of size (n + 2P) x (n+2P). After we convolve this padded image with the filter, we get:
+Size of convolved image = (((n+2P−k)/S)+1),(((n+2P−k)/S)+1)
+
+Given an input image of size 224x224, a filter of size 5x5 and padding of 3, what are the possible values of stride S?
+(n+2P-k) should be divisible by stride 's'. So, (224+ 2x3 - 5) = 225. should be divisible by any possible values.
+So the possible values of stride 
+𝑆 are:
+S=1,3,5,9,15,25,45,75,225
+
+Given an input image of size 224x224, a filter of size 5x5 and stride of 2, what are the possible values of padding?
+(n+2P-k) should be divisible by stride 's'. So, (224 + 2xPadding -5) should be divisible by 2. This is not possible for any value of padding. 
+
+Doing convolution without padding (assume that you are using a normal convolution with a k x k filter ,where k>1, without shrinking it towards the edges etc.) 
+Always reduces the size of the output.
+Doing convolutions without padding always reduces the output size. You can see that from the formula as well: (n - k)/s will be less than n for all positive values of k >1.
+
+Given an image of size 128 x 128 x 3, a stride length of 1, padding of 1, and a kernel of size 3x3x3, what will be the output size?
+Though the input and filter are now 3D, the output of convolution will still be a 2D array. This is because, in each step of the convolution, the 9 elements of the filter will be 'dot product-ed' with the 9 elements of the 3D image, giving a single scalar number as the output.
+
+Suppose you train the same network (i.e. the same architecture) for two different multiclass classification problems (such as classification of mammals and classification of flowers). Will the two resultant sets of weights be the same?
+Weights will be different since each network will learn weights which are appropriate for the respective classification task.
+
+What is the total number of trainable weights in a kernel/filter of size 3x3x3? Assume there are no biases.
+To calculate the total number of trainable weights in a kernel/filter of size 
+3×3×3 without biases:
+Filter Dimensions: The filter has a height of 3, a width of 3, and a depth of 3 (which usually corresponds to the number of channels in the input, such as RGB channels in an image).
+Total Number of Trainable Weights: The number of weights is simply the product of the filter dimensions:
+3×3×3=27
+So, the total number of trainable weights in a  3×3×3 kernel is 27.
+
+What is the total number of trainable parameters in a kernel/filter of size 3x3x3? Assume that there is a single tied bias associated with the filter.
+To calculate the total number of trainable parameters in a kernel/filter of size 
+3×3×3 with a single tied bias:
+
+Trainable Weights: The filter has a height of 3, a width of 3, and a depth of 3 (which typically corresponds to the number of channels in the input). The number of weights is:
+3×3×3=27
+So, there are 27 trainable weights.
+Bias: There is a single tied bias associated with the filter (i.e., one bias term for the entire filter).
+Total Trainable Parameters: The total number of trainable parameters is the sum of the weights and the bias: 27+1=28
+So, the total number of trainable parameters in a 3×3×3 kernel with a tied bias is 28.
+
+Given an image of size 3x3 and a kernel of size 3x3, what will be the total number of multiplication and addition operations in convolution? Assume there is no padding and there are no biases (only weights). If there are m multiplication and n addition operations, the answer will be m+n.
+To calculate the total number of multiplication and addition operations for a convolution of an image of size \(3 \times 3\) with a kernel of size \(3 \times 3\), follow these steps:
+
+1. **Image Size**: \(3 \times 3\)
+2. **Kernel Size**: \(3 \times 3\)
+3. **No Padding**: This means that the kernel will move across the image without any boundary padding, leading to a valid convolution, where the output is reduced.
+
+### Step-by-Step Breakdown:
+
+- The **output size** for this convolution, since there is no padding and a kernel of the same size as the image, will be \(1 \times 1\). This is because the kernel will cover the entire image in just one step (with stride 1).
+
+- For this single output, the kernel performs 9 multiplications (one for each element in the \(3 \times 3\) kernel and the corresponding \(3 \times 3\) region in the image).
+
+- After performing the 9 multiplications, 8 additions are required to sum up the 9 multiplication results (since it takes \(n-1\) additions to sum \(n\) numbers).
+
+### Calculation:
+
+- **Multiplication operations**: \(3 \times 3 = 9\)
+- **Addition operations**: \(9 - 1 = 8\)
+
+### Total Operations:
+The total number of operations (multiplications + additions) is:
+\[
+9 \text{ (multiplications)} + 8 \text{ (additions)} = 17
+\]
+
+Thus, the answer is 17 operations.
+
+Given an image of size 3x3x3, a kernel of size 3x3x3, padding of 1, and stride length of 1, what will be the total number of multiplication and addition operations in the convolution? Assume there are no biases (only weights). If there are m multiplication and n addition operations, the answer will be m+n.
+The output will be of size (n + 2p - k + 1) = (3, 3). In each step of the convolution, the 3 x 3 x 3 filter will be dot product-ed with a 3 x 3 x 3 array. This dot product will involve 27 pair-wise multiplications and then 26 addition operations, or 27+26 = 53 total operations. Since this operation will happen for each of the 3 x 3 cells in the output, the total number of operations is 53 x 9 = 477.
+
+If we use 32 filters (or kernels) of size 3x3x3 to convolve an image of size 128x128x3, how many feature maps will be created after the convolution?
+We have already seen that each kernel of 3x3x3 will produce 1 feature map on an input of size 224x224x3. With 32 kernels, we will get 32 feature maps.
+When you use 32 filters (or kernels) of size 3x3x3 to convolve an image of size 128x128x3, the number of feature maps generated after the convolution will be equal to the number of filters.
+
+Thus, in this case, since there are 32 filters, you will create 32 feature maps after the convolution operation.
+Explanation:
+The size of the image is 128x128x3, where 3 is the number of channels (typically corresponding to RGB in a color image).
+Each filter has a size of 3x3x3, meaning it spans all 3 channels (depth) of the input image.
+For each filter, the convolution produces a single 2D feature map. Since you have 32 filters, you'll end up with 32 2D feature maps (one per filter).
+Therefore, the output will consist of 32 feature maps (each with a reduced spatial dimension depending on stride and padding, but the number of feature maps remains 32).
+
+Given an image of size 128x128x3, a stride of 1, padding of 1, what will be the size of the output if we use 32 kernels of size 3x3x3?
+Each filter will produce a feature map of size 128x128 (with stride and padding of 1).  Thus, 32  filters will produce 32 feature maps of size 128x128.
+
+Given an image of size 128x128x3, a stride of 1, zero padding, what will be the size of the output if we use 32 kernels of size 3x3x3?
+The output of one kernel will be (128 - 3 +1) = 126 x 126, and thus, the output of 32 kernels will be 126 x 126 x 32.
+
+Feature map is the output from the activation function, which is usually non-linear (such as ReLU). That is, for a patch vector p and weight vector w, the values in the feature map will be 
+f(w^T.p) where f is a non-linear activation function.
+
+Which of the following statements related to pooling are correct?
+1.It makes the network invariant to local transformations. Since it takes an average, max or some other operation over group of pixel, it does not look at an individual pixel, making network invariant to local transformation.
+2.It makes the representation of the feature map more compact, thereby reducing the number of parameters in the network.It decreases the height and width, which reduces the number of parameters in a feature map. 
+3.It reduces only the width and the height, not the depth.
+
+How many trainable parameters are there in the pooling layer?
+There are no parameters in pooling. The pooling layer just computes the aggregate of the input. For e.g. in max pooling, it takes max over group of pixels. We do not need to adjust any parameter to take max.
+
+Given an input of size 224x224x3 and stride of 2 and filter size of 2x2, what will be the output after the pooling operation?
+112x112x3,Padding will reduce the feature shape after convolving. The feature shape and input shape will be different from each other.
+
+What does a typical CNN 'unit' (also called a CNN 'layer') comprise of?
+A collection of feature maps followed by a pooling operation.
+What we refer to as a CNN layer or unit is a collection of m feature maps each of which is pooled to generate m outputs. Typically, the output of pooling reduces the size to half, since the most common form of pooling is with a stride of 2.
+
+In a typical deep CNN, the size of each subsequent feature map reduces with the depth of the network. The size reduction is typically done in two ways  - 1) convolution without padding or 2) by pooling. 
+What is the main reason we prefer a lower dimensional output of an image from the network?
+We want a compact representation of the image as the output, one which preferably captures only the useful features in the image.
+The reason we want a compact representation of the image is to get rid of all the redundancies in the image. For e.g. all the 224 x 224 x 3 pixels may not be required to do a classification or object detection task, just a smaller vector (say of length 5000) may be enough.
+
+You know that layers in a CNN 'learn' in a hierarchical manner. The initial layers extract low-level features while the layers deep into the network extract more abstract features. Suppose we have trained a 4-layer CNN on a large dataset. After training, we visualise the four layers as given below. Match the layers with what they are expected to have learnt:
+To match the layers of a CNN with the kind of features they are expected to learn, let's break down the hierarchical learning process of CNNs:
+
+1. **First Layer (Shallowest Layer)**:
+   - **Learns Low-level Features**: The initial layers in a CNN are responsible for learning basic, low-level features like **edges, lines, corners, and textures**. These are fundamental patterns that make up the structure of the image.
+   - **Expected Features**: Horizontal, vertical, or diagonal lines, color gradients, or simple patterns.
+
+2. **Second Layer**:
+   - **Learns Mid-level Features**: As the network goes deeper, the second layer starts combining the low-level features learned in the first layer to form **slightly more complex patterns**. These could include combinations of edges or basic shapes.
+   - **Expected Features**: Curves, simple textures, or more refined combinations of lines and edges.
+
+3. **Third Layer**:
+   - **Learns Higher-level Features**: By the third layer, the network is learning more abstract and complex features. It starts identifying parts of objects like **object parts or complex shapes**.
+   - **Expected Features**: Components of objects, such as eyes, wheels, or other distinguishable parts.
+
+4. **Fourth Layer (Deepest Layer)**:
+   - **Learns High-level or Abstract Features**: The final layers in a CNN learn very abstract, high-level features that can represent entire objects or key distinctive patterns for **classification**.
+   - **Expected Features**: Entire objects or specific patterns that are useful for differentiating between classes (such as the face of a cat, a car, etc.).
+
+### Matching Layers with What They Have Learned:
+- **Layer 1**: Low-level features (edges, corners, simple textures).
+- **Layer 2**: Mid-level features (combinations of edges, curves, simple textures).
+- **Layer 3**: Higher-level features (parts of objects or complex shapes).
+- **Layer 4**: High-level or abstract features (entire objects or key distinctive features).
+
+This hierarchical learning process allows CNNs to effectively capture the various aspects of image data, from simple patterns to complex object representations.
+
+What is the range of possible values of each channel of a pixel if we represent each pixel with 5 bits?
+Since we are representing each pixel by 5 bits, the total pixels will be 2^5 = 32. So the range is 0-31
+
+Suppose we want to take the average over a (3, 3) patch in an image using a filter. Which of the following represents the 'average filter'?
+The convolution operation in this case should produce an expression like 1/n(x1+x2+x3...xn). In this case 1/n = 1/9 which is the correct factor as the average of 9 numbers will be computed by this filter at one time. Also since all the entries are 1, the convolution operation of this filter over a patch of 9*9 input will produce the sum of 9 numbers.
+
+Which of the following layers contains trainable parameters and which does not?
+Convolution and fully connected layers contain parameters, pooling does not.
+The pooling layer does not contain any trainable parameters, Convolution and fully connected layers do. We learn the value of those parameters during backpropagation. Since pooling is just taking aggregate, there are no parameters involved in it. Say, we want to take an average of 4 numbers, we will just do (1/4) ( 4 numbers). There are no parameters that need to be learned.  Fully connected layer obviously has weights, we already know that from multilayer perceptron. 
+
+Which of the following is correct about filters in the convolutional layer? More than one options may be correct.
+1.If a filter is extracting a particular feature at one spatial location (x,y), it must be extracting the same feature at some other spatial location (x2,y2).Each filter extracts the same feature from different spatial locations. 
+2.Multiple different filters extract a variety of features from the same patch in an image.Different filters extract different features from the same patch.
+
+What is the advantage of padding other than to keep the spatial dimension (width and height) of the output constant?
+If we don’t do padding then the information at the borders would be “washed away” too quickly.
+Padding helps to preserve the information at the edges, otherwise, the convolution operation would extract information only from the central regions of the image .
+
+Which of the following statements related to pooling are correct? More than one options may be correct.
+1.Pooling reduces the width and height of the output, thereby reducing the number of parameters and the amount of computation being done in the network.
+Pooling reduces the width and height, thereby reducing the number of parameters and the amount of computation (since with less number of parameters there will be fewer computations involved in feedforward/backpropagation etc.). 
+
+2.Since it reduces the number of parameters in the network, it also helps control overfitting.
+Pooling reduces the number of parameters and computation, it also controls overfitting.
+
+3.Pooling makes the network invariant to certain local transformations.
+Since pooling takes a statistical aggregate over multiple regions of an image, it makes the network invariant to 'local transformations' (such as the face being tilted a little, or an object being located in a different region than what the training data had seen).
+
+Which of the following methods can be deployed to reduce the spatial dimensions of feature maps (width and height), and thereby, to make the representation of the network more compact? More than one options may be correct.
+1.Pooling operation: Pooling reduces the spatial dimension of the output.
+2.Convolution operation: If we use convolution operation with stride > 1, e.g. with a filter of 2x2 and stride of 2, the output spatial dimension will reduce to half. 
+
+The output of the first convolutional layer is (224, 224, 64), i.e. 64 feature maps of size (224, 224). The second conv layer uses 64 filters of size (3, 3, 64). Note that the number of channels in the filters (64) is implicit since the filters have to convolve a tensor of 64 channels.
+The number of parameters in the second conv layer are: 36928
+The 64 (3, 3, 64) filters have 64*3*3*64 (weights) + 64 (biases).
+To calculate the number of parameters in the second convolutional layer, we can use the following formula:
+
+\[
+\text{Number of parameters} = (\text{Filter Height} \times \text{Filter Width} \times \text{Number of Input Channels} + 1) \times \text{Number of Filters}
+\]
+
+### Given:
+- **Filter Height** = 3
+- **Filter Width** = 3
+- **Number of Input Channels** = 64 (the depth of the input feature maps from the previous layer)
+- **Number of Filters** = 64
+
+### Calculation:
+1. **Calculate parameters per filter**:
+   \[
+   \text{Parameters per filter} = 3 \times 3 \times 64 + 1 = 576 + 1 = 577
+   \]
+
+2. **Calculate total parameters for all filters**:
+   \[
+   \text{Total parameters} = 577 \times 64 = 36,768
+   \]
+
+### Conclusion:
+The total number of parameters in the second convolutional layer is **36,768**.
+
+The output of the first convolutional layer is (224, 224, 64) which is fed to the second conv layer with 64 filters of size (3, 3, 64). 
+The output of the second conv layer is:(224, 224, 64)
+64 filters will produce 64 feature maps. The size of each map will be preserved to (224, 224) since stride and padding of 1 are used.
+To calculate the output size of the second convolutional layer given the specifications, we can use the following formula for the output dimensions after convolution:
+
+\[
+\text{Output Height} = \left\lfloor \frac{\text{Input Height} - \text{Filter Height} + 2 \times \text{Padding}}{\text{Stride}} \right\rfloor + 1
+\]
+
+\[
+\text{Output Width} = \left\lfloor \frac{\text{Input Width} - \text{Filter Width} + 2 \times \text{Padding}}{\text{Stride}} \right\rfloor + 1
+\]
+
+### Given:
+- **Input Dimensions**: \( (224, 224, 64) \)
+- **Filter Size**: \( (3, 3, 64) \)
+- **Number of Filters**: \( 64 \)
+- **Padding**: \( 0 \) (assuming no padding unless stated otherwise)
+- **Stride**: \( 1 \) (assuming stride of 1 unless stated otherwise)
+
+### Calculation:
+1. **Input Height** = 224
+2. **Input Width** = 224
+3. **Filter Height** = 3
+4. **Filter Width** = 3
+5. **Padding** = 0
+6. **Stride** = 1
+
+#### Calculate Output Height and Width:
+\[
+\text{Output Height} = \left\lfloor \frac{224 - 3 + 2 \times 0}{1} \right\rfloor + 1 = \left\lfloor \frac{221}{1} \right\rfloor + 1 = 221 + 1 = 222
+\]
+
+\[
+\text{Output Width} = \left\lfloor \frac{224 - 3 + 2 \times 0}{1} \right\rfloor + 1 = \left\lfloor \frac{221}{1} \right\rfloor + 1 = 221 + 1 = 222
+\]
+
+#### Output Depth:
+- The output depth will be equal to the number of filters, which is **64**.
+
+### Final Output Dimensions:
+Thus, the output of the second convolutional layer will be:
+\[
+\text{Output Size} = (222, 222, 64)
+\]
+
+The output of the second conv layer, (224, 224, 64), is fed to a max pooling layer. All the pooling layers in the network use a window size of 2 x 2 with stride 2. The output of the pooling layer is:
+(112, 112, 64)
+The pooling layer simply reduces the spatial size to half and preserves the number of channels.
+To calculate the output size after applying a max pooling layer with a window size of \(2 \times 2\) and a stride of \(2\) to the output from the second convolutional layer, we can use the same output dimension formula as before:
+
+\[
+\text{Output Height} = \left\lfloor \frac{\text{Input Height} - \text{Pooling Height}}{\text{Stride}} \right\rfloor + 1
+\]
+
+\[
+\text{Output Width} = \left\lfloor \frac{\text{Input Width} - \text{Pooling Width}}{\text{Stride}} \right\rfloor + 1
+\]
+
+### Given:
+- **Input Dimensions**: \( (224, 224, 64) \) (output from the second conv layer)
+- **Pooling Height**: \( 2 \)
+- **Pooling Width**: \( 2 \)
+- **Stride**: \( 2 \)
+
+### Calculation:
+1. **Input Height** = 224
+2. **Input Width** = 224
+3. **Pooling Height** = 2
+4. **Pooling Width** = 2
+5. **Stride** = 2
+
+#### Calculate Output Height and Width:
+\[
+\text{Output Height} = \left\lfloor \frac{224 - 2}{2} \right\rfloor + 1 = \left\lfloor \frac{222}{2} \right\rfloor + 1 = 111 + 1 = 112
+\]
+
+\[
+\text{Output Width} = \left\lfloor \frac{224 - 2}{2} \right\rfloor + 1 = \left\lfloor \frac{222}{2} \right\rfloor + 1 = 111 + 1 = 112
+\]
+
+#### Output Depth:
+- The output depth remains the same as the input depth, which is **64**.
+
+### Final Output Dimensions:
+Thus, the output of the max pooling layer will be:
+\[
+\text{Output Size} = (112, 112, 64)
+\]
+
+The output from the first pooling layer, (112, 112, 64), is fed to the third conv layer. The number of trainable parameters in the third conv layer is: 73856
+Each filter is of size (3, 3, 64). Thus 128 filters have 128*3*3*64 (weights) +128 (biases).
+To calculate the number of trainable parameters in the third convolutional layer, we need the following information:
+
+1. **Input Dimensions to the Third Conv Layer**: \( (112, 112, 64) \) (output from the first pooling layer)
+2. **Filter Size**: Typically, convolutional layers use filters of size \(3 \times 3 \times \text{input channels}\).
+3. **Number of Filters**: This needs to be specified or assumed. For this example, let's assume there are **N** filters.
+
+### Formula for Trainable Parameters:
+The number of trainable parameters in a convolutional layer can be calculated using the formula:
+
+\[
+\text{Number of Parameters} = (\text{Filter Width} \times \text{Filter Height} \times \text{Input Depth} + 1) \times \text{Number of Filters}
+\]
+
+Where:
+- The \( +1 \) accounts for the bias term associated with each filter.
+
+### Given:
+- **Filter Width** = 3
+- **Filter Height** = 3
+- **Input Depth** (from the previous layer) = 64
+- **Number of Filters** = N (we need to know this value for the final calculation)
+
+### Calculation:
+Substituting the known values into the formula:
+
+\[
+\text{Number of Parameters} = (3 \times 3 \times 64 + 1) \times N
+\]
+
+Calculating the filter parameters:
+
+\[
+3 \times 3 \times 64 = 576
+\]
+
+Adding the bias term:
+
+\[
+576 + 1 = 577
+\]
+
+Thus, the total number of trainable parameters is:
+
+\[
+\text{Number of Parameters} = 577 \times N
+\]
+
+### Conclusion:
+To find the exact number of trainable parameters, you will need to specify the number of filters \( N \) in the third convolutional layer. 
+
+For example, if \( N = 128 \):
+\[
+\text{Number of Parameters} = 577 \times 128 = 73,856
+\] 
+
+The output from the first pooling layer, (112, 112, 64), is fed to the third conv layer. The output of the third convolutional layer is: (112, 112, 128)
+Since all the convolutions are with stride 1 and padding 1, the size (height x width) is maintained. The third layer has 128 filters each of which will produce a 112 x 112 feature map.
+
+Let's now come to the latter part of the network. The output from the last (13th) convolutional layer is of size (14, 14, 512) which is fed to a max pooling layer to give a (7, 7, 512) output. The output from the max pooling layer is then fed to a fully connected layer (FC) with 4096 neurons (after flattening). 
+The number of trainable parameters in this FC layer is: 102764544
+The output of the pooling layer, after flattening, will be a vector of length 7*7*512. Thus, the FC layer will have 7*7*512*4096 (weights) + 4096 (biases).
+To calculate the number of trainable parameters in the fully connected (FC) layer, we need to consider the following:
+
+1. **Input Size**: The input to the FC layer comes from the output of the max pooling layer, which has dimensions \((7, 7, 512)\).
+2. **Number of Neurons**: The FC layer has \(4096\) neurons.
+
+### Step 1: Flattening the Input
+First, we need to flatten the input from the max pooling layer. The input size is given as:
+
+\[
+7 \times 7 \times 512
+\]
+
+The total number of input units after flattening is:
+
+\[
+\text{Input Units} = 7 \times 7 \times 512 = 25088
+\]
+
+### Step 2: Calculating Trainable Parameters
+In a fully connected layer, each neuron receives input from every unit in the previous layer. Thus, the number of trainable parameters can be calculated using the formula:
+
+\[
+\text{Number of Parameters} = (\text{Input Units} \times \text{Number of Neurons}) + \text{Number of Neurons}
+\]
+
+Where:
+- \(\text{Input Units} = 25088\)
+- \(\text{Number of Neurons} = 4096\)
+
+### Calculation
+Now, let's calculate the total number of parameters:
+
+\[
+\text{Number of Parameters} = (25088 \times 4096) + 4096
+\]
+
+Calculating it step by step:
+
+1. **Calculate \(25088 \times 4096\)**:
+   \[
+   25088 \times 4096 = 102760448
+   \]
+
+2. **Add the bias terms (4096)**:
+   \[
+   \text{Total Parameters} = 102760448 + 4096 = 102764544
+   \]
+
+### Conclusion
+Thus, the number of trainable parameters in the fully connected layer is:
+
+\[
+\boxed{102764544}
+\]
+
+In the VGG-16 network, the size of the output is shrunk (i.e. the height x width of the input):
+By only the pooling layers.
+Since all the conv layers use a stride and padding of 1 with a (3, 3) filter, the spatial size is preserved in all the convolutional layers (only the depth increases). The height and width is reduced only by the pooling layers.
+
+Let's consider a CNN based architecture designed to classify an image into one of the three classes - a pedestrian, a tree or a traffic signal. Each input image is of size (512, 512, 3) (RGB).
+The network contains the following 11 layers in order. Note that we will address the input layer as the first layer, the next conv layer as the second layer and so on (i.e. according to the numbers).
+1. Input image (512,512,3)
+2. Convolution: 32  5x5 filters, stride 's1', padding 'p1'
+3. Convolution: 32  3x3 filters, stride 1, padding 1
+4, Max Pooling: 2x2 filter, stride 2
+5. Convolution: 64  3x3 filters, stride 1, padding 1
+6. Convolution: 64  3x3 filters, stride 1, padding 1
+7. Max Pooling: 2x2 filter, stride 2
+8. Layer 'l'
+9. Fully-connected: 4096 neurons
+10. Fully-connected: 512 neurons
+11. Fully-connected: 'F' neurons
+
+If the spatial dimensions (width and height) of the output going into the third layer are the same as the input from the previous layer, what can be the possible values of stride 's1' and padding 'p1'?
+stride 1, padding 2
+Calculate the output using ((n+2p-k)/s +1). With s=1, p=2, the output is (512 + 4 - 5)/1 + 1 = 512.
+
+The 8th layer is named layer 'l'. Which of the following types could be the layer 'l'?
+The 'Flatten' layer connects the convolutional layer to the fully connected layer by flattening the multidimensional tensor output from the conv layer to a long vector.
+
+What is the output from the last max pooling layer (layer 7) assuming that the width and the height do not change after the convolution operation in step-2?
+128x128x64
+After two pooling operations (starting from the starting 512 x 512), the width and the height will reduce 2 times, i.e. from 512 to 256 (in the first max pooling layer) and from 256 to 128 (in the second max pooling layer). 
+
+What is the value of 'F' in the last layer?
+3. Since we are classifying an image into 3 classes, it has to have 3 neurons.
+
+Calculate the total number of trainable parameters in layer-3 (the conv layer with 32 3x3 filters)?
+The output from the previous layer is (512, 512, 32), so each filter is of size (3, 3, 32). The number of parameters is thus 32 filters *3*3*32 (weights) + 32 (biases) = 9248.
+
