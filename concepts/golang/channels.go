@@ -205,3 +205,13 @@ default:
     fmt.Println("Channel is empty")
 }
 
+
+// if a channel is closed then what will be the value of it's holding variable ?
+// when you receive from a closed channel, the result will depend on the type of channel and the handling in the receiving operation.
+func main() {
+    ch := make(chan int)
+    close(ch)  // Close the channel
+
+    val, ok := <-ch  // Try to receive from the closed channel
+    fmt.Println("Value:", val, "Channel open:", ok) //Value: 0 Channel open: false
+}

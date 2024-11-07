@@ -74,3 +74,121 @@ According to the assumptions of neural networks, the activation function of all 
 <b>Ans :</b>True<br>
 <b>Explaination :</b>All neurons in a particular hidden layer use the same activation function. Hence, this answer is correct.
 <hr>
+
+<p>A model summary is given below for neural network architecture.</p>
+
+![Alt text](images/sequential.png)
+<p>The input data vector has 1000 features. The dense_4 layer is the output layer.<br>
+
+Notice that there are blanks filled in different places. Let’s answer a few questions to know each of the values.<br>
+
+What is the number of parameters in the third dense hidden layer?</p>
+<b>Ans :</b>1056<br>
+<b>Explaination :</b>The number of parameters is the total number of weights and biases. The third hidden dense layer has 32 neurons and each neuron will have a bias term. Thus, 32 elements are present in the bias vector for the third hidden layer. The weight matrix is between the second layer with 32 neurons and the third layer with 32 neurons. Hence, the weight matrix will have 32*32=1024 elements. Adding the bias terms, in total, there are 32+1024=1056 parameters.
+<hr>
+
+<p>A model summary is given below for neural network architecture.</p>
+
+![Alt text](images/sequential.png)
+<p>The input data vector has 1000 features. The dense_4 layer is the output layer.<br>
+
+Notice that there are blanks filled in different places. Let’s answer a few questions to know each of the values.<br>
+
+Calculate the number of weights in the weight matrix for the first dense hidden layer.</p>
+<b>Ans :</b>64000<br>
+<b>Explaination :</b>As the input has 1000 features and the first dense hidden layer has 64 neurons, the weight matrix will have 64*1000 = 64000 elements in it
+<hr>
+
+<p>A model summary is given below for neural network architecture.</p>
+
+![Alt text](images/sequential.png)
+<p>The input data vector has 1000 features. The dense_4 layer is the output layer.<br>
+
+Notice that there are blanks filled in different places. Let’s answer a few questions to know each of the values.<br>
+
+Find the number of parameters for the output layer.</p>
+<b>Ans :</b>165<br>
+<b>Explaination :</b>The number of parameters is the total number of weights and biases. Since the output layer has 5 neurons, each one will have a bias term, thus, 5 elements are there in the bias vector of the output layer. The weight matrix is between the third layer with 32 neurons and the output layer with 5 neurons. Hence, the weight matrix will have 32*5=160 elements. Adding the bias terms to the weights, in total, there are 5+160=165 parameters.
+<hr>
+
+<p>A model summary is given below for neural network architecture.</p>
+
+![Alt text](images/sequential.png)
+<p>The input data vector has 1000 features. The dense_4 layer is the output layer.<br>
+
+Notice that there are blanks filled in different places. Let’s answer a few questions to know each of the values.<br>
+
+Find the total number of trainable parameters.</p>
+<b>Ans :</b>67365<br>
+<b>Explaination :</b>The total number of trainable parameters is the total number of parameters in the model. It’s value is 64064+2080+1056+165 = 67365.
+<hr>
+
+<h3>Learning in Neural Network</h3>
+<p>A neural network learns by adjusting the weights and biases so that the loss is minimised. When does ‘learning’ in a neural network happen?</p>
+<b>Ans :</b>Backpropagation<br>
+<b>Explaination :</b>The ‘learning’ in a neural network is the adjustment of weights and biases. This happens during backpropagation. The network does not change (learn) during feedforward.
+<hr>
+
+<h3>Gradient Calculations</h3>
+<p>Which of the following statements about the gradient calculation of loss L with respect to the weights W of different layers in a neural network is correct?</p>
+<b>Ans :</b>The gradient of L with respect to layer l−1 is calculated using the gradient with respect to layer l.<br>
+<b>Explaination :</b>The gradients are calculated using backpropagation, i.e., the gradient of L with respect to layer l−1 is calculated using the gradient with respect to layer l.
+<hr>
+
+<h3>Weights and Biases</h3>
+<p>What happens in a single forward-backward pass through the network?</p>
+<b>Ans :</b>The weights and biases of all the layers get updated<br>
+<b>Explaination :</b>In each iteration, we calculate the loss and update the weights and biases of every layer to minimise the loss in each iteration.
+<hr>
+
+![Alt text](images/backpropagation-1.png)
+![Alt text](images/backpropagation-2.png)
+
+<h3>Weight Matrix</h3>
+<p>What is the dimension of W^3?</p>
+<b>Ans :</b>(1,2)<br>
+<b>Explaination :</b>The dimension of W^l = (number of neurons in layer l, number of neurons in layer l-1).
+<hr>
+
+<h3>Weight Matrix 2</h3>
+
+![Alt text](images/wm-2.png)
+<b>Ans :</b>
+
+![Alt text](images/wm-2-ans.png)
+<hr>
+
+<h3>Compute gradient of the loss function with respect to cumulative input</h3>
+
+![Alt text](images/lf.png)
+<b>Ans :</b>
+
+![Alt text](images/lf-ans.png)
+<hr>
+
+![Alt text](images/lf-2.png)
+<b>Ans :</b>
+
+![Alt text](images/lf-2-ans.png)
+<hr>
+
+![Alt text](images/lf-3.png)
+<b>Ans :</b>
+<ul>
+<li>
+
+![Alt text](images/lf-3-ans-1.png)
+
+<li>
+
+![Alt text](images/lf-3-ans-2.png)
+</ul>
+<hr>
+
+<h3>Backpropagation</h3>
+
+![Alt text](images/bp.png)
+<b>Ans :</b>
+
+![Alt text](images/bp-ans.png)
+<hr>
