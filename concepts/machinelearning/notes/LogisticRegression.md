@@ -151,3 +151,119 @@ A: 0.82, D: 0.41, E: 0.55, F: 0.62, H: 0.91, I: 0.74</p>
 
 ![Alt text](images/log-odds-answer.png)
 <hr>
+
+To build a **Logistic Regression** model in Python, you can use **scikit-learn** or implement it manually for a deeper understanding. Logistic regression is primarily used for binary classification problems, where the output is either 0 or 1.
+
+---
+
+### **1. Using Scikit-Learn**
+
+#### Example: Predicting if a student will pass based on study hours.
+
+```python
+# Import libraries
+import numpy as np
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
+
+# Example dataset
+data = {
+    'Hours_Studied': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+    'Pass': [0, 0, 0, 0, 1, 1, 1, 1, 1, 1]
+}
+df = pd.DataFrame(data)
+
+# Features and target
+X = df[['Hours_Studied']]  # Independent variable
+y = df['Pass']             # Dependent variable (binary classification)
+
+# Split the data
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Initialize and train the logistic regression model
+model = LogisticRegression()
+model.fit(X_train, y_train)
+
+# Make predictions
+y_pred = model.predict(X_test)
+
+# Evaluate the model
+print("Accuracy Score:", accuracy_score(y_test, y_pred))
+print("Confusion Matrix:\n", confusion_matrix(y_test, y_pred))
+print("Classification Report:\n", classification_report(y_test, y_pred))
+```
+
+---
+
+### **2. Logistic Regression from Scratch**
+
+Logistic regression uses the **sigmoid function** to map predictions to probabilities.
+
+#### Sigmoid Function:
+\[
+\sigma(z) = \frac{1}{1 + e^{-z}}
+\]
+
+Where \(z = X \cdot \theta\).
+
+#### Steps:
+1. Initialize weights (\(\theta\)).
+2. Compute predictions using the sigmoid function.
+3. Use the **log-loss function** to calculate error.
+4. Optimize weights using gradient descent.
+
+#### Example Implementation:
+
+```python
+import numpy as np
+
+# Example dataset
+X = np.array([[1], [2], [3], [4], [5], [6], [7], [8], [9], [10]])  # Hours Studied
+y = np.array([0, 0, 0, 0, 1, 1, 1, 1, 1, 1])  # Pass/Fail
+
+# Add bias term
+X = np.hstack((np.ones((X.shape[0], 1)), X))
+
+# Sigmoid function
+def sigmoid(z):
+    return 1 / (1 + np.exp(-z))
+
+# Initialize weights
+theta = np.zeros(X.shape[1])
+
+# Learning rate and iterations
+learning_rate = 0.1
+iterations = 1000
+
+# Gradient descent
+for i in range(iterations):
+    z = np.dot(X, theta)
+    predictions = sigmoid(z)
+    error = predictions - y
+    gradient = np.dot(X.T, error) / len(y)
+    theta -= learning_rate * gradient
+
+# Print final weights
+print("Trained Weights:", theta)
+
+# Make predictions
+def predict(X, theta):
+    z = np.dot(X, theta)
+    return sigmoid(z) >= 0.5
+
+print("Predictions:", predict(X, theta))
+```
+
+---
+
+### **3. Model Evaluation**
+- **Confusion Matrix**: Evaluates true positives, false positives, true negatives, and false negatives.
+- **Accuracy**: Ratio of correct predictions to total predictions.
+- **Precision, Recall, F1-Score**: Useful for imbalanced datasets.
+
+### **4. Use Cases**
+- Spam detection.
+- Disease prediction.
+- Customer churn prediction.

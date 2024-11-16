@@ -240,3 +240,104 @@ Here are some concise notes on using pandas for machine learning (ML) exam prepa
   - Combine `pandas` data preprocessing with `scikit-learn` pipelines for streamlined ML workflows.
 
 ---
+Pandas is a powerful library for data manipulation and analysis in Python. For machine learning, it is often used for preprocessing and exploratory data analysis (EDA). Below are some important Pandas functions categorized by their purpose:
+
+---
+
+### **1. Data Loading**
+- **`pd.read_csv()`**: Load CSV files into a DataFrame.
+- **`pd.read_excel()`**: Read Excel files.
+- **`pd.read_sql()`**: Load data from an SQL query or database.
+- **`pd.read_json()`**: Load JSON data.
+
+---
+
+### **2. Data Exploration**
+- **`df.head(n)`**: View the first `n` rows of a DataFrame.
+- **`df.tail(n)`**: View the last `n` rows of a DataFrame.
+- **`df.info()`**: Get a summary of the DataFrame, including data types and non-null counts.
+- **`df.describe()`**: Get statistical summaries for numerical columns.
+- **`df.shape`**: Get the dimensions of the DataFrame (rows, columns).
+- **`df.columns`**: List all column names.
+- **`df.isnull().sum()`**: Check the number of missing values in each column.
+
+---
+
+### **3. Data Cleaning**
+- **`df.drop(columns=[...])`**: Drop specific columns.
+- **`df.dropna()`**: Remove rows with missing values.
+- **`df.fillna(value)`**: Fill missing values with a specified value.
+- **`df.duplicated()`**: Check for duplicate rows.
+- **`df.drop_duplicates()`**: Remove duplicate rows.
+- **`df.replace(old_value, new_value)`**: Replace specific values.
+
+---
+
+### **4. Data Transformation**
+- **`df['column'] = df['column'].astype(type)`**: Convert data types.
+- **`pd.get_dummies(df['column'])`**: Perform one-hot encoding for categorical columns.
+- **`df.apply(func, axis=0 or 1)`**: Apply a function across rows or columns.
+- **`df.rename(columns={'old_name': 'new_name'})`**: Rename columns.
+
+---
+
+### **5. Feature Engineering**
+- **`df['new_column'] = df['col1'] + df['col2']`**: Create new features by combining columns.
+- **`pd.cut(df['column'], bins)`**: Bin numerical data into intervals.
+- **`pd.qcut(df['column'], q)`**: Bin data into quantiles.
+- **`df.groupby('column').mean()`**: Group data and compute aggregate functions.
+
+---
+
+### **6. Indexing and Filtering**
+- **`df.loc[]`**: Access rows/columns by labels.
+- **`df.iloc[]`**: Access rows/columns by integer indices.
+- **`df[df['column'] > value]`**: Filter rows based on a condition.
+- **`df.set_index('column')`**: Set a column as the DataFrame index.
+- **`df.reset_index()`**: Reset the index.
+
+---
+
+### **7. Statistical Analysis**
+- **`df.corr()`**: Compute the correlation matrix.
+- **`df.cov()`**: Compute covariance.
+- **`df.value_counts()`**: Count unique values in a column.
+- **`df.pivot_table()`**: Create pivot tables for aggregation.
+
+---
+
+### **8. Handling Dates**
+- **`pd.to_datetime(df['column'])`**: Convert a column to datetime format.
+- **`df['column'].dt.year`**, **`.month`**, **`.day`**: Extract date components.
+- **`df['column'].dt.strftime(format)`**: Format dates.
+
+---
+
+### **9. Data Export**
+- **`df.to_csv('file.csv')`**: Save a DataFrame to a CSV file.
+- **`df.to_excel('file.xlsx')`**: Save a DataFrame to an Excel file.
+- **`df.to_sql('table', connection)`**: Write data to a SQL database.
+
+---
+
+### **10. Visualization with Pandas**
+- **`df.plot()`**: Basic plots of data.
+- **`df.hist()`**: Plot histograms of columns.
+- **`df.boxplot()`**: Create boxplots.
+
+---
+
+### **Common Machine Learning Use Cases**
+1. **Data Preprocessing:**
+   - Handle missing values (`fillna`, `dropna`).
+   - Encode categorical variables (`get_dummies`, `replace`).
+   - Scale features (integrate with libraries like `sklearn`).
+
+2. **Feature Selection:**
+   - Use `corr()` to analyze relationships between features.
+   - Remove irrelevant features (`drop`).
+
+3. **Train-Test Split:**
+   - Pandas often works alongside `sklearn` for splitting datasets into train/test sets.
+
+---

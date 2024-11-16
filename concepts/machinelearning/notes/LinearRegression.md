@@ -133,3 +133,93 @@ Here, the output variable (dependent variable, which is to be predicted) is sale
 <b>Ans:</b><p>The linear relation between X and Y is strong, and their correlation will be negative.</p><br>
 <b>Explaination:</b><p>A higher value of R² means a strong linear relation. As Y is decreasing with the increasing value of X, you can conclude that their correlation will be negative.</p>
 <hr>
+
+To build a **Linear Regression** model, you can use Python with libraries like **scikit-learn** or manually using **NumPy** for educational purposes. Here's a step-by-step guide:
+
+---
+
+### **1. Using Scikit-Learn**
+
+```python
+# Import libraries
+import numpy as np
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_squared_error, r2_score
+
+# Example dataset
+data = {
+    'Experience': [1, 2, 3, 4, 5],
+    'Salary': [40000, 50000, 60000, 80000, 110000]
+}
+df = pd.DataFrame(data)
+
+# Features and target
+X = df[['Experience']]  # Independent variable(s)
+y = df['Salary']        # Dependent variable
+
+# Split the data into training and test sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Initialize and train the model
+model = LinearRegression()
+model.fit(X_train, y_train)
+
+# Make predictions
+y_pred = model.predict(X_test)
+
+# Evaluate the model
+print("Mean Squared Error:", mean_squared_error(y_test, y_pred))
+print("R² Score:", r2_score(y_test, y_pred))
+
+# Model coefficients
+print("Slope (Coefficient):", model.coef_[0])
+print("Intercept:", model.intercept_)
+```
+
+---
+
+### **2. Building a Linear Regression Model from Scratch**
+This example uses **NumPy** for matrix operations.
+
+```python
+import numpy as np
+
+# Example dataset
+X = np.array([1, 2, 3, 4, 5])  # Experience
+y = np.array([40000, 50000, 60000, 80000, 110000])  # Salary
+
+# Add bias (intercept term)
+X = np.vstack((np.ones(len(X)), X)).T
+
+# Calculate coefficients using the Normal Equation
+theta = np.linalg.inv(X.T @ X) @ X.T @ y
+
+# Intercept and slope
+intercept, slope = theta
+print("Intercept:", intercept)
+print("Slope:", slope)
+
+# Predict values
+predictions = X @ theta
+print("Predicted values:", predictions)
+```
+
+---
+
+### **3. Key Concepts**
+- **Objective of Linear Regression**: Minimize the residual sum of squares between observed and predicted values.
+- **Equation of the Model**:  
+  \[
+  y = \beta_0 + \beta_1 x_1 + \dots + \beta_n x_n
+  \]
+  where \(\beta_0\) is the intercept and \(\beta_1, \beta_2, \dots, \beta_n\) are coefficients.
+
+---
+
+### **4. Model Evaluation**
+- **Mean Squared Error (MSE)**: Average squared difference between actual and predicted values.
+- **R² Score**: Measures how well the model explains the variance in the data. A value closer to 1 is better.
+
+---
