@@ -226,3 +226,111 @@ In fact we didn't need to do all these.<br>
 
 As soon as we are talking about only DL students, we are talking about only 90 students. Now what is the probability of any student from this 90 students being a male. As there are 40 males in these 90 students, the probability of selecting a male is 40/90.
 <hr>
+
+Naive Bayes is a probabilistic machine learning model based on Bayes' Theorem. It assumes that the features used for prediction are independent (hence "naive") and calculates the probability of each class given the features. There are different types of Naive Bayes models depending on the type of features (continuous or binary). Two common variants are **Gaussian Naive Bayes** and **Bernoulli Naive Bayes**, each based on different probability distributions.
+
+### 1. **Gaussian Naive Bayes**
+   - **Assumption**: Features are continuous and are normally distributed (i.e., follow a Gaussian distribution).
+   - **Use case**: This variant is best used when the data consists of continuous numeric features.
+   - **Formula**: The Gaussian Naive Bayes classifier calculates the probability using the Gaussian distribution formula:
+     \[
+     P(X_i | C) = \frac{1}{\sqrt{2 \pi \sigma^2}} \exp\left(\frac{-(X_i - \mu)^2}{2\sigma^2}\right)
+     \]
+     where:
+     - \( \mu \) is the mean of feature \( i \) for class \( C \),
+     - \( \sigma \) is the standard deviation of feature \( i \) for class \( C \),
+     - \( X_i \) is the value of the feature for a given instance.
+
+### 2. **Bernoulli Naive Bayes**
+   - **Assumption**: Features are binary (0 or 1).
+   - **Use case**: This variant is typically used when the features represent binary outcomes (e.g., presence or absence of a feature).
+   - **Formula**: The Bernoulli Naive Bayes classifier computes the probability based on the Bernoulli distribution:
+     \[
+     P(X_i = 1 | C) = p_i^1, \quad P(X_i = 0 | C) = 1 - p_i
+     \]
+     where:
+     - \( p_i \) is the probability of feature \( i \) being 1 (present) for class \( C \).
+
+### **Building Naive Bayes Model in Python (using Scikit-learn)**
+
+#### Example with Gaussian Naive Bayes:
+
+```python
+# Import necessary libraries
+from sklearn.model_selection import train_test_split
+from sklearn.naive_bayes import GaussianNB
+from sklearn.metrics import accuracy_score
+from sklearn.datasets import load_iris
+
+# Load dataset
+data = load_iris()
+X = data.data
+y = data.target
+
+# Split the dataset into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+
+# Initialize the Gaussian Naive Bayes model
+gnb = GaussianNB()
+
+# Train the model
+gnb.fit(X_train, y_train)
+
+# Predict on the test set
+y_pred = gnb.predict(X_test)
+
+# Calculate accuracy
+accuracy = accuracy_score(y_test, y_pred)
+print(f"Accuracy of Gaussian Naive Bayes: {accuracy * 100:.2f}%")
+```
+
+#### Example with Bernoulli Naive Bayes:
+
+```python
+# Import necessary libraries
+from sklearn.naive_bayes import BernoulliNB
+from sklearn.metrics import accuracy_score
+from sklearn.datasets import load_digits
+from sklearn.model_selection import train_test_split
+
+# Load dataset (using binary features here)
+data = load_digits()
+X = data.data
+y = data.target
+
+# Convert features to binary (for Bernoulli Naive Bayes)
+X_bin = (X > 8).astype(int)
+
+# Split the dataset into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X_bin, y, test_size=0.3, random_state=42)
+
+# Initialize the Bernoulli Naive Bayes model
+bnb = BernoulliNB()
+
+# Train the model
+bnb.fit(X_train, y_train)
+
+# Predict on the test set
+y_pred = bnb.predict(X_test)
+
+# Calculate accuracy
+accuracy = accuracy_score(y_test, y_pred)
+print(f"Accuracy of Bernoulli Naive Bayes: {accuracy * 100:.2f}%")
+```
+
+### **Key Differences:**
+
+- **Gaussian Naive Bayes** is more suited to problems where your features are continuous and follow a normal distribution, like predicting house prices based on continuous variables (e.g., area, number of rooms).
+- **Bernoulli Naive Bayes** is ideal for text classification tasks, such as spam email classification, where features (words) are binary, indicating the presence or absence of a word in a document.
+
+Both models assume feature independence given the class label and use Bayes' theorem to update probabilities based on observed data.
+
+### **Choosing Between Gaussian and Bernoulli Naive Bayes:**
+- If the data consists of continuous numeric features, use **Gaussian Naive Bayes**.
+- If the features are binary or represent the occurrence of events, use **Bernoulli Naive Bayes**.
+
+You can use **Cross-validation** and **GridSearchCV** for hyperparameter tuning and to determine the optimal model based on your dataset.
+
+For more details, refer to:
+- [Gaussian Naive Bayes in Scikit-learn](https://scikit-learn.org/stable/modules/generated/sklearn.naive_bayes.GaussianNB.html)
+- [Bernoulli Naive Bayes in Scikit-learn](https://scikit-learn.org/stable/modules/generated/sklearn.naive_bayes.BernoulliNB.html)
