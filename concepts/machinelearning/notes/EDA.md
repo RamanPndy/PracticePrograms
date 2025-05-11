@@ -1,7 +1,3 @@
-Here's a quick guide to Exploratory Data Analysis (EDA) for machine learning exam preparation, covering the essentials you'll need to know.
-
----
-
 ### **1. What is EDA?**
 EDA is the process of analyzing data sets to summarize their main characteristics, often with visual methods. It’s a crucial first step in any machine learning pipeline to understand the data structure, detect outliers, and uncover relationships between variables.
 
@@ -93,3 +89,151 @@ EDA is the process of analyzing data sets to summarize their main characteristic
 4. **Practice Interpreting Plots**: Be able to read and draw conclusions from histograms, scatter plots, and correlation matrices.
 
 ---
+
+Exploratory Data Analysis (EDA) with pandas is an essential step in understanding and preparing your dataset for further analysis or modeling. Here’s a set of notes summarizing key pandas techniques for EDA:
+
+---
+
+### **1. Loading and Inspecting Data**
+- **Load data:**
+  ```python
+  import pandas as pd
+  df = pd.read_csv("file.csv")  # or pd.read_excel(), pd.read_sql(), etc.
+  ```
+- **Preview data:**
+  ```python
+  df.head()  # First 5 rows
+  df.tail()  # Last 5 rows
+  ```
+- **Data information:**
+  ```python
+  df.info()  # Column types, non-null counts
+  df.describe()  # Statistical summary for numeric columns
+  df.shape  # Rows and columns count
+  df.columns  # List of column names
+  ```
+
+---
+
+### **2. Handling Missing Data**
+- **Check missing values:**
+  ```python
+  df.isnull().sum()  # Count of missing values per column
+  ```
+- **Fill missing values:**
+  ```python
+  df['col'].fillna(value, inplace=True)  # Replace NaN with a value
+  ```
+- **Drop rows or columns:**
+  ```python
+  df.dropna(inplace=True)  # Drop rows with NaN
+  df.dropna(axis=1, inplace=True)  # Drop columns with NaN
+  ```
+
+---
+
+### **3. Understanding Data Types**
+- **Check data types:**
+  ```python
+  df.dtypes
+  ```
+- **Convert data types:**
+  ```python
+  df['col'] = df['col'].astype('int')  # Convert to integer
+  ```
+
+---
+
+### **4. Summarizing and Aggregating Data**
+- **Basic statistics:**
+  ```python
+  df['col'].mean()
+  df['col'].median()
+  df['col'].std()
+  ```
+- **Count values:**
+  ```python
+  df['col'].value_counts()
+  ```
+- **Group by operations:**
+  ```python
+  df.groupby('col1')['col2'].mean()
+  ```
+
+---
+
+### **5. Handling Duplicates**
+- **Check duplicates:**
+  ```python
+  df.duplicated().sum()
+  ```
+- **Remove duplicates:**
+  ```python
+  df.drop_duplicates(inplace=True)
+  ```
+
+---
+
+### **6. Data Visualization with pandas**
+- **Histograms:**
+  ```python
+  df['col'].hist()
+  ```
+- **Scatter plots:**
+  ```python
+  df.plot.scatter(x='col1', y='col2')
+  ```
+- **Box plots:**
+  ```python
+  df.boxplot(column=['col'])
+  ```
+
+---
+
+### **7. Feature Engineering**
+- **Create new columns:**
+  ```python
+  df['new_col'] = df['col1'] + df['col2']
+  ```
+- **Apply functions:**
+  ```python
+  df['col'] = df['col'].apply(lambda x: x * 2)
+  ```
+
+---
+
+### **8. Correlation and Relationships**
+- **Compute correlations:**
+  ```python
+  df.corr()  # Correlation matrix
+  ```
+- **Visualize correlations:**
+  ```python
+  import seaborn as sns
+  sns.heatmap(df.corr(), annot=True)
+  ```
+
+---
+
+### **9. Pivot Tables**
+- **Create pivot tables:**
+  ```python
+  df.pivot_table(values='col', index='col1', columns='col2', aggfunc='mean')
+  ```
+
+---
+
+### **10. Data Sampling**
+- **Random sampling:**
+  ```python
+  df.sample(frac=0.1)  # 10% of the data
+  ```
+
+---
+
+### **11. Saving Processed Data**
+- **Export to file:**
+  ```python
+  df.to_csv("processed_data.csv", index=False)
+  df.to_excel("processed_data.xlsx", index=False)
+  ```

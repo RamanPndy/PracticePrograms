@@ -1,0 +1,426 @@
+Bag of Words Model?
+The Bag of Words (BoW) model is a simple and commonly used technique in natural language processing (NLP) to convert text into numerical features for machine learning models.
+BoW represents a text (such as a sentence or document) as a bag (multiset) of its words, disregarding grammar and word order but keeping multiplicity (word count).
+How It Works:
+Build a vocabulary of all unique words in your dataset.
+For each document, count how many times each word from the vocabulary appears.
+Represent the document as a vector of those counts.
+
+The number of rows is equal to the number of documents
+The number of columns is equal to the vocabulary size of the text corpus.
+The value inside a cell which corresponds to a document ‘d’ and a term ‘t’ is non-zero if ‘t’ appears one or more times in 'd'.
+
+what is TF-IDF model ?
+TF-IDF stands for Term Frequency–Inverse Document Frequency. It's a statistical technique used to evaluate the importance of a word in a document relative to a collection of documents (corpus).
+TF-IDF assigns a weight to each word:
+High if it’s frequent in one document but rare across other documents.
+Low if it’s common across many documents (e.g., "the", "is").
+
+TF(t,d) = Number of times term t appears in d / Total terms in d
+IDF(t) = log(N / 1 + df(t))
+
+d = document
+N = total number of documents
+df(t) = number of documents containing term 
+The "+1" avoids division by zero.
+
+TF-IDF(t,d)=TF(t,d)×IDF(t)
+
+The frequency of words in any large enough document (assume a document of more than, say, a million words) is best approximated by which distribution ?
+Zipf distribution
+
+What is the rationale behind the concept of inverse document frequency to capture word importance?
+If a term appears only in a select few documents, it is considered as important.
+The idea behind including the inverse document frequency was to get a holistic view of the word importance based on looking at the presence of the words in other documents too, rather than just looking at its presence in the current document.
+
+how to Find the Damerau–Levenshtein edit distance between "Damerau" and "Levenshtein".?
+It’s a string metric that counts the minimum number of operations required to transform one string into another.
+It allows:
+Insertions
+Deletions
+Substitutions
+Transpositions (swap of two adjacent characters) ← this is what makes it different from Levenshtein.
+
+what is pointwise mutual information ?
+Pointwise Mutual Information (PMI) is a measure from information theory used to quantify the association between two events or words. In natural language processing (NLP), it’s often used to evaluate how strongly two words co-occur compared to what we'd expect if they were independent.
+
+If two words co-occur more often than chance, PMI will be positive.
+If they co-occur less than expected, PMI will be negative.
+If they are independent, PMI is zero.
+
+PMI(x,y)= log(P(x,y)/P(x).P(y))
+P(x,y) = probability of both words x and y appearing together
+P(x) = probability of word x
+P(y) = probability of word y
+
+PMI is undefined if P(x,y)=0, so it's often smoothed or clipped.
+Normalized PMI (NPMI): bounds PMI between -1 and 1
+PMI is symmetric: PMI(x,y)=PMI(y,x)
+
+What is the Levenshtein edit distance between ‘perspective’ and ‘prospective’?
+To compute the Levenshtein edit distance between "perspective" and "prospective", we count the minimum number of single-character edits (insertions, deletions, or substitutions) required to change one word into the other.
+
+Which of the following parts of speech is categorised as open class parts of speech? 
+Proper noun (PROPN)
+Adverb (ADV)
+Interjection (INTJ)
+
+what is hidden markov model ?
+A Hidden Markov Model (HMM) is a statistical model used to represent systems that are Markov processes with hidden (unobserved) states. It's especially popular in sequence modeling tasks like speech recognition, part-of-speech tagging, and bioinformatics.
+Which of the following assumptions (both implicit and explicit) is made while doing HMM sequence labelling?
+The probability of the PoS tag for a given word is dependent upon the word and the previous tag in a sequence.
+Markov assumption: The probability of the PoS tag of a word depends only on the PoS tag of the previous word.
+
+what is emission matrix ?
+An emission matrix (also called observation likelihood matrix) is a key component of a Hidden Markov Model (HMM). It defines the probability of observing a certain output (observation) given that the system is in a particular hidden state.
+Each row of the emission matrix corresponds to a hidden state.
+Each column corresponds to a possible observation.
+Each row is a probability distribution over observations, so it should sum to 1.
+
+What is ‘Hidden’ in the Hidden Markov Model in the context of PoS tagging?
+PoS tags are hidden.
+
+What do you mean by sequence labelling in PoS tagging tasks?
+Assigning the PoS tags to each word of a sentence sequentially by considering the PoS tags of the previous word.
+Sequence labelling is the task of labelling the individual units (words) in a sequence (sentence) by looking at the PoS tag of the previous word. PoS tagging is thus a natural use case of sequence labelling.
+
+Which of the following statements is true for heteronyms?
+Words that are spelled identically but have different meanings when pronounced differently
+
+Which of the following problems can be considered under the word sense disambiguation (WSD) problem?
+When the system is not able to identify its correct pronunciation for the words which have the same PoS tag but different meanings in different contexts
+
+What will be the correct order of steps before extracting the noun PoS tags from the data set ?
+Calculate the PoS tags of each token and then convert them into their lemma form so that each word comes into their root form. Now, once you find the lemma form of each token, count the frequency of each word which has a noun PoS tag.
+
+Lesk method -> used to disambiguate words
+Word2Vec -> used to create word embeddings
+Word2Vec skip gram -> used to create word embeddings
+Word2Vec CBOW -> used to create word embeddings
+Word2Vec fasttext -> used to create word embeddings
+Word2Vec glove -> used to create word embeddings
+Word2Vec fasttext -> used to create word embeddings
+Word2Vec glove -> used to create word embeddings
+Levenstien formula -> used to calculate distance between two words
+Jaccard similarity -> used to calculate distance between two sets
+skip gram -> taken input word and predicts surrounding words
+Continous bag of words -> take surrounding words as input and predicts the middle word
+context window -> number of words to consider on either side of the target word
+cosine similarity -> used to calculate distance between two vectors
+POS tagging -> part of speech tagging
+NER -> named entity recognition
+CFR -> 
+holonym -> part for whole ie. nose is part of face
+merenym -> whole for part ie. face is whole for nose
+hypernym -> generalization ie. dog is a hypernym of poodle
+hyponym -> specialization ie. poodle is a hyponym of dog
+
+one hot encoding -> used to represent categorical data
+TF-IDF -> used to represent text data
+Bag of words -> used to represent text data
+one hot encoding is required to feed in Neural networks
+
+global average pooling takes an average across all the tokens
+
+Topic Modelling Algorithms
+Non-negative matrix factorisation
+Latent dirichlet allocation
+Latent semantic analysis
+
+Word2Vec captures semantic relationships between words by converting them into numerical vectors, whereas n-gram models rely on fixed sequences of words without considering semantic relationships.
+Word2Vec may misinterpret sarcastic statements as positive because it does not fully grasp the context or sarcasm, which is a critical issue in sentiment analysis.
+
+How does the dynamic nature of the context vector ci in an attention-based model improve its performance over static context vectors?
+It allows the model to adaptively focus on different parts of the input sequence as needed for generating each output word.
+The dynamic context vector​ allows the model to adaptively focus on the most relevant parts of the input sequence at each step, which improves performance, especially with longer sentences.
+
+How does the model learn to compute the attention scores during training?
+The model learns an alignment function that compares the decoder's state with each context vector.
+The model learns an alignment function that compares the decoder's current state with each encoder-generated context vector, determining the attention scores.
+
+Transformers has 2 attentions
+self attention and encode decoder attention
+
+How does the decoder determine the first word in the output sequence?
+By focusing on the most relevant encoder outputs.
+The decoder attends to specific encoder outputs to decide on the first word, ensuring relevance.
+
+regression in object localisation uses L1 or L2 loss functions for error minimization
+
+Non Maxima Supression
+Non-Maximum Suppression (NMS) is a technique used in computer vision, particularly in object detection, to remove redundant bounding boxes and keep only the most relevant ones.
+Object detectors (like YOLO, SSD, Faster R-CNN) often predict multiple bounding boxes for the same object. NMS helps in selecting the best box and suppressing the others.
+How Non-Maximum Suppression works:
+1. Start with all predicted bounding boxes, each with a confidence score.
+2. Sort the boxes by their confidence scores in descending order.
+3. Pick the box with the highest score and remove it from the list. This becomes a final detection.
+4. Compare this box with the rest:
+Compute IoU (Intersection over Union) with each remaining box.
+Suppress boxes with IoU > threshold (commonly 0.5), as they likely represent the same object.
+5. Repeat steps 3–4 until all boxes are either selected or suppressed.
+
+SSD(Single Shot Detector)
+SSD comprises a total of six convolution layers, which are of different sizes and provide different scales of the same image. This allows the model to detect objects at multiple scales.
+The initial layers have a small receptive field, i.e., they cover a low spatial region. These layers detect the smaller objects in an image. However, the later layers have a large receptive field and detect the bigger objects.
+In the YOLO model, you saw anchor boxes, which helped detect multiple overlapping objects. The SSD uses default bounding boxes, which serve the same purpose. There are 4 or 6 default bounding boxes, which are defined with one prediction per box. 
+This serves as a starting point for the algorithm by giving the model an idea about how the objects look and where they might be located. The SSD then uses feature maps to detect objects at different scales. Now, you might wonder how the SSD selects the final bounding box out of the 4 or 6 default boxes.
+This technique of selecting the final bounding box is referred to as the matching strategy in the SSD.
+The conv4_3 layer divides the image into a 38 X 38 grid and predicts four boxes per cell. Therefore, the overall predictions made by the conv4_3 layer become 
+38
+X
+38
+X
+4
+. As you already know, each prediction has the bounding box coordinates and 21 scores, and the highest score denotes the class of the object detected.
+Now, these three predictions (excluding the ground truth) are segregated into positive or negative based on whether their IoU is lower or higher than the ground truth, i.e., 50%. 
+If the value of IoU is less than 50%, then it is said to be a negative match and is rejected.
+If the value is more than 50%, then it is said to be a positive match and is accepted. 
+
+The losses for this prediction are of two types:
+1. Confidence loss: It refers to the loss incurred in the prediction of the class, which is calculated using the categorical cross-entropy loss, 
+    Categorical Cross-Entropy Loss is a commonly used loss function for multi-class classification problems, where each input is assigned to one of several categories.
+    It measures the difference between the true label (ground truth) and the model’s predicted probability distribution over the classes.
+    Use categorical cross-entropy when:
+    You have more than 2 classes.
+    Labels are one-hot encoded.
+    For labels that are integers (e.g., [1, 2, 0]), use sparse categorical cross-entropy instead.
+In the case of a positive match, the loss is penalised according to the confidence score of the corresponding class.
+In the case of negative match predictions, the loss is penalised according to the confidence score of the class “0”.
+2. Location loss: It refers to the loss incurred while calculating the bounding box coordinates. It is calculated using the L1 or L2 loss formula, which you learnt about and implemented previously. 
+
+The total loss can be calculated using this formula:
+
+Multibox or SSD loss = Confidence loss + α. Location loss
+Here, α is a parameter that is used to balance the overall loss.
+
+ResNet is a CNN architecture which is made up of serires of residual blocks which is known as resblocks interconnected with cross-connections between selected layers.
+very deep CNNs without cross connections tend to be prone to errors due to suboptimal error minimization which is Vanishing gradient
+each resblock has 2 connections from its input
+1. going through a series of convolutions, batch normalization and linear functions
+2. skipping over that series of convolutions and functions which are known as identity, cross or skip connections.
+
+U-Net: Architecture
+The output from the encoder is fed into the decoder via the bottleneck.
+These sections will use the feature maps provided by the encoder to upscale and generate the final segmentation masks for the image.
+Bottleneck: This layer acts as a bridge between the encoder and the decoder. It is a simple convolutional layer that generates more feature maps. However, there is no pooling layer to follow. As a result, you can see that the output now holds 1024 feature maps and the dimensions have reduced due to the convolutional layers.
+Decoder/Expansion
+This phase is responsible for mapping each pixel with a class, that is, the generation of the pixel map.
+
+In the U-Net architecture, skip connections are responsible for reconstruction of image. The upsampled output is combined with the output of the encoder phase at the same level using the skip connections as concatenation helps in preserving the information at that level. 
+
+The encoder is responsible for the process of downsampling which is the same as the convolutional neural network. The pooling layers used in the architecture reduce the size of the input at each level, resulting in a spatially reduced output.
+
+Upsampling
+The encoder answers the ‘what’ component as it is able to extract the features to identify the classes, however, the architecture loses the spatial information in the process. Therefore, the process of upsampling is required to map the identified features back to their position in the image. 
+the following upsampling techniques can be used:
+Bi-linear interpolation
+Cubic interpolation
+Nearest neighbor interpolation 
+Unpooling
+Transposed convolution
+
+Transposed Convolution
+This upsampling technique is the reverse of the convolution process. The convolution process results in the reduction of the size of the input, whereas, the transposed convolution method is used to upscale the image. 
+architecture uses the filter matrix to learn the shape of the transformed matrix used for transposed convolution. The values in this matrix are the same as weights as they are learnt using the process of backpropagation.
+
+Dice coefficient: The Dice Coefficient (also called Sørensen–Dice index) is a similarity metric used primarily to evaluate the performance of image segmentation models by comparing the overlap between the predicted and ground truth masks.
+Given:
+
+𝐴
+A = set of predicted pixels (segmentation output)
+
+𝐵
+B = set of ground truth pixels (actual segmentation)
+
+The Dice Coefficient is:
+
+Dice
+(
+𝐴
+,
+𝐵
+)
+=
+2
+∣
+𝐴
+∩
+𝐵
+∣
+∣
+𝐴
+∣
++
+∣
+𝐵
+∣
+Dice(A,B)= 
+∣A∣+∣B∣
+2∣A∩B∣
+​
+ 
+Where:
+
+∣
+𝐴
+∩
+𝐵
+∣
+∣A∩B∣ is the number of overlapping (correctly predicted) pixels,
+
+∣
+𝐴
+∣
+∣A∣ and 
+∣
+𝐵
+∣
+∣B∣ are the total number of pixels in prediction and ground truth respectively.
+
+
+
+Dice = 1 → Perfect overlap
+
+Dice = 0 → No overlap at all
+Dice Loss:
+Often used as a loss function:
+
+Dice Loss = 1 − Dice Coefficient
+This encourages the model to maximize the overlap between prediction and ground truth.
+
+Which of the following is not a region-based model?
+R-CNN, Fast R-CNN, YOLO, Mask R-CNN
+YOLO It is a one-shot detector. Hence, this is the correct answer.
+
+components of a Mask R-CNN architecture.
+Backbone: This is the base of the Mask R-CNN framework that is responsible for feature extraction.
+Backbone is a standard convolutional neural network (such as ResNet, VGG, Inception, etc.) that is responsible for extracting the features from the image. The output from this network is the feature maps that are fed to the other networks as input. 
+
+Region Proposal Network (RPN): This component is useful for the generation of anchor boxes which are used to locate the objects in the image.
+RPN scans the image in a sliding window fashion (like filters in CNNs) and proposes the regions of the image which may contain objects. 
+The network uses anchors to scan different parts of the image. They are a set of boxes with predefined sizes and scales relative to the images. 
+The RPN generates two outputs for each anchor:
+Anchor class: Foreground or background. The foreground class implies that it is likely that an object is present in that anchor box.
+Bounding Box Refinement: Spatial displacement and resizing. This is an estimation of percentage change in the dimensions and the position of the bounding box (x, y, width, height) to refine the anchor box to fit the object better.
+In case multiple anchors overlap, the network uses the IoU score to select the most optimal anchor box to form the proposed region.
+
+Region of Interest (RoI) Pooling: RoI Pooling layer is responsible for generating same-sized regions for the architecture to run classification, regression and segmentation.
+The ROI pooling layer helps in standardising the size of the ROIs obtained from the RPN by cropping a part of the feature maps and resizing them to a fixed size.
+The ROIAlign is another way to solve the issue and obtain uniform ROIs. In this method, the feature map at different points can be sampled, and bilinear interpolation (upsampling) is applied on top of it to generate uniform sizes.
+
+Classifier: This component is used to classify the detected object into a particular class.
+Regressor: This part helps in refining the bounding box that encapsulates the identified object.
+Segmentation Mask: This block generates the segmentation mask for the object within the bounding box.
+
+This network is part of the second stage of the architecture. There are two sources of inputs for this network. Backbone network provides the feature maps to classify the objects and the RPN is responsible for delivering the Regions of Interest (ROIs) to locate them in the image.
+RPN is responsible for generating candidate bounding boxes, not the final output.
+The role of the classifier is to use the feature maps to generate the labels for the bounding box.
+There is an RoI Pooling or RoI Align layer between the two sections which is covered in the next video.
+RoI Regressor is responsible for the refinement of bounding boxes.
+
+Which of the following components is responsible for the generation of bounding boxes in the Mask R-CNN architecture?
+Regressor :The regressor helps in generating the final bounding box in the output.
+
+Why is the CLS token necessary for image classification tasks, and what purpose does it serve in the overall architecture?
+It acts as a pooling mechanism, aggregating the features of all image patches into a single representation.
+The CLS token aggregates the features from all image patches into a single embedding that is used for final classification.
+
+What purpose does the self-attention layer serve in the Vision Transformer model?
+It captures relationships between patches, similar to words in NLP.
+The self-attention layer in ViTs identifies relationships between patches.
+
+Vision Transformers
+The architecture of a ViT is notably similar to the architecture of the transformer encoder used in language processing. The core components of the ViT encoder include multi-head attention, a normalisation layer and an MLP. 
+ViTs require images to be processed in a specific way to fit into the transformer architecture. 
+1. Image tokenization: Input images are split into patches, reducing complexity and capturing local structures.
+2. Flattening and embedding patches: Patches are flattened and transformed using linear embeddings.
+3. Positional encoding: Positional embeddings are added to maintain spatial information in sequence-agnostic transformers.
+
+These steps ensure that the image patches are transformed into a sequence of vectors, analogous to word tokens in a sentence, ready to be processed by the transformer encoder.
+the total number of patches (n) is calculated by dividing the total image area by the area of one patch. The calculation is given below:                                                           
+n=hw/p^2
+
+The size of the patches determines the level of detail and the type of features the transformer can focus on. Smaller patches provide finer detail but require more computations, whereas larger patches offer faster computation but capture more high-level or global details.
+
+Normalisation is an essential technique used in both language and ViTs, albeit with some differences.
+In language transformers, batch normalization normalises each feature channel across the batch, whereas layer normalization normalises each input sentence across all features. However, batch normalization can be challenging owing to variable sentence lengths.
+In ViTs, the normalization techniques are adapted accordingly. Instead of words, it has patches, each with a dimensional representation. Batch normalization in vision involves normalising each dimension of the patch representation across the batch of images. Layer normalization, on the other hand, normalises the feature representation within each image layer.
+
+Which of the following best describes the patch embedding matrix (E) in Vision Transformers (ViTs)?
+It represents the flattened patches, each transformed into a vector for transformer input.
+The patch embedding matrix holds the vector representations of the flattened patches after tokenization.
+
+a key feature of ViTs is their ability to generate attention maps. These maps show how the CLS token, which serves as the global image representation, attends to different patches in the input image.
+For instance, in the image, where the model is trained to recognise a basketball, the CLS token will have high attention weights on the patches containing the basketball.
+This capability allows the ViT to learn embeddings that closely align with the areas of interest in the image. The CLS token's attention effectively captures the relevant features needed for classification. By analysing various images, you will observe that the CLS token consistently focuses on patches that contain significant objects related to the classification task.
+
+Under what conditions do Vision Transformers (ViTs) tend to outperform Convolutional Neural Networks (CNNs)?
+When trained on larger data sets, such as JFT 300M
+ViTs outperform CNNs when trained on larger data sets due to their ability to effectively apply global attention mechanisms.
+
+In the context of Vision Transformer (ViT) variants, which of the following accurately reflects the differences between ViT-Base, ViT-Large, and ViT-Huge?
+ViT-Huge has more layers, larger hidden size dimensions, and more attention heads compared to ViT-Base and ViT-Large.
+The ViT variants differ in complexity, with ViT-Huge having more layers, larger hidden size dimensions, and more attention heads than ViT-Base and ViT-Large.
+
+what is self attention mechanism ?
+The self-attention mechanism is a fundamental concept in modern deep learning, especially in transformer models (like BERT, GPT, etc.). It allows a model to weigh the importance of different parts of an input sequence when encoding a particular element of that sequence.
+Self-attention helps the model dynamically learn which other words in the sequence are most relevant to each word.
+Given an input sequence (e.g., a sentence of words represented as vectors), for each word, the model computes:
+
+Query (Q) — What am I looking for?
+
+Key (K) — What do I contain?
+
+Value (V) — What information do I carry?
+
+For each word, the attention score is computed between its query and the keys of all other words in the sequence:
+
+Then, each word's final representation is a weighted sum of all value vectors using these attention scores.
+
+what is cross attention ?
+Cross-attention is a mechanism used in transformer models where one sequence (like a decoder input) attends to a different sequence (like an encoder output) to gather relevant information.
+
+How Cross-Attention Works:
+In encoder-decoder models (e.g., for machine translation or image captioning):
+
+1. Encoder processes the source input (e.g., English sentence) → gives encoder hidden states.
+2. Decoder generates the target output (e.g., French sentence).
+3. In cross-attention, the decoder:
+- Uses its own hidden state as Query (Q).
+- Uses encoder output as Key (K) and Value (V).
+- Calculates attention to find which encoder tokens are most relevant for generating the next output token.
+
+what is multi head attention mechanism ?
+Multi-Head Attention is an extension of the attention mechanism—particularly self-attention or cross-attention—where the model learns to focus on different representation subspaces simultaneously.
+A single attention head may not capture all types of relationships in data.
+For example, in a sentence, one head might focus on syntax, another on coreference, and another on semantics.
+
+ How It Works (High-Level Steps):
+ Input Embeddings (shape: [batch, seq_len, d_model]) are linearly projected into:
+
+Queries 
+𝑄
+Q
+
+Keys 
+𝐾
+K
+
+Values 
+𝑉
+V
+for each head, using different weights per head.
+
+What is a key benefit of using few-shot learning methods?
+It enables models to learn and adapt quickly from a small number of examples. Few-shot learning focuses on generalization from minimal data.
+
+Which statements accurately describe zero-shot learning?
+1. It uses a signature matrix to map feature spaces to attribute spaces.
+This is a fundamental aspect of zero-shot learning, allowing it to make inferences about unseen classes.
+
+2. It evaluates unseen classes without requiring training labels.
+Zero-shot learning is designed to infer classifications for classes not present in the training set.
+
+In metric-based meta-learning, why a Euclidean distance metric might perform poorly on tasks involving high-dimensional data with complex relationships? 
+Euclidean distance may fail to capture the intricate relationships and variations in high-dimensional data.
+Euclidean distance may not effectively capture the intricate relationships and variations present in high-dimensional data, leading to poor performance in tasks that depend on understanding these patterns.

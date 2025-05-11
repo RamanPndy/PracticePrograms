@@ -43,3 +43,85 @@ XGBoost handles missing values by treating thenm in such a manner that any trend
 Regularisation  is added in the objective function of XGBoost to penalize the model based on the number of trees and the depth of the model
 </ul>
 <hr>
+
+Boosting is a machine learning technique that improves the performance of algorithms by combining multiple weak learners to create a strong predictive model. It is often used for classification tasks, and some common boosting algorithms include AdaBoost, Gradient Boosting, and XGBoost. Here are some examples of using boosting algorithms in Python:
+
+### 1. **AdaBoost in Python**
+AdaBoost (Adaptive Boosting) is a boosting algorithm that adjusts the weights of observations based on the performance of each weak classifier, giving more weight to observations that were misclassified.
+
+```python
+from sklearn.ensemble import AdaBoostClassifier
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
+
+# Load dataset
+data = load_iris()
+X = data.data
+y = data.target
+
+# Split dataset into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Create AdaBoost model
+model = AdaBoostClassifier(n_estimators=50, random_state=42)
+
+# Train model
+model.fit(X_train, y_train)
+
+# Make predictions
+y_pred = model.predict(X_test)
+
+# Evaluate model
+accuracy = accuracy_score(y_test, y_pred)
+print(f'AdaBoost Model Accuracy: {accuracy:.2f}')
+```
+
+### 2. **Gradient Boosting in Python**
+Gradient Boosting is a more advanced boosting technique that builds models sequentially, each new model corrects the errors made by the previous ones.
+
+```python
+from sklearn.ensemble import GradientBoostingClassifier
+
+# Create Gradient Boosting model
+model = GradientBoostingClassifier(n_estimators=100, learning_rate=0.1, max_depth=3, random_state=42)
+
+# Train model
+model.fit(X_train, y_train)
+
+# Make predictions
+y_pred = model.predict(X_test)
+
+# Evaluate model
+accuracy = accuracy_score(y_test, y_pred)
+print(f'Gradient Boosting Model Accuracy: {accuracy:.2f}')
+```
+
+### 3. **XGBoost in Python**
+XGBoost is a powerful gradient boosting library that supports a wide range of machine learning tasks. It is known for its speed and performance.
+
+```python
+import xgboost as xgb
+
+# Create XGBoost model
+model = xgb.XGBClassifier(n_estimators=100, learning_rate=0.1, max_depth=3, random_state=42)
+
+# Train model
+model.fit(X_train, y_train)
+
+# Make predictions
+y_pred = model.predict(X_test)
+
+# Evaluate model
+accuracy = accuracy_score(y_test, y_pred)
+print(f'XGBoost Model Accuracy: {accuracy:.2f}')
+```
+
+### Key Points:
+- **AdaBoost** is often used for its simplicity and ability to adaptively adjust for observations that are misclassified.
+- **Gradient Boosting** is powerful for complex datasets due to its ability to combine weak learners in a sequence, reducing bias and variance.
+- **XGBoost** is especially efficient and scalable, with additional features like regularization and parallel processing, making it a popular choice for competitions like Kaggle.
+
+These examples show how to implement boosting in Python using popular libraries like scikit-learn and XGBoost. Each model can be tuned for better performance by adjusting parameters such as `n_estimators`, `learning_rate`, `max_depth`, and `subsample`.
+
+For more details on each of these algorithms and additional parameters that can be tuned, you can refer to the [scikit-learn documentation](https://scikit-learn.org/) and the [XGBoost documentation](https://xgboost.readthedocs.io/).

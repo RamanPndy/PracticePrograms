@@ -1,0 +1,108 @@
+<p>Dependency Tree</p>
+<h5>Notes:</h5>
+<ul>
+<li>parse tree for an active sentence is quite different from the parse tree of a passive sentence.</li>
+<li>The difference in the dependency parse tree of an active and a passive sentence can be used to create a rule to identify whether a particular sentence is active or a passive sentence.</li>
+<li>to identify whether a sentence is passive or active by implementing a simple rule(nsubjpass).</li>
+</ul>
+
+<p>Which of the following statements about constituency parsing is true?</p>    
+<ul>
+<li>It organises words into nested constituents such as noun phrase and verb phrase.<br>
+<b>True :</b>Constituency parsing segregates sentences into constituents of the same paradigm.<br>
+</li>
+<li>Constituency parsing segregates sentences into constituents of the same paradigm.<br>
+<b>False</b>
+<b>CE :</b>Words of a sentence are present as the terminal node of the constituency parse tree.<br>
+</li>
+<li>It checks whether a sentence is semantically correct, i.e., whether it is meaningful.<br>
+<b>False</b>
+<b>CE :</b>Constituency parsing finds structural dependencies in a sentence.<br>
+</li>
+</ul>
+<hr>
+
+<p>You have been given the following dependency parse tree for the sentence S given below.<br>
+    S: ‘I love Machine Learning.’<br>
+    ![Dependency Tree](images/dependency-tree.png)<br>
+    Can you identify the meaning of the relation ‘dobj’ between ‘love’ and ‘Learning’ from the parse diagram given above?
+</p>
+<b>Ans :</b>It is a direct object of a verb (love) is the noun phrase (learning) that denotes the entity acted upon.<br>
+<hr>
+
+<p>Consider the sentence: “I prefer morning flights.” Can you select which of the following relationships is correct?</p>    
+<ul>
+<li>prefer -> nsubj -> I<br>
+<b>'I' is the head of the subject.<br>
+</li>
+<li>prefer -> dobj -> flights<br>
+<b>'flights' is the head of the object phrase in the sentence.<br>
+</li>
+<li>flights -> compound -> morning<br>
+<b>morning’ and ‘flight’ are the compound objects.<br>
+</li>
+</ul>
+<hr>
+
+<p>What is the use of the ‘displacy’ package while creating the dependency parse trees?</p>
+<b>Ans :</b>‘displacy’ is used to visualise the dependency parse trees.<br>
+<b>Explaination :</b>‘displacy’ is a visualiser for dependency parse trees. It is used to create the visualisation of the dependency parse trees in the Jupyter notebook. ‘displacy’ is used to display the dependency parse tree diagram.<br>
+<hr>
+
+<p>Suppose you load the Spacy model and define a sentence ‘s’ using the following line of code:<br>
+<code>
+import spacy
+from spacy import displacy
+nlp = spacy.load("en_core_web_sm")
+ 
+s= “upGrad is teaching NLP.”
+doc = nlp(s)
+ 
+for tok in doc:
+    print(# PRINT THE DEPENDENCY TAGS)
+</code>
+</p>
+<b>Ans :</b>tok.dep_<br>
+<b>Explaination :</b>This is correct code to get the dependencies tags of each token.<br>
+<hr>
+
+<p>Which of the following functionalities are true for a sentence on which the spacy model is applied as given?<br>
+    <code>
+    import spacy
+    from spacy import displacy
+    nlp = spacy.load("en_core_web_sm")
+     
+    doc = nlp("When was the church built?")
+    for tok in doc:
+        print(## Statements)
+    </code>
+    </p>
+    <b>Ans :</b>You need to apply ‘tok.pos_’ to print the PoS tags of each token.<br>
+    <b>Explaination :</b>You will have to use ‘tok.pos_’ if you want to get the PoS tags of the respective tokens.<br>
+    <b>Ans :</b>You need to apply ‘tok.lemma_’ to print the lemma form of each token.<br>
+    <b>Explaination :</b>You will have to use ‘tok.lemma_’ if you want to get the lemma form of the respective tokens.<br>
+    <hr>
+
+<p>Check whether the following statement is true or false.<br>
+    ‘The root word in any dependency parse tree does not have any child’.</p>
+<b>Ans :</b>False<br>
+<b>Explaination :</b>The root word in any dependency parse tree does not have any parent. It will however have children.<br>
+<hr>
+
+<p>What will be the output of the following lines of code?<br>
+    <code>
+        import spacy
+        from spacy.matcher import Matcher
+        nlp = spacy.load("en_core_web_sm")
+        
+        rule = [{'DEP':'nsubjpass'}]
+        matcher = Matcher(nlp.vocab)
+        matcher.add('Rule',[rule])
+        
+        doc = nlp(‘I am learning NLP from upGrad.’)
+        matcher(doc)        
+    </code>
+    </p>
+    <b>Ans :</b>An empty array<br>
+    <b>Explaination :</b>This is the correct option as the defined rule has ‘nsubjpass’ as a condition. However, this statement, ‘I am learning NLP from upGrad’ does not have the ‘nsubjpass’ dependency tag.<br>
+    <hr>
