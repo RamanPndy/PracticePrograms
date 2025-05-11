@@ -1,0 +1,115 @@
+<p>Regular Experssions</p>
+<h5>Notes:</h5>
+<ul>
+<li>Character sets provide lot more flexibility than just typing a wildcard or the literal characters. Character sets can be specified with or without a quantifier. When no quantifier succeeds the character set, it matches only one character and the match is successful only if the character in the string is one of the characters present inside the character set. For example, the pattern ‘[a-z]ed’ will match strings such as ‘ted’, ‘bed’, ‘red’ and so on because the first character of each string - ‘t’, ‘b’ and ‘r’ - is present inside the range of the character set. </li>
+<li>The number of rows is equal to the number of documents</li>
+<li>The number of columns is equal to the vocabulary size of the text corpus that is, the number of unique words present in the text.</li>
+</ul>
+
+<p>Which of the following functions returns a None (that is, no match) if the pattern is not present at the very beginning of a given string:</p>
+<b>Ans :</b>re.match()<br>
+<b>Explaination :</b>The re.match() function looks for the given pattern at the very start. If it doesn’t find a string at the very start of the string, it returns None.
+<hr>
+
+<p>Which of the following meta-sequences is used to match all the whitespaces in a given pattern?</p>
+<b>Ans :</b>\s<br>
+<b>Explaination :</b>Correct. ‘\s’ captures all the whitespaces in a given string.
+<hr>
+
+<p>Which of the following words is not a stop word in the English language?</p>
+<options>You, Was, Today, The</options><br>
+<b>Ans :</b>Today<br>
+<hr>
+
+<p>Stop words provide useful information in classification problem such as spam detection. The previous statement is: True/False ?</p>
+<b>Ans :</b>False<br>
+<b>Explaination :</b>The statement is false because stopwords are not good features to determine whether a message is spam or ham. And this fact holds true for any classification problem.
+<hr>
+
+<p>What is the size of Bag-of-words model?</p>
+<b>Ans :</b>False<br>
+<b>Explaination :</b>The number of rows in a bag-of-words model is equal to the number of documents. While the number of columns is equal to the number of unique words in the documents, i.e. the vocabulary size.
+<hr>
+
+<p>Bag of Words Model</p>
+<h5>Notes:</h5>
+<ul>
+<li>In this bag-of-words table, ‘1’ means the word is present whereas ‘0’ means the absence of that word in that document. </li>
+<li>The number of rows is equal to the number of documents</li>
+<li>The number of columns is equal to the vocabulary size of the text corpus that is, the number of unique words present in the text.</li>
+</ul>
+
+<p>TF-IDF Model</p>
+<h5>Notes:</h5>
+<ul>
+<li>TF stands for term frequency, and the term IDF stands for inverse document frequency.</li>
+<li>![TF-IDF Formula](images/tf-idf-formula.png)</li>
+<li>Note that tf-idf is implemented in different ways in different languages and packages. In the tf score representation, some people use only the frequency of the term, i.e. they don’t divide the frequency of the term with the total number of terms. In the idf score representation, some people use natural log instead of the log with base 10. Due to this, you may see a different score of the same terms in the same set of documents. But the goal remains the same - assign a weight according to the word's importance.</li>
+<li>After creating models, they are saved using the pickle library on the disk.</li>
+</ul>
+
+<p>The frequency of words in any large enough document (assume a document of more than, say, a million words) is best approximated by which distribution:</p>
+<b>Ans :</b>Zipf distribution<br>
+<b>Explaination :</b>Word frequency is best approximated by this kind of distribution.
+<hr>
+
+<p>Which of the following words can’t be reduced to its base form by a stemmer:</p>
+<options>Successful, Bashed, Worse, Sweeping</options><br>
+<b>Ans :</b>The base form of the word ‘worse’ is ‘bad’. ‘Worse’ can’t be reduced to ‘bad’ using a stemmer.<br>
+<hr>
+
+<p>What is the rationale behind the concept of inverse document frequency to capture word importance?</p>
+<b>Ans :</b>If a term appears only in a select few documents, it is considered as important.<br>
+<b>Explaination :</b>The idea behind including the inverse document frequency was to get a holistic view of the word importance based on looking at the presence of the words in other documents too, rather than just looking at its presence in the current document.
+<hr>
+
+<p>Pointwise Mutual Information</p>
+<h5>Notes:</h5>
+<ul>
+<li>![PMI Formula](images/pmi-formula.png)</li>
+<li>If we choose words as the occurrence context, then the probability of a word is:<br>
+
+P(w) = Number of times given word ‘w’ appears in the text corpus/ Total number of words in the corpus<br>
+
+Similarly, if a sentence is the occurrence context, then the probability of a word is given by:<br>
+
+P(w) = Number of sentences that contain ‘w’ / Total number of sentences in the corpus<br>
+
+Similarly, you could calculate the probability of a word with paragraphs as occurrence context.<br>
+Once you have the probabilities, you can simply plug in the values and have the PMI score.</li>
+<li>After creating models, they are saved using the pickle library on the disk.</li>
+<li>After calculating the PMI score, you can compare it with a cutoff value and see if PMI is larger or smaller than the cutoff value. A good cutoff value is zero. Terms with PMI larger than zero are valid terms, i.e. they don’t need to be tokenised into different words. You can replace these terms with a single-word term that has an underscore present between different words of the term. For example, the term ‘New Delhi’ has a PMI greater than zero. It can be replaced with ‘New_Delhi’. This way, it won’t be tokenised while using the NLTK tokeniser.</li>
+</ul>
+
+<p>“The Nobel Prize is a set of five annual international awards bestowed in several categories by Swedish and Norwegian institutions in recognition of academic, cultural, or scientific advances. In the 19th century, the Nobel family who were known for their innovations to the oil industry in Azerbaijan was the leading representative of foreign capital in Baku. The Nobel Prize was funded by personal fortune of Alfred Nobel. The Board of the Nobel Foundation decided that after this addition, it would allow no further new prize.”<br>
+Consider the above corpus to answer the questions of the following exercise. Take each sentence of the corpus as the occurrence context, and attempt the following exercise.</p>
+<ul>
+<li>Q1: What’s the probability of the word ‘nobel’?<br>
+<b>Ans :</b>The word ‘nobel’ appears in four sentences out of a total of four sentences. So, the p( nobel) = 4/4, i.e. 1.<br>
+</li>
+<li>Q2: What’s the probability of the word ‘prize’?<br>
+<b>Ans :</b>The word ‘prize’ appears in three sentences out of a total of four sentences. So, the p(nobel) = 3/4, i.e. 0.75.<br>
+</li>
+<li>Q3: What’s the probability of the term ‘Nobel Prize’?<br>
+<b>Ans :</b>The term ‘Nobel Prize’  appears in two sentences out of a total of four sentences. So, the p(Nobel Prize) = 2/4, i.e. 0.50.<br>
+</li>
+<li>Q4: What’s the PMI of the term ‘Nobel Prize’? Use logarithm to the base 10 while calculating the PMI.<br>
+<b>Ans :</b>PMI(Nobel Prize) = log10(p(Nobel Prize)/(p(nobel)p(prize))). Plugging in the values of p(Nobel Prize) as 0.5, p(nobel) as 1 and p(prize) as 0.75, you’ll get log10(0.67), i.e. -0.176 as the final PMI score.<br>
+</li>
+</ul>
+<hr>
+
+<p>What’s the Soundex of ‘UpGrad’?</p>
+<b>Ans :</b>U126<br>
+<b>Explaination :</b>UPGRAD is mapped to U126A3. Then A is removed and we get U1263. Then we truncate the ‘3’ from the right end to get the four letter code U126.
+<hr>
+
+<p>What is the value in the cell that corresponds to the letters ‘k’ and ‘k’ while calculating the edit distance between ‘sparking’ and ‘parking’?</p>
+<b>Ans :</b>1<br>
+<b>Explaination :</b>Value of the cell that corresponds to 'k' in 'sparking' and 'k' in 'parking' is also the edit distance between 'spark' and 'park'.
+<hr>
+
+<p>What is the Levenshtein edit distance between ‘perspective’ and ‘prospective’?</p>
+<b>Ans :</b>2<br>
+<b>Explaination :</b>There are three edits allowed in the Levenshtein edit distance that corresponds to a single edit operation- insertion, deletion, and substitution of a letter. You need two substitute operations - substitute ‘e’ with ‘r’ and ‘r’ with ‘o’ to go from ‘perspective’ to ‘prospective’
+<hr>
