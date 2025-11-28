@@ -1,0 +1,47 @@
+-- Since the system must be configurable and extensible, we can use a polymorphic schema where each entity is generic, but still has product-specific metadata.
+-- Customers
+Customer (
+    customer_id BIGINT PRIMARY KEY,
+    name VARCHAR
+);
+
+-- Products
+Product (
+    product_id BIGINT PRIMARY KEY,
+    name VARCHAR   -- e.g., Jira, Confluence, BitBucket
+);
+
+-- Entities (generic representation across products)
+Entity (
+    entity_id BIGINT PRIMARY KEY,
+    customer_id BIGINT,
+    product_id BIGINT,
+    entity_type VARCHAR,  -- e.g., "ticket", "doc", "repo"
+    entity_ref VARCHAR,   -- reference to product-specific entity ID
+    metadata JSONB,       -- flexible field for product-specific attributes
+    created_at TIMESTAMP
+);
+
+-- Hashtags
+Hashtag (
+    hashtag_id BIGINT PRIMARY KEY,
+    tag VARCHAR UNIQUE
+);
+
+-- Entity <-> Hashtag mapping
+EntityHashtag (
+    entity_id BIGINT,
+    hashtag_id BIGINT,
+    customer_id BIGINT,
+    PRIMARY KEY (entity_id, hashtag_id),
+    FOREIGN KEY (entity_id) REFERENCES Entity(entity_id),
+    FOREIGN KEY (hashtag_id) REFERENCES Hashtag(hashtag_id)
+);
+
+Indexes:
+
+idx_entityhashtag_tag_customer (hashtag_id, customer_id)
+
+idx_entityhashtag_tag (hashtag_id)
+
+idx_entity_customer (customer_id, product_id)
