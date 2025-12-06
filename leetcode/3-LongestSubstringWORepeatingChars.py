@@ -1,8 +1,7 @@
 class Solution(object):
     def lengthOfLongestSubstring(self, s):
         """
-        :type s: str
-        :rtype: int
+        Given a string s, find the length of the longest substring without duplicate characters.
         Input: s = "abcabcbb"
         Output: 3
         Explanation: The answer is "abc", with the length of 3.

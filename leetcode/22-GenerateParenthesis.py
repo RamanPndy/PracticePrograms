@@ -1,8 +1,7 @@
 class Solution(object):
     def generateParenthesis(self, n):
         """
-        :type n: int
-        :rtype: List[str]
+        Given n pairs of parentheses, write a function to generate all combinations of well-formed parentheses.
         Input: n = 3
         Output: ["((()))","(()())","(())()","()(())","()()()"]
         1. The idea is to add ')' only after valid '('
