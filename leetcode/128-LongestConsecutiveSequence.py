@@ -6,6 +6,19 @@ class Solution(object):
         Input: nums = [100,4,200,1,3,2]
         Output: 4
         Explanation: The longest consecutive elements sequence is [1, 2, 3, 4]. Therefore its length is 4.
+        Question:
+
+        Given an unsorted array of integers, find the length of the longest consecutive elements sequence.
+
+        Approach:
+        - Use a hash set to store unique elements from the array.
+        - Traverse the array and for each element, check if it is the start of a sequence (i.e., element-1 is not in the set).
+        - If it is the start, keep incrementing the element and check if the next element is in the set, counting the length of the sequence.
+        - Update the longest sequence length accordingly.
+
+        Complexity Analysis:
+        - Time: O(n) where n is the number of elements in the array, as each element is checked at most twice.
+        - Space: O(n) due to the hash set storing unique elements.
         Steps:
         1. create a set of unique nums and set longest_seq to 0
         2. traverse nums

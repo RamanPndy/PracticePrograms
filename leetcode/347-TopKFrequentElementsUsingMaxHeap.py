@@ -17,6 +17,10 @@ class Solution(object):
             - get value from heap and append in result array
             - decrease k
         5. return result
+        Intuition: The problem can be solved using a max heap, where we push the negative frequency and the number into the heap. 
+        By popping from the heap k times, we get the k most frequent elements.
+        Time Complexity: O(n log n)
+        Space Complexity: O(n)
         """
         m = defaultdict(int)
         for n in nums:

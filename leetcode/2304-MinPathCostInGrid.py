@@ -11,6 +11,19 @@ class Solution(object):
         - The cost of moving from 5 to 0 is 3.
         - The cost of moving from 0 to 1 is 8.
         So the total cost of the path is 6 + 3 + 8 = 17.
+        Steps:
+        1. Initialize a DP table with large values.
+        2. Set the last row of the DP table to the corresponding values in the grid.
+        3. Iterate from the second last row to the first row.
+        4. For each cell, calculate the minimum cost to reach the bottom row considering all possible moves.
+        5. Return the minimum value in the first row of the DP table.
+        Implementation: Use a bottom-up dynamic programming approach to fill the DP table.
+        Time Complexity: O(rows * cols * cols)
+        Space Complexity: O(rows * cols)
+        Implementation Details: The DP table is filled from the bottom row to the top row, where each cell contains the minimum cost to 
+        reach the bottom row starting from that cell.
+        Intuition: The problem can be solved using dynamic programming by calculating the minimum cost to reach the bottom row from each cell, 
+        starting from the bottom row and moving upwards.
         """
         rows, cols = len(grid), len(grid[0])
         dp = [[100000 for i in range(cols)] for i in range(rows)]

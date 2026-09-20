@@ -10,6 +10,22 @@ class Solution(object):
         :rtype: None Do not return anything, modify head in-place instead.
         Input: head = [1,2,3,4]
         Output: [1,4,2,3]   
+        Question:
+        Reorder the given singly-linked list in the specific order: L0 → Ln → L1 → Ln-1 → L2 → Ln-2 → ...
+
+        Approach:
+        - Find the middle of the linked list using the slow and fast pointer technique.
+        - Reverse the second half of the list.
+        - Merge the two halves by alternating nodes from each half.
+
+        Complexity Analysis:
+        - Time: O(n) where n is the number of nodes in the linked list.
+        - Space: O(1) since we only use a constant amount of extra space.
+
+        Steps:
+        1. Use slow and fast pointers to find the middle of the list.
+        2. Reverse the second half of the list.
+        3. Merge the first half and the reversed second half alternately.
         """
         if not head:
             return

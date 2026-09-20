@@ -21,6 +21,14 @@ class Solution(object):
         ]
         merging them into one sorted list:
         1->1->2->3->4->4->5->6
+        Question: Merge k sorted linked lists into one sorted linked list.
+        Approach:
+        - Use a min heap to always get the smallest current node among the k lists.
+        - Initialize the heap with the first node of each list.
+        - Pop the smallest node from the heap, add it to the merged list, and push the next node from the same list into the heap.
+        - Continue until the heap is empty.
+        Time Complexity: O(N log k) where N is the total number of nodes and k is the number of linked lists.
+        Space Complexity: O(k) for the heap.
         Steps:
         1. create head node and put it to current node
         2. create min heap array

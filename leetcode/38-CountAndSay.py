@@ -36,6 +36,20 @@ class Solution(object):
 
         Space complexity:
         Sirf ek new string store karte hain → O(m).
+
+        Question: Generate the nth term of the count-and-say sequence.
+        Approach:
+        - Start with the base case "1" for n=1.
+        - For each subsequent term, read the previous term and count consecutive digits.
+        - Construct the new term by concatenating the count and the digit.
+        - Repeat this process until reaching the nth term.
+        Time Complexity: O(n * m), where m is the average length of the string.
+        Space Complexity: O(m).
+        Steps:
+        1. Start with the base case "1" for n=1.
+        2. For each subsequent term, read the previous term and count consecutive digits.
+        3. Construct the new term by concatenating the count and the digit.
+        4. Repeat this process until reaching the nth term.
         """
         res = "1"
 

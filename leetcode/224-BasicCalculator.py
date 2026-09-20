@@ -21,6 +21,16 @@ def calculate(s: str) -> int:
             Pop numbers from the stack and sum them until an operator is found.
             Pop the operator and update the stack with the resulting number.
     Sum of Stack: Finally, sum up the stack which contains all the numbers to get the result.
+    Question: Implement a basic calculator to evaluate a valid mathematical expression represented as a string.
+    Approach:
+        - Use a stack to keep track of numbers and operators.
+        - Iterate through the string character by character.
+        - Build numbers from consecutive digits.
+        - When encountering an operator or parenthesis, update the stack accordingly.
+        - Handle closing parentheses by summing up the numbers until the corresponding opening parenthesis is found.
+        - Finally, sum up the stack to get the result.
+        Time: O(n) where n is the length of the string, as we iterate through the string once.
+        Space: O(n) for the stack used to store numbers and operators.
     '''
     def update(op, val):
         if op == '+':

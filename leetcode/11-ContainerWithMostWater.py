@@ -11,6 +11,14 @@ class Solution(object):
         Output: 49
         Explanation: The above vertical lines are represented by array [1,8,6,2,5,4,8,3,7]. 
         In this case, the max area of water (blue section) the container can contain is 49.
+        Question: Given an array of integers height representing the height of vertical lines, find the maximum area of water that can be contained between two lines.
+        Approach:
+        - Use a two-pointer approach, starting with one pointer at the beginning and one at the end of the array.
+        - Calculate the area formed by the lines at the two pointers and update the maximum area.
+        - Move the pointer pointing to the shorter line inward to potentially find a larger area.
+        - Repeat until the pointers meet.
+        Time Complexity: O(n) where n is the length of the array.
+        Space Complexity: O(1) as we are using constant extra space.
         Steps:
         1. 2 pointer approach, set l=0 and r=len(height) -1 and maxArea =0
         2. traverse while left < right

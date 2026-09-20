@@ -6,6 +6,14 @@ class Solution(object):
         :rtype: int
         Input: nums = [4,5,6,7,0,1,2], target = 0
         Output: 4   
+        Question: Search for a target value in a rotated sorted array and return its index if found, otherwise return -1.
+        Approach:
+        - Use a modified binary search to account for the rotation.
+        - Determine if the left or right half is properly sorted.
+        - Narrow down the search to the half that may contain the target.
+        - Continue until the target is found or the search space is exhausted.
+        Time Complexity: O(log n)
+        Space Complexity: O(1)
         Steps:
         1. create left and right such that left = 0 and right = len(nums) -1
         2. loop while left <= right:

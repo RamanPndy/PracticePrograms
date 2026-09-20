@@ -8,6 +8,20 @@ class Node:
         self.hd = 0
 
 def BTLeftView(root):
+    """
+    Print the left view of a binary tree.
+
+    :param root: Root node of the binary tree
+    :return: None (prints the left view)
+    Time Complexity: O(n) where n is the number of nodes in the binary tree.
+    Space Complexity: O(n) for the queue used to store nodes at each level.
+    Steps:
+    - Perform a level order traversal of the binary tree using a queue.
+    - For each level, append the first node's value to the result list.
+    - Add the left and right children of each node to the queue.
+    - Continue until all levels are processed.
+    - Print the result list containing the left view of the binary tree.
+    """
     if not root:
         return
 
@@ -36,4 +50,7 @@ def BTLeftView(root):
             # Add right node to queue
             if temp.right:
                 q.append(temp.right)
+
+    for val in res:
+        print(val)
  

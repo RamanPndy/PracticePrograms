@@ -13,6 +13,24 @@ class Solution(object):
             - update res at index i by muliplying current index val with suffix
             - update suffix by muliplying current nums index val with suffix
         5. return res
+
+        Question: Can you solve this problem without using division and in O(n) time complexity?
+        Approach:
+        - Use a two-pass approach to calculate the product of all elements except self.
+        - In the first pass, calculate the prefix product for each element.
+        - In the second pass, calculate the suffix product and multiply it with the prefix product stored in the result array.
+        - This approach ensures that we calculate the product of all elements except self without using division and in O(n) time complexity.
+        Time Complexity: O(n)
+        Space Complexity: O(1) (excluding the output array)
+        Example:
+        - Input: nums = [1,2,3,4]
+        - Output: [24,12,8,6]
+        Explanation:
+        - For the input [1,2,3,4], the product of all elements except self for each index is calculated as follows:
+          - Index 0: 2*3*4 = 24
+          - Index 1: 1*3*4 = 12
+          - Index 2: 1*2*4 = 8
+          - Index 3: 1*2*3 = 6
         """
         res = [1] * len(nums)
         suffix = 1

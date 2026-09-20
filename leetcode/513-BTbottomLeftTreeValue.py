@@ -11,6 +11,18 @@ class Solution(object):
         :rtype: int
         Input: root = [1,2,3,4,null,5,6,null,null,7]
         Output: 7
+        Question: Find the leftmost value in the last row of the binary tree.
+        Intuition: Perform a level-order traversal (BFS) and keep track of the first node in each level. 
+        The last recorded first node will be the leftmost node in the bottom row.
+        Steps:
+        1. Initialize a queue with the root node.
+        2. Initialize a variable to store the leftmost node value.
+        3. While the queue is not empty, traverse all nodes at the current level.
+        4. Update the leftmost node value with the first node of the current level.
+        5. Add the right and left children of the current node to the queue (right first to ensure leftmost node is processed last).
+        6. Return the leftmost node value after the traversal is complete.
+        Time Complexity: O(n), where n is the number of nodes in the tree, as each node is processed once.
+        Space Complexity: O(m), where m is the maximum number of nodes at any level (width of the tree).
         """
         if not root:
             return

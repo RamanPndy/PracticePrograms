@@ -8,6 +8,11 @@ class MedianFinder(object):
         """
         :type num: int
         :rtype: None
+        Question: Where should the new number be inserted in the sorted data stream to maintain order?
+        Approach:
+        - Use binary search to find the correct insertion position for the new number.
+        Time Complexity: O(log n) for finding the insertion position, O(n) for inserting into the list.
+        Space Complexity: O(1) as we are using only a constant amount of extra space.
         Steps:
         1. create left and right pointer with value 0 and length -1
         2. traverse while left <= right
@@ -29,6 +34,12 @@ class MedianFinder(object):
     def findMedian(self):
         """
         :rtype: float
+        Question: How can we find the median of the current data stream efficiently?
+        Approach:
+        - If the length of the data is even, the median is the average of the two middle elements.
+        - If the length of the data is odd, the median is the middle element.
+        Time Complexity: O(1) as we are directly accessing the middle elements.
+        Space Complexity: O(1) as we are using only a constant amount of extra space.
         """
         if self.length %2 == 0:
             t = self.length // 2

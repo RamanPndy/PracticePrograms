@@ -10,6 +10,15 @@ class Solution(object):
         2 and 3 are candidates, and 2 + 2 + 3 = 7. Note that 2 can be used multiple times.
         7 is a candidate, and 7 = 7.
         These are the only two combinations.
+        Question: Find all unique combinations of candidates where the chosen numbers sum to the target. Each number in candidates may be used an unlimited number of times.
+        Approach:
+        - Use a stack to keep track of the current combination and the remaining target.
+        - Sort the candidates to facilitate pruning.
+        - Use a set to quickly check if a number is a candidate.
+        - Iterate through the stack, updating the current combination and remaining target.
+        - Add valid combinations to the result list.
+        Time Complexity: O(2^n) in the worst case, where n is the number of candidates.
+        Space Complexity: O(n) for the stack.
         Steps:
         1. create a result array and todo stack and append (target, 0, combination stack([])) in stack
         2. sort candidates

@@ -11,6 +11,15 @@ class Solution(object):
         :rtype: Optional[ListNode]
         Input: list1 = [1,2,4], list2 = [1,3,4]
         Output: [1,1,2,3,4,4]
+        Question: Given the heads of two sorted linked lists, merge them into a single sorted linked list and return its head.
+        Approach:
+        - Create a dummy head node to simplify edge cases.
+        - Use a current pointer to build the new list.
+        - Traverse both lists, always appending the smaller node to the current pointer.
+        - Once one list is exhausted, append the remaining nodes of the other list.
+        - Return the next of the dummy head as the merged list.
+        Time Complexity: O(n + m) where n and m are the lengths of the two lists.
+        Space Complexity: O(1) as we are reusing the existing nodes.
         Steps:
         1. create a head pointer from Node definition
         2. create current pointer which points to head

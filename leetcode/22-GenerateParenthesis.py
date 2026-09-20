@@ -8,6 +8,15 @@ class Solution(object):
         2. We use two integer variables left & right to see how many '(' & ')' are in the current string
         3. If left < n then we can add '(' to the current string
         4. If right < left then we can add ')' to the current string
+        Question: Generate all combinations of well-formed parentheses given n pairs.
+        Approach:
+        - Use a queue to perform a breadth-first search (BFS) on all possible combinations.
+        - Keep track of the number of left and right parentheses added so far.
+        - Only add a left parenthesis if the number of left parentheses is less than n.
+        - Only add a right parenthesis if the number of right parentheses is less than the number of left parentheses.
+        - Continue until all combinations of length 2*n are generated.
+        Time Complexity: O(4^n / sqrt(n)) as there are Catalan number of combinations.
+        Space Complexity: O(4^n / sqrt(n)) for the queue and result storage.
         Steps:
         1.create left and right pointer with values 0 and append them into queue along with empty character
         2. create result array

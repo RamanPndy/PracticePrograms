@@ -15,6 +15,18 @@ class Solution(object):
         Output: "/home/foo"
         Explanation: In the canonical path, multiple consecutive slashes are replaced by a single one.
 
+        Question: Can you simplify a given Unix-style file path to its canonical form?
+        Approach:
+        - Use a stack to keep track of the directories in the path.
+        - Split the input path by slash '/'.
+        - Iterate over the directories, and perform the following operations:
+            - Ignore the current directory '.' and empty directories.
+            - Go one level up for double period '..' by popping the top element from the stack if it is not empty.
+            - For any other directory, push it to the stack.
+        - Finally, join the directories in the stack with slash '/' and add a slash at the beginning to form the simplified canonical path.
+        Time complexity: O(n), where n is the length of the input path, as we iterate through the path once.
+        Space complexity: O(n), as we use a stack to store the directories in the path.
+
         1. The problem can be solved using a stack to keep track of the directories in the path. 
         2. We split the input path by slash '/'
         3. iterate over the directories, and perform the following operations:

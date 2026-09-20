@@ -12,6 +12,24 @@ class Solution(object):
         Explanation: Your function can return either index number 1 where the peak element is 2, or 
         index number 5 where the peak element is 6.
 
+        Question: Find a peak element in the array. An element is a peak if it is greater than its neighbors. The array may contain multiple peaks, and the function should return the index of any one of them.
+        Approach:
+        - Use binary search to efficiently find a peak element.
+        - Compare the middle element with its right neighbor to decide which half of the array to search next.
+        - Continue this process until the search space is reduced to a single element, which will be a peak.
+        Time: O(log n) because we are using binary search.
+        Space: O(1) as we are using constant extra space.
+        Example:
+
+        Input: nums = [1,2,3,1]
+        Output: 2
+        Explanation: 3 is a peak element and your function should return the index number 2.
+
+        Input: nums = [1,2,1,3,5,6,4]
+        Output: 5
+        Explanation: Your function can return either index number 1 where the peak element is 2, or 
+        index number 5 where the peak element is 6.
+
         Steps:
         1. For sorted arrays, peak element will be one of the extremes like first element or last element. 
            For unsorted array, element will fall in between.

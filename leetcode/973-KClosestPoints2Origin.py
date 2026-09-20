@@ -20,6 +20,22 @@ class Solution(object):
             - make a maximum-heap to store distance, (point's distance to original, point)
             - each time call heapq.heappop (distance), it will pop the smallest item in the heap. 
             So heappop K times will be the result.
+
+        Question: What are the k closest points to the origin?
+        Intuition: The closest points to the origin can be determined by their Euclidean distance from the origin. 
+        Using a heap allows us to efficiently keep track of the k smallest distances.
+
+        Steps:
+        1. Initialize an empty heap.
+        2. Iterate through the list of points, calculating the distance of each point from the origin and pushing it onto the heap along with its index.
+        3. Pop the smallest distance from the heap k times to get the k closest points.
+        4. Append the corresponding points to the result list.
+        5. Return the result list as the k closest points.
+
+        Time Complexity: O(N * logK), where N is the number of points, due to heap operations.
+        Space Complexity: O(K) for the heap storing the k closest points.
+        Interview Explanation: The key insight is to use a heap to efficiently track the k closest points to the origin based on their Euclidean distance. 
+        By pushing all points onto the heap and then popping the smallest distances k times, we can obtain the desired result.
         """
         heap = []
         for i, (x,y) in enumerate(points):

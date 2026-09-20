@@ -18,6 +18,10 @@ class Solution(object):
             - if new amount already present in visited or new amount is negative then continue
             - increase num of coins and append (new amount and increased num of coins) in queue
             - add new amount in visited
+        Intuition: The problem can be solved using a breadth-first search (BFS) approach, where each state represents the current amount and the number of coins 
+        used to reach that amount. The first time we reach an amount of 0, we have found the minimum number of coins needed.
+        Time Complexity: O(amount * len(coins))
+        Space Complexity: O(amount)
         """
         q = [(amount, 0)]
         visited = set()

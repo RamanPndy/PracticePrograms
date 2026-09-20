@@ -10,6 +10,26 @@ class Solution(object):
         Time complexity: O(m * n)
         Space complexity: O(1)
 
+        Question: Can you solve this problem in O(m * n) time complexity and O(1) space complexity?
+        Approach:
+        - Use four pointers to represent the boundaries of the matrix: top, bottom, left, and right.
+        - Traverse the matrix in a spiral order by moving right, down, left, and up while shrinking the boundaries.
+        - Append each element to the result array during the traversal.
+        - Continue the traversal until the boundaries overlap.
+        - Return the result array containing the elements in spiral order.
+
+        Time complexity: O(m * n), where m is the number of rows and n is the number of columns.
+        Space complexity: O(1), as we are using only a constant amount of extra space.
+        Notes:
+        - The algorithm uses four pointers to keep track of the current boundaries of the matrix.
+        - By shrinking the boundaries after traversing each side, we ensure that each element is visited exactly once.
+        - The check `if not(left < right and top < bottom)` is necessary to handle single row or single column remaining in the matrix.
+        - The algorithm ensures that each element is added to the result array exactly once.
+        - The boundaries are adjusted after traversing each side to avoid revisiting elements.
+        - This approach allows us to traverse the matrix in a spiral order without using additional space for visited elements.
+        - The algorithm works for both square and rectangular matrices.
+        - The algorithm handles edge cases such as empty matrices gracefully.
+
         Steps:
         1. in each iteration we will shrink boundaries of matrix
         2. we will start at top left position and move to right

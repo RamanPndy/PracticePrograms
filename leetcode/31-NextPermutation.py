@@ -13,6 +13,15 @@ class Solution(object):
         The replacement must be in place and use only constant extra memory.
         Input: nums = [1,2,3]
         Output: [1,3,2] 
+        Question: Given an array of integers nums, find the next lexicographically greater permutation of nums in-place.
+        Approach:
+        - Start from the end of the array and find the first non-increasing element.
+        - If the entire array is non-increasing, reverse it to get the smallest permutation.
+        - Otherwise, find the first element from the end that is greater than the identified element.
+        - Swap these two elements.
+        - Reverse the sequence from the position of the first identified element to the end to get the next permutation.
+        Time Complexity: O(n) where n is the length of the array.
+        Space Complexity: O(1) as we are modifying the array in place.
         Steps:
         1. To find next permutations, we'll start from the end. create 2 vars which have lenght of nums - 1
             # First we'll find the first non-increasing element starting from the end
@@ -38,6 +47,8 @@ class Solution(object):
         
         while nums[j] <= nums[i-1]:
             j -= 1
-        
+
+        # Swap the numbers at positions i-1 and j, then reverse the sequence from i to the end.
         nums[i-1], nums[j] = nums[j], nums[i-1]
+        # Reverse the sequence from i to the end to get the next permutation.
         nums[i:] = nums[len(nums)-1:i-1:-1]

@@ -20,6 +20,18 @@ class Solution(object):
         The cars starting at 10 (speed 2) and 8 (speed 4) become a fleet, meeting each other at 12. The fleet forms at target.
         The car starting at 0 (speed 1) does not catch up to any other car, so it is a fleet by itself.
         The cars starting at 5 (speed 1) and 3 (speed 3) become a fleet, meeting each other at 6. The fleet moves at speed 1 until it reaches target.
+        
+        Question: How many car fleets will arrive at the destination?
+        Intuition: Cars that are closer to the target and have slower speeds will form fleets with cars behind them if those cars catch up.
+        Steps:
+        1. Pair each car's position with its speed.
+        2. Sort the cars by their starting position in descending order.
+        3. Calculate the time each car will take to reach the target.
+        4. Use a stack to keep track of the fleets based on their arrival times.
+        5. Iterate through the times and count the number of fleets.
+        Time Complexity: O(n log n), where n is the number of cars, due to sorting the cars by their starting position.
+        Space Complexity: O(n) for the stack used to keep track of the fleets.
+        Interview Explanation: The key insight is to recognize that cars closer to the target with slower speeds will form fleets with cars behind them if those cars catch up. By calculating the time each car takes to reach the target and using a stack to track the fleets, we can determine the number of car fleets that will arrive at the destination.
         """
         stack = []
         ps = [(p,s) for p,s in zip(position,speed)]
