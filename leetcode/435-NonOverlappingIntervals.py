@@ -16,6 +16,16 @@ class Solution(object):
             - otherwise increase result and update end of first interval with 
                 minimum of current interval end and first interval end
         4. return result
+        Question: Given a collection of intervals, find the minimum number of intervals you need to remove to make the rest of the intervals non-overlapping.
+        Intuition: To minimize the number of intervals to remove, always keep the interval with the earliest end time and remove overlapping intervals.
+        Steps:
+        1. Sort the intervals based on their start times.
+        2. Initialize a variable to keep track of the end of the previous interval.
+        3. Initialize a result variable to count the number of intervals to remove.
+        4. Traverse through the rest of the intervals and apply the logic described above.
+        5. Return the result.
+        Time Complexity: O(n log n), where n is the number of intervals, due to sorting.
+        Space Complexity: O(1), as we are using a constant amount of extra space.
         """
         intervals.sort()
         prevEnd = intervals[0][1]

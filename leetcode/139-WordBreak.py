@@ -7,6 +7,30 @@ class Solution(object):
         Input: s = "leetcode", wordDict = ["leet","code"]
         Output: true
         Explanation: Return true because "leetcode" can be segmented as "leet code".
+        Question: Determine if the string s can be segmented into a space-separated sequence of one or more dictionary words from wordDict.
+        Approach:
+        - Use a queue to perform a breadth-first search (BFS) on the string.
+        - Keep track of visited substrings to avoid redundant work.
+        - For each substring, check if it starts with any word in the dictionary.
+        - If it does, create a new substring by removing the matched word and continue the process.
+        - If an empty substring is reached, return True.
+        - If the queue is exhausted without finding an empty substring, return False.
+        Example:
+        Input: s = "leetcode", wordDict = ["leet","code"]
+        Output: true
+        Explanation: Return true because "leetcode" can be segmented as "leet code".
+        Another Example:
+
+        Input: s = "applepenapple", wordDict = ["apple","pen"]
+        Output: true
+        Explanation: Return true because "applepenapple" can be segmented as "apple pen apple".
+        Another Example:
+
+        Input: s = "catsandog", wordDict = ["cats","dog","sand","and","cat"]
+        Output: false
+        Explanation: Return false because "catsandog" cannot be segmented into a sequence of dictionary words.
+        Time : O(n * m * k) where n is the length of the string, m is the number of words in the dictionary, and k is the average length of the words.
+        Space: O(n) for the queue and seen set.
         Steps:
         1. create a queue and append string in it.
         2. create a seen set which will store traversed word

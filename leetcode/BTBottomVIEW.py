@@ -11,6 +11,20 @@ class newNode:
         self.hd = 0
 
 def BTBottomView(root):
+    """
+    Print the bottom view of a binary tree.
+
+    :param root: Root node of the binary tree
+    :return: None (prints the bottom view)
+    Time Complexity: O(n) where n is the number of nodes in the binary tree.
+    Space Complexity: O(n) for the queue and dictionary used to store nodes and their horizontal distances.
+    Steps:
+    - Perform a level order traversal of the binary tree using a queue.
+    - Keep track of the horizontal distance (hd) of each node from the root.
+    - For each node, update the dictionary with the node's value at its horizontal distance.
+    - After the traversal, the dictionary will contain the bottom view of the binary tree.
+    - Print the values from the dictionary sorted by their horizontal distances.
+    """
     if not root:
         return
     hd = 0

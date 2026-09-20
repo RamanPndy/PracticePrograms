@@ -16,6 +16,19 @@ class Solution(object):
         Explanation: The minimum number of jumps to reach the last index is 2. Jump 1 step from index 0 to 1, 
         then 3 steps to the last index.
         Return the minimum number of jumps to reach nums[n - 1]
+
+        Question: Can you solve this problem in O(n) time complexity and O(1) space complexity?
+        Approach:
+        - Use a greedy approach to keep track of the farthest reachable index within the current number of jumps.
+        - Increment the jump count whenever the current index exceeds the end of the current jump range.
+        - Update the end of the current jump range to the farthest reachable index.
+        - Continue this process until reaching the last index.
+        Example:
+        - Input: nums = [2,3,1,1,4]
+        - Output: 2
+        - Explanation: The minimum number of jumps to reach the last index is 2. Jump 1 step from index 0 to 1, 
+          then 3 steps to the last index.
+          
         Time complexity: O(n)
         Space complexity: O(1)
         Steps:

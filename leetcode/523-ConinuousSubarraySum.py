@@ -11,6 +11,10 @@ class Solution(object):
         Input: nums = [23,2,4,6,7], k = 6
         Output: true
         Explanation: [2, 4] is a continuous subarray of size 2 whose elements sum up to 6.
+        Question: Determine if the array contains a continuous subarray of at least size 2 whose elements sum up to a multiple of k.
+        Intuition: Use a prefix sum and remainder map to efficiently check for subarrays whose sum is a multiple of k.
+        Time Complexity: O(n), where n is the length of the input array, as we traverse the array once.
+        Space Complexity: O(min(n, k)), as we store remainders in the map, which can be at most min(n, k) unique values.
 
         Steps:
         1. create a remainder map which would be prefix map with initial value as 0 and index as -1
@@ -29,8 +33,11 @@ class Solution(object):
         for i, n in enumerate(nums):
             total += n
             r = total % k
+            # calculate the remainder of the current prefix sum with k
             if r not in remainder:
                 remainder[r] = i
+            # if remainder is not in the map, add it with the current index
             elif i - remainder[r] > 1:
+                # if the current subarray length is at least 2, return True
                 return True
         return False

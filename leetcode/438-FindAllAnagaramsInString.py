@@ -11,6 +11,14 @@ class Solution(object):
         Explanation:
         The substring with start index = 0 is "cba", which is an anagram of "abc".
         The substring with start index = 6 is "bac", which is an anagram of "abc".
+        Question:
+        Find all start indices of p's anagrams in s.
+        Approach:
+        - Use a sliding window of size equal to the length of p.
+        - Maintain frequency counts of characters in the current window and in p.
+        - Compare the frequency counts to determine if the current window is an anagram of p.
+        Time: O(n) where n is the length of s, as we iterate through the string once.
+        Space: O(1) since the frequency maps have a fixed size of at most 26 for lowercase English letters.
         Steps:
         1. This can be solved with sliding window approach.
         2. create separate frequency map for both strings and pattern.

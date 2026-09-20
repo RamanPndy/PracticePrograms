@@ -11,6 +11,21 @@ class Solution(object):
         nums[0] + nums[3] + nums[4] = (-1) + 2 + (-1) = 0.
         The distinct triplets are [-1,0,1] and [-1,-1,2].
         Notice that the order of the output and the order of the triplets does not matter.
+        Question: Given an array of integers nums, find all unique triplets in the array which gives the sum of zero.
+        Approach:
+        - Separate the numbers into positive, negative, and zero lists.
+        - Check for triplets involving zero.
+        - Check for triplets involving two negative numbers and one positive number.
+        - Check for triplets involving two positive numbers and one negative number.
+        - Use a set to store unique triplets.
+        Time Complexity: O(n^2) where n is the length of the array.
+        Space Complexity: O(n) for storing the numbers in separate lists and the result set.
+        Steps:
+        1. Separate the numbers into positive, negative, and zero lists.
+        2. Check for triplets involving zero.
+        3. Check for triplets involving two negative numbers and one positive number.
+        4. Check for triplets involving two positive numbers and one negative number.
+        5. Return the result set as a list of lists.
         """
         pos, neg, zero, res = [], [], [], set()
         for num in nums:
@@ -40,3 +55,5 @@ class Solution(object):
                 t = -1 * (pos[i] + pos[j])
                 if t in neg:
                     res.add(tuple(sorted([pos[i], pos[j], t])))
+
+        return [list(r) for r in res]

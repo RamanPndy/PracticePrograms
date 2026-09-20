@@ -10,6 +10,15 @@ class Solution(object):
         Input: nums = [5,7,7,8,8,10], target = 6
         Output: [-1,-1]
 
+        Question: Find the first and last positions of a target value in a sorted array.
+        Approach:
+        - Use binary search to efficiently locate the target.
+        - First, find the rotation index to handle rotated arrays.
+        - Determine which part of the array to search based on the rotation index.
+        - Use binary search to find the first and last positions of the target.
+        Time Complexity: O(log n)
+        Space Complexity: O(1)
+
         Steps:
         1. Find the Index of the Smallest Element: 
             This index will help in determining the rotation point. 

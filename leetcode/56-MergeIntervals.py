@@ -6,6 +6,17 @@ class Solution(object):
         Input: intervals = [[1,3],[2,6],[8,10],[15,18]]
         Output: [[1,6],[8,10],[15,18]]
         Explanation: Since intervals [1,3] and [2,6] overlap, merge them into [1,6].
+
+        Question: Can you merge all overlapping intervals in the given list of intervals?
+        Approach:
+        - Sort the intervals based on the start time.
+        - Initialize the result array with the first interval.
+        - Iterate through the remaining intervals and merge them if they overlap with the last interval in the result array.
+        - If they do not overlap, simply append the current interval to the result array.
+        - Return the result array containing the merged intervals.
+
+        Time complexity: O(n log n), where n is the number of intervals, due to the sorting step.
+        Space complexity: O(n), as we are using a result array to store the merged intervals.
         Steps:
         1. sort all given intervals
         2. put first in result array

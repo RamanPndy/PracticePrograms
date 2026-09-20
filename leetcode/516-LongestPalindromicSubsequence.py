@@ -3,6 +3,18 @@ class Solution(object):
         """
         :type s: str
         :rtype: int
+        Input: s = "bbbab"
+        Output: 4
+        Explanation: One possible longest palindromic subsequence is "bbbb".
+        Question: Find the length of the longest palindromic subsequence in the given string.
+        Intuition: The longest palindromic subsequence problem can be transformed into finding the longest common subsequence between the string and its reverse.
+        Steps:
+        1. Reverse the input string to get t.
+        2. Initialize a 2D DP array of size (n+1) x (n+1) with all elements as 0.
+        3. Traverse through both strings and fill the DP table using the LCS logic.
+        4. Return the value at dp[n][n] as the length of the longest palindromic subsequence.
+        Time Complexity: O(n^2), where n is the length of the input string, due to the nested loops for filling the DP table.
+        Space Complexity: O(n^2), as we are using a 2D DP array of size (n+1) x (n+1).
         """
         n = len(s)
         t = s[::-1]

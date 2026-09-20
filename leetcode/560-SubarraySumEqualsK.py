@@ -9,6 +9,10 @@ class Solution(object):
         Given an array of integers nums and an integer k, return the total number of subarrays whose sum equals to k.
         Input: nums = [1,1,1], k = 2
         Output: 2
+        Question: Find the total number of subarrays whose sum equals to k.
+        Intuition: Use a prefix sum and a hashmap to efficiently count the number of subarrays with sum equal to k.
+        Time Complexity: O(n), where n is the length of the input array, as we traverse the array once.
+        Space Complexity: O(n), as we store prefix sums in the hashmap.
         Kadane algorithm
         the basic idea behind this is whenever sums has increased by a value of k, we've found a subarray of sums=k. (prefix sum)
         if you notice the running sums array, from 1->4, there is increase of k and from 4->7, 

@@ -33,6 +33,33 @@ Return the result list which now contains all the flattened elements.
 '''
 #Recursive Approach
 def flatten(arr):
+    """
+    Flatten a multi-dimensional array up to a specified depth.
+
+    :param arr: List of integers or nested lists
+    :return: Flattened list of integers
+
+    Question: How can we flatten a multi-dimensional array up to a specified depth without using the built-in Array.flat method?
+    Intuition:
+    - We can use a recursive helper function to traverse the nested arrays.
+    - At each level, we check if the element is a list or an integer.
+    - If it's a list and the current depth is less than the specified depth, we recursively flatten it.
+    - If it's an integer or the current depth is equal to the specified depth, we add it to the result list.
+    Approach:
+    - Initialize an empty result list.
+    - Define a recursive helper function that takes a sub-array and the current depth as parameters.
+    - Traverse each element in the sub-array.
+        - If the element is a list and the current depth is less than the specified depth, recursively call the helper function with the element and incremented depth.
+        - If the element is an integer or the current depth is equal to the specified depth, append it to the result list.
+    - Call the helper function with the input array and initial depth 0.
+    - Return the result list.
+    Time Complexity: O(n) where n is the total number of elements including nested ones.
+    Space Complexity: O(d) where d is the maximum depth of the nested arrays.
+    Note:
+    - This implementation assumes that the input array can be nested to any depth.
+    - The depth parameter is implicit in this implementation, as it fully flattens the array regardless of depth.
+    - This implementation uses recursion, which may lead to a stack overflow for extremely deep nested arrays.
+    """
     result = []
 
     def flatten_helper(sub_arr):

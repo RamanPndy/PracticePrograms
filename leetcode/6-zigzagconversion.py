@@ -10,6 +10,15 @@ class Solution(object):
 
         Input: s = "PAYPALISHIRING", numRows = 3
         Output: "PAHNAPLSIIGYIR"
+        Question: Given a string s and an integer numRows, convert the string into a zigzag pattern on the given number of rows and then read it line by line.
+        Approach:
+        - Create a list of lists to represent each row.
+        - Use an index to keep track of the current row and a step to determine the direction of traversal.
+        - Traverse each character in the string and append it to the appropriate row.
+        - Change the direction when the first or last row is reached.
+        - Combine all characters from each row to form the final string.
+        Time Complexity: O(n) where n is the length of the string.
+        Space Complexity: O(n) for storing the characters in the rows.
         steps:
         1. first create 2D array of numRows
         2. create variables index = 0 and step = 1

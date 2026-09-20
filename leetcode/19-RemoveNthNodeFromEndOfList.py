@@ -11,6 +11,16 @@ class Solution(object):
         :rtype: ListNode
         Input: head = [1,2,3,4,5], n = 2
         Output: [1,2,3,5]
+        Question: Given the head of a linked list, remove the nth node from the end of the list and return its head.
+        Approach:
+        - Use two pointers, slow and fast, initially pointing to the head.
+        - Move the fast pointer n steps ahead.
+        - If fast becomes None, it means we need to remove the head, so return head.next.
+        - Otherwise, move both slow and fast pointers until fast.next is None.
+        - The slow pointer will be just before the node to be removed.
+        - Adjust the next pointer of the slow node to skip the target node.
+        Time Complexity: O(L) where L is the length of the linked list.
+        Space Complexity: O(1) as we are using constant extra space.
         Steps:
         1. create 2 pointers slow and fast and point both to head
         2. while n is positive then move fast pointer

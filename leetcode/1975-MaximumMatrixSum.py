@@ -8,7 +8,15 @@ class Solution(object):
         Explanation: We can follow the following steps to reach sum equals 4:
         - Multiply the 2 elements in the first row by -1.
         - Multiply the 2 elements in the first column by -1.
-
+        Question: What is the maximum sum of the matrix after performing the allowed operations?
+        Intuition:
+        - If the count of negative numbers is even, we can turn all numbers positive.
+        - If the count of negative numbers is odd, the smallest absolute value will remain negative.
+        Approach:
+        - Count the number of negative numbers in the matrix.
+        - Find the minimum absolute value in the matrix.
+        - If the count of negative numbers is even, all numbers can be made positive.
+        - If the count of negative numbers is odd, the smallest absolute value will remain negative.
         Steps:
         1. get the count of negative numbers in matrix.
         2. find minimum absolute number from matrix.
@@ -19,6 +27,8 @@ class Solution(object):
         4. if negative count is even then all numbers can be turned into positive in matrix and sumOfMatrix will be actual sum.
         5. if negative count is odd then only minimum number in the matrix can be turned into negative then twice of that number 
             can be subtracted from matrix sum which would be answer.
+        Time Complexity: O(rows * cols)
+        Space Complexity: O(1)
         """
         negativeCounts, sumOfMatrix = 0, 0
         minimumOfMatrix = float('inf')

@@ -12,6 +12,10 @@ class Solution(object):
         :rtype: int
         Input: root = [5,3,6,2,4,null,null,1], k = 3
         Output: 3
+        Steps:
+        1. Perform a level-order traversal (BFS) to collect all node values in a list.
+        2. Sort the list of node values.
+        3. Return the k-th smallest element from the sorted list.
         """
         if root is None:
             return 0

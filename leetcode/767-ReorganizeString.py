@@ -8,6 +8,12 @@ class Solution(object):
         :rtype: str
         Input: s = "aab"
         Output: "aba"
+        Question: Reorganize the given string such that no two adjacent characters are the same. If it is not possible, return an empty string.
+        Intuition: Use a max heap to always place the most frequent character next, ensuring no two adjacent characters are the same. 
+        Cache the previously used character to avoid immediate repetition.
+        Time Complexity: O(n log k), where n is the length of the string and k is the number of unique characters, 
+        as each character is pushed and popped from the heap at most once.
+        Space Complexity: O(k) for the heap and the frequency map, where k is the number of unique characters.
         Steps:
         1. create character frequency map
         2. create max heap and push (frequency and character) in heap
@@ -23,6 +29,7 @@ class Solution(object):
             m[c] += 1
         heap = []
         for k, v in m.items():
+            # Push the character and its negative frequency into the max heap.
             heapq.heappush(heap, (-v, k))
         res = ""
         cached_character = ''
@@ -33,6 +40,7 @@ class Solution(object):
             if cached_character != '':
                 cached_character_freq = m[cached_character]
                 if cached_character_freq > 0:
+                    # Push the cached character back into the heap with its updated negative frequency.
                     heapq.heappush(heap, (-cached_character_freq, cached_character))
             if freq < 0:
                 cached_character = c

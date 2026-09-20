@@ -19,6 +19,14 @@ class Solution(object):
         Travel to station 2. Your tank = 6 - 4 + 3 = 5
         Travel to station 3. The cost is 5. Your gas is just enough to travel back to station 3.
         Therefore, return 3 as the starting index.
+
+        Question: Can you determine the starting gas station's index to complete the circuit?
+        Approach:
+        - Use a single pass to traverse the gas stations while maintaining the balance of gas.
+        - If the balance becomes negative, update the starting index to the next station and accumulate the deficit.
+        - After the traversal, check if the total gas (balance + deficit) is non-negative to determine if a solution exists.
+        Time Complexity: O(n), where n is the number of gas stations.
+        Space Complexity: O(1), as only a constant amount of extra space is used.
         Steps:
         1. create vars for balance, deficit and start and set to 0.
         2. traverse through length of gas stations by index

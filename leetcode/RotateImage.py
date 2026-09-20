@@ -3,6 +3,21 @@ class Solution(object):
         """
         :type matrix: List[List[int]]
         :rtype: None Do not return anything, modify matrix in-place instead.
+        Question:
+        Rotate the given n x n 2D matrix by 90 degrees (clockwise) in-place.
+        
+        Approach:
+        - First, reverse the matrix upside down.
+        - Then, transpose the matrix by swapping matrix[i][j] with matrix[j][i] for all i and j.
+        
+        Complexity Analysis:
+        - Time: O(n^2) because we traverse all elements of the matrix twice.
+        - Space: O(1) since the rotation is done in-place.
+
+        Steps:
+        1. Reverse the matrix upside down.
+        2. Transpose the matrix by swapping matrix[i][j] with matrix[j][i] for all i and j.
+        
         """
         #reverse
         l, r = 0, len(matrix) -1

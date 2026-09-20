@@ -11,6 +11,23 @@ The algorithm works as follows:
 6. Set the left and right child pointers for the NodeCopy by recursively calling our DFS function.
 7. Set the random pointer for the NodeCopy in a similar fashion, by calling DFS for the original node's random pointer and using the hashmap for reference.
 8. After the recursion completes, return the copy of the root node which now represents the root of the deep-copied tree.
+
+Question: How can we create a deep copy of a binary tree where each node has an additional random pointer?
+Intuition: By using a hashmap to maintain a correspondence between the original nodes and the copied nodes, 
+we ensure that the random pointers get correctly assigned even if the target nodes are copied later during the DFS traversal.
+Steps:
+1. Start at the root of the original tree.
+2. If the current node is null, return null, as there's nothing to copy.
+3. If the current node's copy already exists in the hashmap, return the copy to avoid duplication.
+4. If the copy does not exist yet, create a new NodeCopy instance with the same value.
+5. Store the new NodeCopy instance in the hashmap, with the original node as the key.
+6. Set the left and right child pointers for the NodeCopy by recursively calling our DFS function.
+7. Set the random pointer for the NodeCopy in a similar fashion, by calling DFS for the original node's random pointer and using the hashmap for reference.
+8. After the recursion completes, return the copy of the root node which now represents the root of the deep-copied tree.
+Time Complexity: O(n), where n is the number of nodes in the tree, as each node is visited once during the DFS traversal.
+Space Complexity: O(n) for the hashmap storing the correspondence between original and copied nodes, and O(h) for the recursion stack, where h is the height of the tree.
+Interview Explanation: The key insight is to use a hashmap to maintain a correspondence between the original nodes and the copied nodes. 
+By doing so, we can correctly assign the random pointers even if the target nodes are copied later during the DFS traversal.
 '''
 
 # Definition for a Node with an additional random pointer.

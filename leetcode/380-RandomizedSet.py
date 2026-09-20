@@ -17,6 +17,21 @@ randomizedSet.getRandom(); // getRandom() should return either 1 or 2 randomly.
 randomizedSet.remove(1); // Removes 1 from the set, returns true. Set now contains [2].
 randomizedSet.insert(2); // 2 was already in the set, so return false.
 randomizedSet.getRandom(); // Since 2 is the only number in the set, getRandom() will always return 2.
+Strategy: Use a list to store the elements and a dictionary to store the indices of the elements in the list. 
+This allows for O(1) insertion, deletion, and random access.
+Time Complexity: O(1) for insert, remove, and getRandom operations.
+Space Complexity: O(n), where n is the number of elements in the set.
+Steps:
+1. Initialize an empty list and an empty dictionary.
+2. For insert operation:
+    - Check if the element is already in the dictionary.
+    - If not, add it to the list and update the dictionary with its index.
+3. For remove operation:
+    - Check if the element is in the dictionary.
+    - If it is, swap it with the last element in the list and update the dictionary.
+    - Remove the last element from the list and delete the element from the dictionary.
+4. For getRandom operation:
+    - Return a random element from the list using random.choice().
 '''
 
 class RandomizedSet(object):
@@ -40,6 +55,11 @@ class RandomizedSet(object):
         """
         :type val: int
         :rtype: bool
+        Steps:
+        1. Check if the element is in the dictionary.
+        2. If it is, swap it with the last element in the list and update the dictionary.
+        3. Remove the last element from the list and delete the element from the dictionary.
+        4. Return True if the element was removed, False otherwise.
         """
         if val in self.m:
             last_elem_in_list = self.arr[-1]

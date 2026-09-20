@@ -16,6 +16,24 @@ class Solution(object):
         If both contributions are negative, no value is added.
         If both are positive, only the biggest one is added, so that we don't include both children during the rest of the tree exploration.
         Leaves return its own value and we recursively work our way upwards.
+
+        Question: Can you find the maximum path sum in a binary tree?
+        Approach:
+        - Use a depth-first search (DFS) to explore all paths in the binary tree.
+        - At each node, calculate the maximum path sum including the node and its left and right children.
+        - Update the global maximum path sum if the current path sum is greater.
+        - Return the maximum path sum that can be extended to the parent node.
+        Time Complexity: O(n), where n is the number of nodes in the binary tree.
+        Space Complexity: O(h), where h is the height of the binary tree due to the recursion stack.
+        Steps:
+        1. Initialize a variable to store the global maximum path sum.
+        2. Define a recursive DFS function to calculate the maximum path sum for each node.
+        3. In the DFS function, return 0 if the node is None.
+        4. Recursively calculate the maximum path sum for the left and right children, considering only positive contributions.
+        5. Update the global maximum path sum with the sum of the current node value and the maximum contributions from both children.
+        6. Return the maximum path sum that can be extended to the parent node.
+        7. Call the DFS function with the root node.
+        8. Return the global maximum path sum.
         """
         self.max_sum = float('-inf')
         def dfs(root):

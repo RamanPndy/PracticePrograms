@@ -12,17 +12,27 @@ class Solution(object):
         current element (if the current element is negative). 
         We keep track of both the maximum and minimum products because a negative number can also 
         result in a maximum product if multiplied by another negative number.
+        Question:
+
+        Find the contiguous subarray within an array (containing at least one number) which has the largest product.
+
+        Approach:
+        - Use dynamic programming to keep track of the maximum and minimum products ending at each index.
+        - Update the result with the maximum product found so far.
         Steps:
         1. create 2 arrays maxProd and minProd of the same length as nums and fill 0 in it
         2. put num[0] in both maxProd and minProd at first index and assign same to result
         3. traverse remaining nums from index 1 by index
             - if current num is positive
                 maxProd[i] = max(current num, previous value from maxProd * current num)
-                minProd[i] = max(current num, previous value from minProd * current num)
+                minProd[i] = min(current num, previous value from minProd * current num)
             else
                 maxProd[i] = max(current num, previous value from minProd * current num)
-                minProd[i] = max(current num, previous value from maxProd * current num)
+                minProd[i] = min(current num, previous value from maxProd * current num)
         4. update result with maxProd with current index
+        Complexity Analysis:
+        - Time: O(n) where n is the number of elements in the array.
+        - Space: O(n) due to the use of two additional arrays maxProd and minProd.
         """
         maxProd = [0 for i in range(len(nums))]
         minProd = [0 for i in range(len(nums))]

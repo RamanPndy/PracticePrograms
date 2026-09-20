@@ -19,6 +19,15 @@ class Solution(object):
         c  = 0.33 * 3.0
         a = 2.0 
         a /c 
+        Steps:
+        1. Create a graph where each node represents a variable and edges represent the division relationships.
+        2. For each query, perform a BFS or DFS to find the path from the numerator to the denominator.
+        3. Multiply the edge weights along the path to get the result.
+        4. If no path exists, return -1.0.
+        Intuition: The problem can be solved by representing the equations as a graph and using BFS or DFS to find the division result for each query.
+        Time Complexity: O(Q * (V + E)), where Q is the number of queries, V is the number of variables, and E is the number of equations.
+        Space Complexity: O(V + E), for storing the graph and the visited set during BFS/DFS.
+        Strategy: Represent the equations as a graph and use BFS or DFS to find the division result for each query.
         '''
         maps = defaultdict(dict)
 
@@ -34,9 +43,11 @@ class Solution(object):
             while q:
                 node, cost = q.pop(0)
                 visited.add(node)
+                # Check if the current node has a direct edge to the target node.
                 if right in maps[node]:
                     res = cost * maps[node][right]
                     break
+                # Add all unvisited neighbors to the queue with the updated cost.
                 q.extend([(neighbor, cost * n_cost) for neighbor, n_cost in maps[node].items() if neighbor not in visited])
             results.append(res)
 

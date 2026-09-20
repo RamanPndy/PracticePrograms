@@ -3,6 +3,15 @@ class Solution(object):
         """
         :type matrix: List[List[int]]
         :rtype: None Do not return anything, modify matrix in-place instead.
+        Question: Set entire row and column to 0 if an element is 0.
+        Approach:
+        - Use the first row and first column as markers to indicate which rows and columns should be set to zero.
+        - Use two boolean variables to track if the first row and first column originally had any zeros.
+        - Iterate through the matrix to mark the zero rows and columns.
+        - Update the matrix based on the markers.
+        - Finally, update the first row and first column if needed.
+        Time Complexity: O(m * n) where m is the number of rows and n is the number of columns.
+        Space Complexity: O(1) as we are using the matrix itself for marking.
         """
         m , n = len(matrix), len(matrix[0])
         first_row_has_zero , first_col_has_zero = False, False

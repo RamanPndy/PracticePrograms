@@ -21,6 +21,26 @@ class Solution:
     - if starts[current index] < ends[right pointer] then increase answer
     - otherwise increase right pointer
   7. return answer
+
+  Question: How can we determine the minimum number of conference rooms required for the given meeting intervals?
+  Approach:
+  - Separate the start and end times of all meetings.
+  - Sort the start and end times.
+  - Use two pointers to traverse the start and end times.
+  - If a meeting starts before the earliest ending meeting ends, we need a new room.
+  - Otherwise, we can reuse a room that has been freed.
+  - Keep track of the maximum number of rooms needed at any time.
+  Time Complexity: O(n log n) due to sorting the start and end times.
+  Space Complexity: O(n) for storing the start and end times.
+  Example:
+  - Input: [[0, 30],[5, 10],[15, 20]]
+  - Output: 2
+  - Explanation: At time 0, one meeting starts, requiring one room. At time 5, another meeting starts while the first one is still ongoing, requiring a second room. At time 10, the second meeting ends, freeing up a room. At time 15, a new meeting starts, reusing the freed room. The maximum number of rooms needed at any time is 2.
+  - At time 0, one meeting starts, requiring one room.
+  - At time 5, another meeting starts while the first one is still ongoing, requiring a second room.
+  - At time 10, the second meeting ends, freeing up a room.
+  - At time 15, a new meeting starts, reusing the freed room.
+  - The maximum number of rooms needed at any time is 2.
   '''
   def minMeetingRooms(self, intervals):
     n = len(intervals)

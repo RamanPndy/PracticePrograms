@@ -5,6 +5,14 @@ class Solution(object):
         Return the answer in any order.
         Input: digits = "23"
         Output: ["ad","ae","af","bd","be","bf","cd","ce","cf"]
+        Question: Given a string containing digits from 2-9 inclusive, return all possible letter combinations that the number could represent.
+        Approach:
+        - Use a queue to perform a breadth-first search (BFS) to generate all possible combinations.
+        - Start with an initial element (0, "") in the queue, where 0 is the index and "" is the current combination.
+        - For each element in the queue, if the index equals the length of the digits, add the combination to the result.
+        - Otherwise, get the next digit and its corresponding letters, and append new elements to the queue with updated index and combination.
+        Time Complexity: O(4^n) where n is the length of the digits string (since the maximum number of letters for a digit is 4).
+        Space Complexity: O(4^n) for storing the combinations in the queue and result list.
         Steps:
         1. create a dictionary having key as phone number digit and value as respective string
         2. create a result array and queue

@@ -24,6 +24,18 @@ class Solution(object):
         We then recursively call the longestSubstring function on each substring to find the longest 
         substring in each part.
         5. Finally, we return the maximum length of the two substrings found in step 4.
+        Intuition: The problem can be solved using a divide and conquer approach. 
+        We split the string at characters that do not meet the frequency requirement and recursively find the longest valid substring.
+        Time Complexity: O(n), where n is the length of the input string.
+        Space Complexity: O(n), for the recursion stack in the worst case.
+        Strategy: Use a divide and conquer approach to split the string at characters that do not meet the frequency requirement and recursively 
+        find the longest valid substring.
+        Steps:
+        1. Check if the length of the string is less than k. If so, return 0.
+        2. Count the frequency of each character in the string.
+        3. Find the first character with a frequency less than k.
+        4. Split the string at this character and recursively find the longest valid substring in each part.
+        5. Return the maximum length of the two substrings found in step 4.
         """
         if len(s) < k:
             return 0

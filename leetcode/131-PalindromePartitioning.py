@@ -30,6 +30,25 @@ class Solution(object):
         and recursively find all partitions that can be formed from the rest of the string.
         6. When we have traversed the whole string, add the current partition to the final result.
         7. Return the final result.
+
+        Question:
+
+        Given a string s, partition s such that every substring of the partition is a palindrome. Return all possible palindrome partitioning of s.
+        Approach:
+        - Use backtracking to explore all possible partitions of the string.
+        - For each substring, check if it is a palindrome.
+        - If it is, include it in the current partition and recursively process the remaining string.
+        - Once the end of the string is reached, add the current partition to the result list.
+        Complexity Analysis:
+        - Time: O(n * 2^n) where n is the length of the string, as there are 2^n possible partitions and checking each partition takes O(n) time.
+        - Space: O(n) for the recursion stack and the current partition list.
+        Steps:
+        1. Initialize an empty list to store the final result.
+        2. Define a helper function for backtracking.
+        3. In the helper function, iterate through the string and check for palindromic substrings.
+        4. If a palindromic substring is found, add it to the current partition and recursively call the helper function for the remaining string.
+        5. Once the end of the string is reached, add the current partition to the final result.
+        6. Return the final result.
         """
         res  = []
         part = []

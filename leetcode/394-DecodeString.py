@@ -18,6 +18,10 @@ class Solution(object):
             - otherwise add current character in string
         3. while stack is not empty get current character from stack and add it to current string
         4. return current string
+        Intuition: The problem can be solved using a stack to keep track of the previous strings and numbers. 
+        When encountering a closing bracket, we can construct the current string using the previous string and number.
+        Time Complexity: O(n), where n is the length of the input string.
+        Space Complexity: O(n), for the stack used to store previous strings and numbers.
         """
         st = []
         cs = ''

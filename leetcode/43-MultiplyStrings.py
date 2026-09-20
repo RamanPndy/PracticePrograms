@@ -6,6 +6,13 @@ class Solution(object):
         Note: You must not use any built-in BigInteger library or convert the inputs to integer directly.
         Input: num1 = "2", num2 = "3"
         Output: "6"
+        Question: What is the product of num1 and num2 represented as a string?
+        Approach:
+        - Convert each character of the input strings to its corresponding integer value.
+        - Multiply the resulting integers.
+        - Convert the product back to a string and return it.
+        Time Complexity: O(n + m) where n and m are the lengths of num1 and num2.
+        Space Complexity: O(1) as we are using only a constant amount of extra space.
         """
         def getNumFromString(num):
             n = 0
