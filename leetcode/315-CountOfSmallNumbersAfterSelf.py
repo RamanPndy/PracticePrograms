@@ -17,6 +17,20 @@ class Solution:
   Example 3:
   Input: nums = [-1,-1]
   Output: [0,0]
+
+  Question:
+
+  Given an integer array nums, return an integer array counts where counts[i] is the number of smaller elements to the right of nums[i].
+
+  Approach:
+  - Use a modified merge sort to count the number of smaller elements to the right.
+  - During the merge step, for each element in the left part, count how many elements in the right part are smaller.
+  - Update the result array with these counts.
+
+  Complexity Analysis:
+  - Time: O(n log n) due to the merge sort.
+  - Space: O(n) due to the additional arrays used in the merge sort.
+
   Steps:
   1. Enumerate the elements of the array to keep track of their original indices.
   2. Use a modified merge sort to count the number of smaller elements to the right.
@@ -25,8 +39,7 @@ class Solution:
   5. Return the result array after the merge sort is complete.
   Intuition: The problem can be solved using a modified merge sort, where during the merge step, we count the number of smaller elements to the right for 
   each element in the left part.
-  Time Complexity: O(n log n)
-  Space Complexity: O(n)
+
   Implementation Details: The merge sort is modified to keep track of the original indices of the elements, and during the merge step, 
   the number of smaller elements to the right is counted and updated in the result array.
   Example Walkthrough:
