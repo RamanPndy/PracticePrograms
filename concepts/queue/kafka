@@ -56,3 +56,47 @@ kafka writes every single message to the local disk.
 to increase performance make sure to attach fast SSD to each broker.
 
 kafka cluster has kafka controller which is responsible for managing partitions and replicas and performing administrative tasks such as reassiging partitions such that if one kafka broker goes down with a partition leader the active controller will reassign the function to another broker that already has all the replicated data to act as a partition leader and serve data.
+
+
+In Kafka, at-most-once and at-least-once describe the relationship between processing a message and committing its consumer offset.
+1. At-most-once
+
+Commit first → process later
+Kafka
+  ↓
+Read message
+  ↓
+Commit offset
+  ↓
+Process message
+
+If the application crashes after committing but before processing:
+When the consumer restarts, Kafka thinks the message was already consumed, so it will not deliver it again.
+
+Therefore:
+
+Message processed 0 or 1 time
+No duplicates
+But messages can be lost
+
+2. At-least-once
+
+Process first → commit later
+Kafka
+  ↓
+Read message
+  ↓
+Process message
+  ↓
+Commit offset
+
+Therefore:
+
+Message is processed 1 or more times
+Messages aren't normally lost because of the consumer crash window
+Duplicates are possible
+
+| Strategy          | Offset commit     | Crash after processing? | Message loss                   | Duplicate |
+| ----------------- | ----------------- | ----------------------- | ------------------------------ | --------- |
+| **At-most-once**  | Before processing | Message skipped         | Possible                       | No        |
+| **At-least-once** | After processing  | Message replayed        | Avoided in this failure window | Possible  |
