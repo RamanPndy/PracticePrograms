@@ -7,6 +7,7 @@
 class Solution(object):
     def maxPathSum(self, root):
         """
+        Find the maximum path sum in a binary tree.
         :type root: TreeNode
         :rtype: int
         Input: root = [-10,9,20,null,null,15,7]
@@ -49,3 +50,35 @@ class Solution(object):
             return root.val + max(leftMax, rightMax)
         dfs(root)
         return self.max_sum
+
+    def maxPathSumBfs(self, root):
+        """
+        Find the maximum path sum in a binary tree using BFS.
+        :type root: TreeNode
+        :rtype: int
+
+        Approach:
+        - Use a breadth-first search (BFS) to explore all nodes level by level.
+        - For each node, calculate the maximum path sum including the node and its left and right children.
+        - Update the global maximum path sum if the current path sum is greater.
+        - Consider only positive contributions from the left and right children.
+
+        Time Complexity: O(n)
+        Space Complexity: O(n)
+        """
+        if not root:
+            return 0
+        from collections import deque
+        max_sum = float('-inf')
+        queue = deque([root])
+        while queue:
+            node = queue.popleft()
+            if node:
+                left = max(0, node.left.val if node.left else 0) # consider only positive contribution from left child
+                right = max(0, node.right.val if node.right else 0) # consider only positive contribution from right child
+                max_sum = max(max_sum, node.val + left + right)
+                if node.left:
+                    queue.append(node.left)
+                if node.right:
+                    queue.append(node.right)
+        return max_sum

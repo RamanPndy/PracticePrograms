@@ -1,3 +1,22 @@
+'''
+LFU Cache Implementation
+This implementation uses a combination of a doubly linked list and a hash map to efficiently manage the least frequently used (LFU) cache. 
+The linked list helps maintain the order of elements with the same frequency, while the hash map allows for quick access and updates.
+
+Algorithm:
+1. Use a hash map to store the values associated with keys.
+2. Use a hash map to store the frequency count of each key.
+3. Use a hash map of linked lists to store keys with the same frequency.
+4. Maintain a variable to track the least frequently used count.
+5. On get, update the frequency of the key and move it to the appropriate linked list.
+6. On put, if the cache is full, evict the least frequently used key.
+7. Insert the new key with frequency 1 and update the least frequently used count.
+
+Time Complexity:
+- O(1) for both get and put operations on average, due to the use of hash maps and linked lists.
+Space Complexity:
+- O(n), where n is the capacity of the cache, for storing the values, counts, and linked lists.
+'''
 from collections import defaultdict
 
 class Node(object):
