@@ -7,7 +7,8 @@ class Solution(object):
         TC: O(n * m * 4^L), where n and m are the dimensions of the board and L is the length of the word.
         SC: O(L), where L is the length of the word, due to the recursion stack in the DFS approach.
 
-        Question: Can you determine if a given word exists in the 2D board by moving horizontally or vertically to adjacent cells?
+        Question: Can you determine if a given word exists in the 2D board by moving horizontally or vertically to 
+        adjacent cells?
         Approach:
         - Use a depth-first search (DFS) approach to explore all possible paths in the board.
         - Start from each cell and recursively check if the word can be formed by moving horizontally or vertically to adjacent cells.
@@ -51,7 +52,8 @@ class Solution(object):
         def bfs(row, col):
             """
             Breadth-first search (BFS) approach to explore all possible paths in the board starting from the given cell.
-            - Use a queue to keep track of the current position, the letters collected so far, and the index of the current character in the target word.
+            - Use a queue to keep track of the current position, the letters collected so far, and the index of the 
+                current character in the target word.
             - Check boundary conditions, character match, and visited cells.
             - If the collected letters match the target word, return True.
             - Otherwise, continue exploring all four directions.
@@ -79,6 +81,6 @@ class Solution(object):
         
         for r in range(rows):
             for c in range(cols):
-                if dfs(r,c, 0):
+                if bfs(r,c):
                     return True
         return False

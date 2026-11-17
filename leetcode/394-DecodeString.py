@@ -20,6 +20,11 @@ class Solution(object):
         4. return current string
         Intuition: The problem can be solved using a stack to keep track of the previous strings and numbers. 
         When encountering a closing bracket, we can construct the current string using the previous string and number.
+        Why this approach works:
+        The stack keeps track of the previous strings and numbers, allowing us to correctly build the decoded string as 
+        we encounter closing brackets. 
+        By processing characters sequentially and using the stack to remember context, we ensure that nested structures 
+        are handled properly.
         Time Complexity: O(n), where n is the length of the input string.
         Space Complexity: O(n), for the stack used to store previous strings and numbers.
         """

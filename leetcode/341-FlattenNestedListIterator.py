@@ -40,6 +40,28 @@ Key Points
     Using a stack allows us to process elements in LIFO (Last In, First Out) order, which is suitable for handling nested structures.
     The flatten method ensures that the nested list is processed correctly.
     The hasNext method ensures that only integers are at the top of the stack when next is called.
+
+Algorithm:
+1. Initialize a stack to store elements in reverse order.
+2. Flatten the initial nested list and push elements onto the stack.
+3. For hasNext, check if the top of the stack is an integer. If not, flatten the list at the top.
+4. For next, pop and return the top integer from the stack.
+
+Why a stack is used:
+A stack is used to maintain the order of elements while processing nested lists. 
+By pushing elements in reverse order, we ensure that the next element to be processed is always at the top of the stack. 
+This allows us to efficiently handle nested structures and retrieve integers in the correct order.
+
+Why this approach works:
+The stack ensures that we always process the next element in the correct order. 
+By flattening lists only when necessary (i.e., when they reach the top of the stack), 
+we maintain the correct sequence of integers and efficiently handle nested structures without 
+pre-flattening the entire list.
+
+Time Complexity:
+- O(n), where n is the total number of integers in the nested list, as each integer is processed exactly once.
+Space Complexity:
+- O(d), where d is the maximum depth of the nested list, for the stack used to store elements.
 '''
 class NestedIterator:
     def __init__(self, nestedList):
